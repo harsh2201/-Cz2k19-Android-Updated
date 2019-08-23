@@ -5,8 +5,42 @@ import Events from "./Components/Events";
 import Navigator from "./Components/Navigator";
 import About from "./Components/About";
 import Trending from "./Components/Trending";
+import * as firebase from "firebase";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCpsdNSarpuc8Cb3GHcHjbPYvfBeim2JkY",
+  authDomain: "cognizance2k19-169d7.firebaseapp.com",
+  databaseURL: "https://cognizance2k19-169d7.firebaseio.com",
+  projectId: "cognizance2k19-169d7",
+  storageBucket: "",
+  messagingSenderId: "656512761398",
+  appId: "1:656512761398:web:d5221d4e8653cd22"
+};
+// Initialize Firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 export default class App extends React.Component {
+  componentDidMount() {
+    firebase
+      .auth()
+      .signInAnonymously()
+      .catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        //  console.log(user)
+      } else {
+        // console.log("no in")
+      }
+    });
+  }
   state = {
     index: 0,
     routes: [
@@ -48,7 +82,7 @@ export default class App extends React.Component {
         barStyle={{ backgroundColor: "#fff" }}
         renderScene={BottomNavigation.SceneMap({
           navigator: Navigator,
-          Trending:Trending,
+          Trending: Trending,
           events: Events,
           about: About
         })}

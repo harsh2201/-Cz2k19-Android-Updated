@@ -29,8 +29,8 @@ import { View,
     };
   
 class Events extends Component {
-   componentDidMount(){
-       
+       componentDidMount(){
+    
   } 
   render() {
     return (
@@ -113,7 +113,8 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "#fff",
-    fontSize: 25
+    fontSize: 25,
+
   },
   topHeader: {
     flex: 2.2

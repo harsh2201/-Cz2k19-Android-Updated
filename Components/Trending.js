@@ -77,7 +77,7 @@ class Trending extends Component {
     );
   };
   render() {
-    return (
+      return (
       <View style={styles.container}>
         <ImageBackground
           source={require("../assets/back2.jpg")}

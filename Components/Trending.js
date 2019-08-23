@@ -62,7 +62,7 @@ class Trending extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=>this.props.navigation.navigate('',{data:item})} >
              <Card style={styles.card}>
               <View style={styles.row}>
                 <Image source={require('../assets/baap2.jpg')} style={styles.pic} />

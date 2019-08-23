@@ -89,7 +89,7 @@ class EventDetail extends Component {
   }
     renderItem = ({ item }) => {
       return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate('',{data:item})} >
           <View style={styles.row}>
             <Image source={require('../assets/baap2.jpg')} style={styles.pic} />
             <View>

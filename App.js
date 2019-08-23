@@ -2,7 +2,7 @@ import * as React from "react";
 import { View, Dimensions, StyleSheet, Text } from "react-native";
 import { BottomNavigation, Paragraph } from "react-native-paper";
 import Events from "./Components/Events";
-import Options from "./Components/Options";
+import Navigator from "./Components/Navigator";
 import About from "./Components/About";
 
 export default class App extends React.Component {
@@ -11,19 +11,19 @@ export default class App extends React.Component {
     routes: [
       {
         key: "events",
-        title: "Events",
+        // title: "Events",
         icon: "home"
         // color: "#039b3b"
       },
       {
-        key: "options",
-        title: "Options",
+        key: "navigator",
+        // title: "Options",
         icon: "favorite"
         // color: "#E81B38"
       },
       {
         key: "about",
-        title: "About CZ",
+        // title: "About CZ",
         icon: "person"
         // color: "#F75728"
       }
@@ -35,9 +35,13 @@ export default class App extends React.Component {
       <BottomNavigation
         navigationState={this.state}
         onIndexChange={index => this.setState({ index })}
+        shifting={false}
+        labeled={false}
+        activeColor="#80007d"
+        barStyle={{ backgroundColor: "#fff" }}
         renderScene={BottomNavigation.SceneMap({
+          navigator: Navigator,
           events: Events,
-          options: Options,
           about: About
         })}
       />

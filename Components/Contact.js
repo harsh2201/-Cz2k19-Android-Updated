@@ -26,7 +26,7 @@ import Modal from "react-native-modal";
 // const TRANSITION_BUFFER = 10;
 // const POSITON = "custom";
 
-class About extends Component {
+class Contact extends Component {
   constructor(props) {
     super(props);
     circleTransition = () => {};
@@ -121,7 +121,6 @@ class About extends Component {
     return (
       <TouchableOpacity onPress={this.toggleModal}>
         <View style={styles.row}>
-          <Image source={{ uri: item.image }} style={styles.pic} />
           <View>
             <View style={styles.nameContainer}>
               <Text
@@ -131,6 +130,7 @@ class About extends Component {
               >
                 {item.name}
               </Text>
+              <Text style={styles.mblTxt}>+91 91042 11117</Text>
             </View>
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.status}</Text>
@@ -158,7 +158,7 @@ class About extends Component {
               <Images source={require("../assets/arrowBack.svg")} />
             </TouchableOpacity>
             <View style={styles.heading}>
-              <Text style={styles.headerText}>Developers</Text>
+              <Text style={styles.headerText}>Contact Us</Text>
             </View>
             <View style={styles.waveContainer}>
               <Images
@@ -195,7 +195,7 @@ class About extends Component {
     );
   }
 }
-export default About;
+export default Contact;
 
 const styles = StyleSheet.create({
   container: {
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     height: 60
   },
   nameContainer: {
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-between",
     width: 280
   },
@@ -267,6 +267,8 @@ const styles = StyleSheet.create({
     width: 170
   },
   mblTxt: {
+    marginTop: 6,
+    marginLeft: 15,
     fontWeight: "200",
     color: "#777",
     fontSize: 13

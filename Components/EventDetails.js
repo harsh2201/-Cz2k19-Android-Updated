@@ -95,7 +95,7 @@ class EventDetail extends Component {
         }}
       >
         <View style={styles.row}>
-          <Image source={require("../assets/baap2.jpg")} style={styles.pic} />
+          <Image source={{ uri: item.posterUrl }} style={styles.pic} />
           <View>
             <View style={styles.nameContainer}>
               <Text

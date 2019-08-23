@@ -10,10 +10,10 @@ import EventStack from "./EventStack";
 
 const AppSwitchNavigator = createStackNavigator(
   {
+    EventStack: EventStack,
     Events: Events,
     Options: Options,
     EventDetails: EventDetails,
-    EventStack: EventStack,
     Contact: Contact
   },
   {

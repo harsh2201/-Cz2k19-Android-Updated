@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { View,
+import {
+  View,
   Text,
   StyleSheet,
   Platform,
@@ -9,29 +10,30 @@ import { View,
   AsyncStorage,
   Dimensions
 } from "react-native";
-  import Images from "react-native-remote-svg";
-  import {createMaterialTopTabNavigator,createAppContainer} from "react-navigation"
-  const { width: screenWidth,height:screenHeight } = Dimensions.get('window');
-  import EventDetails from "./EventDetails"
-  import * as firebase from "firebase";
-  const firebaseConfig = {
-    apiKey: "AIzaSyCpsdNSarpuc8Cb3GHcHjbPYvfBeim2JkY",
-    authDomain: "cognizance2k19-169d7.firebaseapp.com",
-    databaseURL: "https://cognizance2k19-169d7.firebaseio.com",
-    projectId: "cognizance2k19-169d7",
-    storageBucket: "",
-    messagingSenderId: "656512761398",
-    appId: "1:656512761398:web:d5221d4e8653cd22"
-  };
-  // Initialize Firebase
-  if (!firebase.apps.length) { 
-    firebase.initializeApp(firebaseConfig);
-    };
-  
+import Images from "react-native-remote-svg";
+import {
+  createMaterialTopTabNavigator,
+  createAppContainer
+} from "react-navigation";
+const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
+import EventDetails from "./EventDetails";
+import * as firebase from "firebase";
+const firebaseConfig = {
+  apiKey: "AIzaSyCpsdNSarpuc8Cb3GHcHjbPYvfBeim2JkY",
+  authDomain: "cognizance2k19-169d7.firebaseapp.com",
+  databaseURL: "https://cognizance2k19-169d7.firebaseio.com",
+  projectId: "cognizance2k19-169d7",
+  storageBucket: "",
+  messagingSenderId: "656512761398",
+  appId: "1:656512761398:web:d5221d4e8653cd22"
+};
+// Initialize Firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
 class Events extends Component {
-   componentDidMount(){
-       
-  } 
+  componentDidMount() {}
   render() {
     return (
       <View style={styles.container}>
@@ -40,9 +42,7 @@ class Events extends Component {
           style={styles.backImage}
         >
           <View style={styles.topHeader}>
-            <View style={styles.back}>
-            
-            </View>
+            <View style={styles.back} />
             <View style={styles.heading}>
               <Text style={styles.headerText}>Events</Text>
             </View>
@@ -53,10 +53,10 @@ class Events extends Component {
               />
             </View>
           </View>
-           <View style={styles.main}>
-          <AppNavigator/>
+          <View style={styles.main}>
+            <AppNavigator />
           </View>
-          </ImageBackground>
+        </ImageBackground>
       </View>
     );
   }
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   card: {
     width: 320,
     height: 575,
-    top: screenHeight/8,
+    top: screenHeight / 8,
     backgroundColor: "#fff",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
@@ -166,30 +166,30 @@ const styles = StyleSheet.create({
   },
   back: {
     height: 40,
-    width: 40,
-      }
+    width: 40
+  }
 });
-const AppNavigator = createAppContainer(createMaterialTopTabNavigator(  
-  {  
-      Technical:EventDetails,   
-      Nontechnical:EventDetails,  
-      Workshops: EventDetails,  
-        
-  },  
-  {  
-      tabBarOptions: {  
-          activeTintColor: 'white',  
-          style: {  
-              backgroundColor:'transparent',  
-             
-          },
-          labelStyle: {
-            // fontSize: 10,
-            // fontWeight:'bold'
-          },
-          indicatorStyle :{
-            opacity:0 
-          }  
-      },  
-  }  
-))
+const AppNavigator = createAppContainer(
+  createMaterialTopTabNavigator(
+    {
+      Technical: EventDetails,
+      Nontechnical: EventDetails,
+      Workshops: EventDetails
+    },
+    {
+      tabBarOptions: {
+        activeTintColor: "white",
+        style: {
+          backgroundColor: "transparent"
+        },
+        labelStyle: {
+          // fontSize: 10,
+          // fontWeight:'bold'
+        },
+        indicatorStyle: {
+          opacity: 0
+        }
+      }
+    }
+  )
+);

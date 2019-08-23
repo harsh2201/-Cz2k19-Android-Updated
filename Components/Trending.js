@@ -64,8 +64,9 @@ class Trending extends Component {
 
   renderItem = ({ item }) => {
     return (
-<<<<<<< HEAD
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate("", { data: item })}
+      >
         <Card style={styles.card}>
           <View style={styles.row}>
             <Image source={require("../assets/baap2.jpg")} style={styles.pic} />
@@ -86,24 +87,11 @@ class Trending extends Component {
             </View>
           </View>
         </Card>
-=======
-      <TouchableOpacity onPress={()=>this.props.navigation.navigate('',{data:item})} >
-             <Card style={styles.card}>
-              <View style={styles.row}>
-                <Image source={require('../assets/baap2.jpg')} style={styles.pic} />
-                  
-                <Text style={styles.text} >{item.eventName}</Text>
-                <View style={{flex:1,alignItems:'flex-end',justifyContent:'flex-end',flexDirection:'row'}}>
-                <Ionicons name="ios-heart"  style={styles.msgTxt}/><Text style={[styles.msgTxt,{marginLeft:5}]}>{item.likeCount}</Text>
-                </View>
-               </View>
-            </Card>
->>>>>>> c3bf2a79c0578b9d1b9f996fd54ace510ee6bf91
       </TouchableOpacity>
     );
   };
   render() {
-      return (
+    return (
       <View style={styles.container}>
         <ImageBackground
           source={require("../assets/back2.jpg")}

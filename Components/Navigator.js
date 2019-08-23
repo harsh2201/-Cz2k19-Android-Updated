@@ -5,7 +5,6 @@ import { createAppContainer, createStackNavigator } from "react-navigation";
 import EventDetail from "./EventDetails";
 import Events from "./Events";
 import Contact from "./Contact";
-import Developers from "./Developers";
 import Options from "./Options";
 import EventStack from "./EventStack";
 
@@ -15,8 +14,7 @@ const AppSwitchNavigator = createStackNavigator(
     EventStack: EventStack,
     EventDetail: EventDetail,
     Events: Events,
-    Contact: Contact,
-    Developers: Developers
+    Contact: Contact
   },
   {
     headerMode: "none",

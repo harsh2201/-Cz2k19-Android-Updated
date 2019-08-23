@@ -26,6 +26,18 @@ export default class App extends React.Component {
     firebase
       .auth()
       .signInAnonymously()
+      .then(async () => {
+        let user = await firebase.auth().currentUser;
+        firebase
+          .database()
+          .ref("users/" + user.uid + "/")
+          .set({
+            email: "NA",
+            id: user.uid,
+            like_left: 5,
+            user_no: 3
+          });
+      })
       .catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -35,7 +47,8 @@ export default class App extends React.Component {
       if (user) {
         var isAnonymous = user.isAnonymous;
         var uid = user.uid;
-        //  console.log(user)
+
+        console.log(user);
       } else {
         // console.log("no in")
       }

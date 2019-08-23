@@ -33,13 +33,7 @@ if (!firebase.apps.length) {
 }
 
 class Events extends Component {
-<<<<<<< HEAD
   componentDidMount() {}
-=======
-       componentDidMount(){
-    
-  } 
->>>>>>> c3bf2a79c0578b9d1b9f996fd54ace510ee6bf91
   render() {
     return (
       <View style={styles.container}>
@@ -119,8 +113,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "#fff",
-    fontSize: 25,
-
+    fontSize: 25
   },
   topHeader: {
     flex: 2.2

@@ -10,12 +10,12 @@ export default class App extends React.Component {
   state = {
     index: 0,
     routes: [
-      // {
-      //   key: "events",
-      //   // title: "Events",
-      //   icon: "home"
-      //   // color: "#039b3b"
-      // },
+      {
+        key: "events",
+        // title: "Events",
+        icon: "home"
+        // color: "#039b3b"
+      },
       {
         key: "Trending",
         // title: "Options",
@@ -49,7 +49,7 @@ export default class App extends React.Component {
         renderScene={BottomNavigation.SceneMap({
           navigator: Navigator,
           Trending:Trending,
-          // events: Events,
+          events: Events,
           about: About
         })}
       />

@@ -77,7 +77,6 @@ class Trending extends Component {
     );
   };
   render() {
-    console.log(this.state.all.length)
     return (
       <View style={styles.container}>
         <ImageBackground

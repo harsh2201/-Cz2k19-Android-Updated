@@ -54,26 +54,9 @@ class Events extends Component {
             </View>
           </View>
            <View style={styles.main}>
-          {/* <AppNavigator/> */}
+          <AppNavigator/>
           </View>
-                    {/* <View style={styles.main}>
-            <View style={styles.cardContainer}>
-              <Card style={styles.card}>
-                <View style={styles.listContainer}>
-                  <FlatList
-                    showsVerticalScrollIndicator={false}
-                    extraData={this.state}
-                    data={this.state.calls}
-                    keyExtractor={item => {
-                      return item.id.toString();
-                    }}
-                    renderItem={this.renderItem}
-                  />
-                </View>
-              </Card>
-            </View>
-          </View> */}
-        </ImageBackground>
+          </ImageBackground>
       </View>
     );
   }

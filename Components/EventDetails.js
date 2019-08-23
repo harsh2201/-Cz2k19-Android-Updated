@@ -39,6 +39,7 @@ class EventDetail extends Component {
     };
   }
   async componentDidMount() {
+    this.props.navigate("Events");
     let page = this.props.navigation.state.key;
     if (page == "Technical" || page == "Nontechnical") {
       firebase
@@ -88,7 +89,10 @@ class EventDetail extends Component {
   renderItem = ({ item }) => {
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate("", { data: item })}
+        onPress={() => {
+          // console.log("Props", this.props.navigation);
+          this.props.navigate("EventStack");
+        }}
       >
         <View style={styles.row}>
           <Image source={require("../assets/baap2.jpg")} style={styles.pic} />

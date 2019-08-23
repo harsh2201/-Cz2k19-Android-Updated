@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Platform,
   ImageBackground,
+  Image,
   FlatList,
   TouchableOpacity,
   AsyncStorage,
@@ -33,8 +34,46 @@ if (!firebase.apps.length) {
 }
 
 class Events extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    // this.props.navigation.navigate("EventStack");
+  }
+
+  navigate = route => {
+    this.props.navigation.navigate(route);
+  };
+
   render() {
+    const AppNavigator = createAppContainer(
+      createMaterialTopTabNavigator(
+        {
+          Technical: props => (
+            <EventDetails {...props} navigate={this.navigate} />
+          ),
+          Nontechnical: props => (
+            <EventDetails {...props} navigate={this.navigate} />
+          ),
+          Workshops: props => (
+            <EventDetails {...props} navigate={this.navigate} />
+          )
+        },
+        {
+          tabBarOptions: {
+            activeTintColor: "white",
+            style: {
+              backgroundColor: "transparent"
+            },
+            labelStyle: {
+              // fontSize: 10,
+              // fontWeight:'bold'
+            },
+            indicatorStyle: {
+              opacity: 0
+            }
+          }
+        }
+      )
+    );
+
     return (
       <View style={styles.container}>
         <ImageBackground
@@ -47,8 +86,8 @@ class Events extends Component {
               <Text style={styles.headerText}>Events</Text>
             </View>
             <View style={styles.waveContainer}>
-              <Images
-                source={require("../assets/wave.svg")}
+              <Image
+                source={require("../assets/wave.png")}
                 style={styles.wave}
               />
             </View>
@@ -169,27 +208,3 @@ const styles = StyleSheet.create({
     width: 40
   }
 });
-const AppNavigator = createAppContainer(
-  createMaterialTopTabNavigator(
-    {
-      Technical: EventDetails,
-      Nontechnical: EventDetails,
-      Workshops: EventDetails
-    },
-    {
-      tabBarOptions: {
-        activeTintColor: "white",
-        style: {
-          backgroundColor: "transparent"
-        },
-        labelStyle: {
-          // fontSize: 10,
-          // fontWeight:'bold'
-        },
-        indicatorStyle: {
-          opacity: 0
-        }
-      }
-    }
-  )
-);

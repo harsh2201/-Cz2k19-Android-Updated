@@ -2,6 +2,7 @@ import * as React from "react";
 import { View, Dimensions, StyleSheet, Text } from "react-native";
 import { BottomNavigation, Paragraph } from "react-native-paper";
 import Events from "./Components/Events";
+import Options from "./Components/Options";
 import Navigator from "./Components/Navigator";
 import About from "./Components/About";
 import Trending from "./Components/Trending";
@@ -94,9 +95,9 @@ export default class App extends React.Component {
         activeColor="#80007d"
         barStyle={{ backgroundColor: "#fff" }}
         renderScene={BottomNavigation.SceneMap({
-          navigator: Navigator,
+          navigator: Options,
           Trending: Trending,
-          events: Events,
+          events: Navigator,
           about: About
         })}
       />

@@ -155,14 +155,14 @@ class Contact extends Component {
                 this.props.navigation.navigate("Options");
               }}
             >
-              <Images source={require("../assets/arrowBack.svg")} />
+              <Image source={require("../assets/arrowBack.png")} />
             </TouchableOpacity>
             <View style={styles.heading}>
               <Text style={styles.headerText}>Contact Us</Text>
             </View>
             <View style={styles.waveContainer}>
-              <Images
-                source={require("../assets/wave.svg")}
+              <Image
+                source={require("../assets/wave.png")}
                 style={styles.wave}
               />
             </View>

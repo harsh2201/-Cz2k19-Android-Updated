@@ -27,8 +27,8 @@ class Events extends Component {
               <Text style={styles.headerText}>About CZ</Text>
             </View>
             <View style={styles.waveContainer}>
-              <Images
-                source={require("../assets/wave.svg")}
+              <Image
+                source={require("../assets/wave.png")}
                 style={styles.wave}
               />
             </View>

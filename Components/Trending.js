@@ -7,13 +7,16 @@ import { View,
   FlatList,
   TouchableOpacity,
   AsyncStorage,
-  Dimensions
+  Dimensions,
+  Image
 } from "react-native";
   import Images from "react-native-remote-svg";
-  import {createMaterialTopTabNavigator,createAppContainer} from "react-navigation"
   const { width: screenWidth,height:screenHeight } = Dimensions.get('window');
-  import EventDetails from "./EventDetails"
   import * as firebase from "firebase";
+  import { Card } from "react-native-card-stack-swiper";
+
+import { Ionicons } from '@expo/vector-icons';
+
   const firebaseConfig = {
     apiKey: "AIzaSyCpsdNSarpuc8Cb3GHcHjbPYvfBeim2JkY",
     authDomain: "cognizance2k19-169d7.firebaseapp.com",
@@ -22,21 +25,63 @@ import { View,
     storageBucket: "",
     messagingSenderId: "656512761398",
     appId: "1:656512761398:web:d5221d4e8653cd22"
-  };
+  }; 
   // Initialize Firebase
   if (!firebase.apps.length) { 
     firebase.initializeApp(firebaseConfig);
     };
   
-class Events extends Component {
+class Trending extends Component {
+  constructor(){
+    super()
+    this.state={
+      all:[]
+    }
+  }
    componentDidMount(){
-       
+    firebase.database().ref('/events').once("value").then(async snapshot=>{
+      let snap = await JSON.stringify(snapshot)
+      let data =  JSON.parse(snap)  
+        let all=[]
+         for(var key in data){
+           let obj = data[key];
+          if(obj.type!="W")
+           all.push(obj);
+        
+           } 
+           let myData = [].concat(all)
+    .sort((a, b) => a.likeCount < b.likeCount).slice(0, 10) 
+     
+         this.setState({all:myData})
+    }).catch((err)=>console.log(err))   
+  
   } 
+
+
+
+
+  renderItem = ({ item }) => {
+    return (
+      <TouchableOpacity>
+             <Card style={styles.card}>
+              <View style={styles.row}>
+                <Image source={require('../assets/baap2.jpg')} style={styles.pic} />
+                  
+                <Text style={styles.text} >{item.eventName}</Text>
+                <View style={{flex:1,alignItems:'flex-end',justifyContent:'flex-end',flexDirection:'row'}}>
+                <Ionicons name="ios-heart"  style={styles.msgTxt}/><Text style={[styles.msgTxt,{marginLeft:5}]}>{item.likeCount}</Text>
+                </View>
+               </View>
+            </Card>
+      </TouchableOpacity>
+    );
+  };
   render() {
+    console.log(this.state.all.length)
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require("../assets/back1.jpg")}
+          source={require("../assets/back2.jpg")}
           style={styles.backImage}
         >
           <View style={styles.topHeader}>
@@ -44,7 +89,7 @@ class Events extends Component {
             
             </View>
             <View style={styles.heading}>
-              <Text style={styles.headerText}>Events</Text>
+              <Text style={styles.headerText}>Trending</Text>
             </View>
             <View style={styles.waveContainer}>
               <Images
@@ -53,32 +98,25 @@ class Events extends Component {
               />
             </View>
           </View>
-           <View style={styles.main}>
-          {/* <AppNavigator/> */}
-          </View>
-                    {/* <View style={styles.main}>
-            <View style={styles.cardContainer}>
-              <Card style={styles.card}>
-                <View style={styles.listContainer}>
-                  <FlatList
+          <View style={styles.main}>  
+          <FlatList
                     showsVerticalScrollIndicator={false}
-                    extraData={this.state}
-                    data={this.state.calls}
+                    // extraData={this.state}
+                    data={this.state.all }
                     keyExtractor={item => {
                       return item.id.toString();
                     }}
                     renderItem={this.renderItem}
                   />
-                </View>
-              </Card>
-            </View>
-          </View> */}
+
+          </View>
+          
         </ImageBackground>
       </View>
     );
   }
 }
-export default Events;
+export default Trending;
 
 const styles = StyleSheet.create({
   container: {
@@ -86,6 +124,27 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     marginTop: 10
+  },
+  card:{
+    backgroundColor:"#fff",
+    borderRadius: 10, 
+    shadowColor: "#000",
+    marginVertical:20,
+    shadowOffset: {
+      width: 0,
+      height: 5
+    },
+    shadowOpacity: 0.36,
+    shadowRadius: 6.68,
+    width:320,
+    height:100,
+    elevation: 11,
+    justifyContent:"center",
+  },
+  pic: {
+    borderRadius: 30,
+    width: 60,
+    height: 60
   },
   row: {
     flexDirection: "row",
@@ -96,38 +155,17 @@ const styles = StyleSheet.create({
     padding: 10,
     marginHorizontal: 15
   },
-  pic: {
-    borderRadius: 30,
-    width: 60,
-    height: 60
-  },
-  nameContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: 280
-  },
-  nameTxt: {
-    marginLeft: 15,
-    fontWeight: "600",
-    color: "#222",
-    fontSize: 18,
-    width: 170
-  },
-  mblTxt: {
-    fontWeight: "200",
-    color: "#777",
-    fontSize: 13
-  },
-  msgContainer: {
-    flexDirection: "row",
-    alignItems: "center"
+  text:{
+    fontSize:15,
+    padding:5
+     
   },
   msgTxt: {
-    fontWeight: "400",
-    color: "#008B8B",
-    fontSize: 12,
-    marginLeft: 15
-  },
+    fontWeight: "500",
+    // color: "#008B8B",
+    color:"red",
+    fontSize: 25,
+     },
   headerText: {
     color: "#fff",
     fontSize: 25
@@ -143,70 +181,23 @@ const styles = StyleSheet.create({
   backImage: {
     flex: 1
   },
-  card: {
-    width: 320,
-    height: 575,
-    top: screenHeight/8,
-    backgroundColor: "#fff",
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
-    borderBottomRightRadius: 0,
-    borderBottomLeftRadius: 0,
-    shadowColor: "rgba(0,0,0,0.5)",
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 5
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-
-    elevation: 11
-  },
-  cardContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
+ 
   wave: {
     alignSelf: "flex-start",
     marginTop: 10,
     justifyContent: "flex-end"
-  },
+  }, 
   waveContainer: {
     marginLeft: 20,
     justifyContent: "flex-end"
   },
   main: {
-    flex: 6
+    flex: 4,
+    alignItems:'center',
+    // justifyContent:"center",
   },
   back: {
     height: 40,
     width: 40,
       }
 });
-const AppNavigator = createAppContainer(createMaterialTopTabNavigator(  
-  {  
-      Technical:EventDetails,   
-      Nontechnical:EventDetails,  
-      Workshops: EventDetails,  
-        
-  },  
-  {  
-      tabBarOptions: {  
-          activeTintColor: 'white',  
-          style: {  
-              backgroundColor:'transparent',  
-             
-          },
-          labelStyle: {
-            // fontSize: 10,
-            // fontWeight:'bold'
-          },
-          indicatorStyle :{
-            opacity:0 
-          }  
-      },  
-  }  
-))

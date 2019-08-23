@@ -4,16 +4,23 @@ import { BottomNavigation, Paragraph } from "react-native-paper";
 import Events from "./Components/Events";
 import Navigator from "./Components/Navigator";
 import About from "./Components/About";
+import Trending from "./Components/Trending";
 
 export default class App extends React.Component {
   state = {
     index: 0,
     routes: [
+      // {
+      //   key: "events",
+      //   // title: "Events",
+      //   icon: "home"
+      //   // color: "#039b3b"
+      // },
       {
-        key: "events",
-        // title: "Events",
-        icon: "home"
-        // color: "#039b3b"
+        key: "Trending",
+        // title: "Options",
+        icon: "whatshot"
+        // color: "#E81B38"
       },
       {
         key: "navigator",
@@ -41,7 +48,8 @@ export default class App extends React.Component {
         barStyle={{ backgroundColor: "#fff" }}
         renderScene={BottomNavigation.SceneMap({
           navigator: Navigator,
-          events: Events,
+          Trending:Trending,
+          // events: Events,
           about: About
         })}
       />

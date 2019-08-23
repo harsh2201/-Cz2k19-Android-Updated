@@ -7,140 +7,13 @@ import {
   ImageBackground,
   FlatList,
   TouchableOpacity,
-  Image,
-  Alert,
-  Easing
+  AsyncStorage,
+  Dimensions
 } from "react-native";
-// import { Card } from "react-native-card-stack-swiper";
 import Images from "react-native-remote-svg";
-import MainCard from "./MainCard";
-// import CircleTransition from "react-native-expanding-circle-transition";
-import Modal from "react-native-modal";
-
-// const ANIMATION_DURATION = 1200;
-// const INITIAL_VIEW_BACKGROUND_COLOR = "#E3E4E5";
-// const CIRCLE_COLOR1 = "#29C5DB";
-// const CIRCLE_COLOR2 = "#4EB8AE";
-// const CIRCLE_COLOR3 = "#81C781";
-// const CIRCLE_COLOR4 = "#B0D882";
-// const TRANSITION_BUFFER = 10;
-// const POSITON = "custom";
-
-class About extends Component {
-  constructor(props) {
-    super(props);
-    circleTransition = () => {};
-    this.state = {
-      message: "Hello",
-      code: "",
-      inst: "",
-      isModalVisible: false,
-      customLeftMargin: 0,
-      customTopMargin: 0,
-      counter: 0,
-      tempProp: {
-        user_no: 200,
-        code: "CZ19XWrd6"
-      },
-      calls: [
-        {
-          id: 1,
-          name: "Harsh Jobanputra",
-          status: "iOS & Android App Developer",
-          image: "http://bit.ly/CZHarshAvatar"
-        },
-        {
-          id: 2,
-          name: "Satvik Padhiyar",
-          status: "iOS App Developer",
-          image: "http://bit.ly/CZSatvikAvatar"
-        },
-        {
-          id: 3,
-          name: "Shivam Shompura",
-          status: "Android Developer",
-          image: "http://bit.ly/CZShivamAvatar"
-        },
-        {
-          id: 4,
-          name: "Akrit Khanna",
-          status: "Android Developer",
-          image: "http://bit.ly/CZAkritAvatar"
-        },
-        {
-          id: 5,
-          name: "Vatsal Shah",
-          status: "Android Developer",
-          image:
-            "https://preview.redd.it/r2n25pvy59z21.png?width=960&crop=smart&auto=webp&s=4e20f1394efa2987029c4976926773ce831cd508"
-        },
-        {
-          id: 6,
-          name: "Divyesh Rabadiya",
-          status: "Android Developer",
-          image:
-            "https://cdn3.iconfinder.com/data/icons/diversity-avatars-vol-2/64/captain-jack-sparrow-pirate-carribean-512.png"
-        },
-        {
-          id: 8,
-          name: "Kanika Aggarwal",
-          status: "Android Developer",
-          image:
-            "https://i.pinimg.com/originals/5b/71/ab/5b71ab4ea082c3c11e77312a64bba835.jpg"
-        }
-      ]
-    };
-  }
-
-  componentDidMount() {
-    t = this.state.tempProp;
-    console.log(t.user_no % 100);
-    if (t.user_no % 100 === 0 && t.user_no <= 1000) {
-      this.setState({
-        message: "Congratulations!\nYou just won a luckty prize",
-        code: t.code,
-        inst: "Ensure to collect the prize from the coordinators"
-      });
-    } else {
-      this.setState({
-        code: "Sorry!\nYou didn't get the prize",
-        message: "",
-        inst: ""
-      });
-    }
-  }
-
-  toggleModal = () => {
-    this.setState({ isModalVisible: true });
-    setTimeout(() => {
-      this.setState({ isModalVisible: false });
-    }, 3000);
-  };
-
-  renderItem = ({ item }) => {
-    return (
-      <TouchableOpacity onPress={this.toggleModal}>
-        <View style={styles.row}>
-          <Image source={{ uri: item.image }} style={styles.pic} />
-          <View>
-            <View style={styles.nameContainer}>
-              <Text
-                style={styles.nameTxt}
-                numberOfLines={1}
-                ellipsizeMode="tail"
-              >
-                {item.name}
-              </Text>
-            </View>
-            <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.status}</Text>
-            </View>
-          </View>
-        </View>
-      </TouchableOpacity>
-    );
-  };
-
+const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
+class Events extends Component {
+  componentDidMount() {}
   render() {
     return (
       <View style={styles.container}>
@@ -149,16 +22,9 @@ class About extends Component {
           style={styles.backImage}
         >
           <View style={styles.topHeader}>
-            <TouchableOpacity
-              style={styles.back}
-              onPress={() => {
-                this.props.navigation.navigate("Options");
-              }}
-            >
-              <Images source={require("../assets/arrowBack.svg")} />
-            </TouchableOpacity>
+            <View style={styles.back} />
             <View style={styles.heading}>
-              <Text style={styles.headerText}>Developers</Text>
+              <Text style={styles.headerText}>About CZ</Text>
             </View>
             <View style={styles.waveContainer}>
               <Images
@@ -167,119 +33,27 @@ class About extends Component {
               />
             </View>
           </View>
-          <MainCard
-            data={this.state.calls}
-            renderItem={this.renderItem}
-            exraData={this.state}
-          />
-          <Modal
-            isVisible={this.state.isModalVisible}
-            backdropColor="#B4B3DB"
-            backdropOpacity={0.8}
-            animationIn="zoomInDown"
-            animationOut="zoomOutUp"
-            animationInTiming={600}
-            animationOutTiming={600}
-            backdropTransitionInTiming={600}
-            backdropTransitionOutTiming={600}
-            style={styles.modalContent}
-          >
-            <View style={styles.modalContent}>
-              <Text style={styles.modalContentTitle}>{this.state.message}</Text>
-              <Text style={styles.modalContentCode}>{this.state.code}</Text>
-              <Text style={styles.modalContentInst}>{this.state.inst}</Text>
-            </View>
-          </Modal>
+          <View style={styles.main}>
+          <Text style={styles.text}>
+          Cognizance is one of the most prominent technical fests of Gujarat. Since its inception in 2007, it aims to provide a platform full of opportunities to learn and experiment with the canvas of life and to paint whatever agitates the sleep of enthusiastic youth populace of India. It has been witnessing a new zenith of techno-management events ranging from raging robotics to corporate module to inspiring lecture series to awe striking workshops and much more. It has served as a distinguished platform for entrepreneurs, innovators and technocrats to showcase their abilities as every edition has sought to take a leap forward in redefining and revolutionizing the technology.  Cognizance 2019 heartily welcomes you all to be a part of this journey. 
+Dream. Explore. Innovate.
+          </Text>
+          </View>
         </ImageBackground>
       </View>
     );
   }
 }
-export default About;
+export default Events;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  listContainer: {
-    marginTop: 10
-  },
-  modalContent: {
-    flex: 1,
-    backgroundColor: "white",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 20,
-    borderColor: "rgba(0, 0, 0, 0.1)",
-    alignSelf: "center"
-  },
-  modalContentTitle: {
-    flex: 2,
-    fontSize: 30,
-    justifyContent: "flex-start",
-    alignSelf: "center",
-    marginTop: 20,
-    textAlign: "center",
-    textAlignVertical: "center"
-  },
-  modalContentCode: {
-    flex: 6,
-    fontSize: 40,
-    justifyContent: "center",
-    alignSelf: "center",
-    alignItems: "center",
-    textAlign: "center",
-    textAlignVertical: "center",
-    color: "#F36234"
-  },
-  modalContentInst: {
-    justifyContent: "flex-start",
-    flex: 4,
-    fontSize: 30,
-    alignSelf: "center",
-    textAlign: "center",
-    textAlignVertical: "top"
-  },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    // borderColor: "#DCDCDC",
-    backgroundColor: "#fff",
-    // borderBottomWidth: 1,
-    padding: 10,
-    marginHorizontal: 15
-  },
-  pic: {
-    borderRadius: 30,
-    width: 60,
-    height: 60
-  },
-  nameContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: 280
-  },
-  nameTxt: {
-    marginLeft: 15,
-    fontWeight: "600",
-    color: "#222",
-    fontSize: 18,
-    width: 170
-  },
-  mblTxt: {
-    fontWeight: "200",
-    color: "#777",
-    fontSize: 13
-  },
-  msgContainer: {
-    flexDirection: "row",
-    alignItems: "center"
-  },
-  msgTxt: {
-    fontWeight: "400",
-    color: "#008B8B",
-    fontSize: 12,
-    marginLeft: 15
+  text:{
+    color:"#fff",
+    fontSize:18,
+    lineHeight: 25,
   },
   headerText: {
     color: "#fff",
@@ -296,32 +70,6 @@ const styles = StyleSheet.create({
   backImage: {
     flex: 1
   },
-  card: {
-    width: 320,
-    height: 575,
-    marginTop: 30,
-    backgroundColor: "#fff",
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
-    borderBottomRightRadius: 0,
-    borderBottomLeftRadius: 0,
-    shadowColor: "rgba(0,0,0,0.5)",
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 5
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-
-    elevation: 11
-  },
-  cardContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
   wave: {
     alignSelf: "flex-start",
     marginTop: 10,
@@ -332,16 +80,11 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end"
   },
   main: {
-    flex: 8
+    flex: 6,
+    padding:20
   },
   back: {
     height: 40,
-    width: 40,
-    backgroundColor: "#00000077",
-    borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: 20,
-    marginTop: 50
+    width: 40
   }
 });

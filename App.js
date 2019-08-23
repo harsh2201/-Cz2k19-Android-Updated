@@ -48,7 +48,7 @@ export default class App extends React.Component {
         var isAnonymous = user.isAnonymous;
         var uid = user.uid;
 
-        console.log(user);
+        // console.log(user);
       } else {
         // console.log("no in")
       }

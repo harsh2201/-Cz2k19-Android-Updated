@@ -9,9 +9,8 @@ import Options from "./Options";
 import EventStack from "./EventStack";
 
 const AppSwitchNavigator = createStackNavigator(
-  {
+  {  Events: Events,
     EventStack: EventStack,
-    Events: Events,
     Options: Options,
     EventDetails: EventDetails,
     Contact: Contact

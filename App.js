@@ -28,31 +28,24 @@ export default class App extends React.Component {
       .signInAnonymously()
       .then(async () => {
         let user = await firebase.auth().currentUser;
-        firebase
-          .database()
-          .ref("users/" + user.uid + "/")
-          .set({
+        const ref =   firebase.database().ref("users/" + user.uid + "/")
+       ref.once('value').then((snap=>{
+         console.log(snap.val())
+         if (snap.val()==null)
+          ref.set({
             email: "NA",
             id: user.uid,
             like_left: 5,
             user_no: 3
-          });
+          })
+       }))
       })
       .catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorCode, errorMessage);
       });
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-
-        // console.log(user);
-      } else {
-        // console.log("no in")
-      }
-    });
+ 
   }
   state = {
     index: 0,

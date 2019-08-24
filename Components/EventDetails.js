@@ -95,7 +95,7 @@ class EventDetail extends Component {
         }}
       >
         <View style={styles.row}>
-          <Image source={{ uri: item.posterUrl }} style={styles.pic} />
+          <Image source={{ uri: item.posterUrl!=""?item.posterUrl:"http://bit.ly/CZSatvikAvatar" }} style={styles.pic} />
           <View>
             <View style={styles.nameContainer}>
               <Text

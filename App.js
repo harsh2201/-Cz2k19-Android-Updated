@@ -3,7 +3,7 @@ import { View, Dimensions, StyleSheet, Text } from "react-native";
 import { BottomNavigation, Paragraph } from "react-native-paper";
 import Options from "./Components/Options";
 import Navigator from "./Components/Navigator";
-import About from "./Components/About";
+import AboutCZ from "./Components/AboutCZ";
 import Trending from "./Components/Trending";
 import * as firebase from "firebase";
 
@@ -97,7 +97,7 @@ export default class App extends React.Component {
           navigator: Options,
           Trending: Trending,
           events: Navigator,
-          about: About
+          about: AboutCZ
         })}
       />
     );

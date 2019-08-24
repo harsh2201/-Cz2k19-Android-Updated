@@ -91,7 +91,7 @@ class EventDetail extends Component {
       <TouchableOpacity
         onPress={() => {
           // console.log("Props", this.props.navigation);
-          this.props.navigate("EventStack");
+          this.props.navigate("EventStack", {data: this.state.data, item: item});
         }}
       >
         <View style={styles.row}>

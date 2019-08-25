@@ -18,7 +18,14 @@ import Contact from "./Contact";
 import About from "./About";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 
+import * as data from "../Data/data";
+
 class Options extends Component {
+  componentDidMount() {
+    this.props.navigation.navigate("AppDevelopers");
+    console.log("Data", data);
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -83,16 +90,30 @@ class Options extends Component {
 const AppSwitchNavigator = createStackNavigator(
   {
     Faculty: props => (
-      <Contact {...props} heading={"Faculty Representatives"} />
+      <Contact
+        {...props}
+        heading={"Faculty Representatives"}
+        data={data.faculty}
+      />
     ),
     Options: props => <Options {...props} />,
-    Contact: props => <Contact {...props} />,
+    Contact: props => <Contact {...props} heading={"Contact Us"} />,
     Student: props => (
-      <Contact {...props} heading={"Student Representatives"} />
+      <Contact
+        {...props}
+        heading={"Student Representatives"}
+        data={data.student}
+      />
     ),
-    AppDevelopers: props => <About {...props} heading={"App Developers"} />,
-    WebDevelopers: props => <About {...props} heading={"Web Developers"} />,
-    Campaign: props => <About {...props} />
+    AppDevelopers: props => (
+      <About {...props} heading={"App Developers"} data={data.app} />
+    ),
+    WebDevelopers: props => (
+      <About {...props} heading={"Web Developers"} data={data.web} />
+    ),
+    Campaign: props => (
+      <Contact {...props} heading={"Zone Leaders"} data={data.campaign} />
+    )
   },
   {
     headerMode: "none",
@@ -100,53 +121,6 @@ const AppSwitchNavigator = createStackNavigator(
     defaultNavigationOptions: {
       gesturesEnabled: false
     }
-    // // transitionConfig: () => ({
-    // //   transitionSpec: {
-    // //     duration: 350,
-    // //     timing: Animated.timing
-    // //   },
-    // //   screenInterpolator: sceneProps => {
-    // //     const { position, layout, scene, index, scenes } = sceneProps;
-
-    // //     const thisSceneIndex = scene.index;
-    // //     const height = layout.initHeight;
-    // //     const width = layout.initWidth;
-
-    // //     var thisSceneParams = scene.route.params || {};
-
-    // //     const translateX = position.interpolate({
-    // //       inputRange: [thisSceneIndex - 1, thisSceneIndex, thisSceneIndex + 1],
-    // //       outputRange: [width, 0, 0]
-    // //     });
-
-    // //     const translateY = position.interpolate({
-    // //       inputRange: [thisSceneIndex - 1, thisSceneIndex, thisSceneIndex + 1],
-    // //       outputRange: [height, 0, 0]
-    // //     });
-
-    // //     const opacity = position.interpolate({
-    // //       inputRange: [
-    // //         thisSceneIndex - 1,
-    // //         thisSceneIndex - 0.5,
-    // //         thisSceneIndex
-    // //       ],
-    // //       outputRange: [0, 1, 1]
-    // //     });
-
-    // //     const scale = position.interpolate({
-    // //       inputRange: [thisSceneIndex - 1, thisSceneIndex, thisSceneIndex + 1],
-    // //       outputRange: [4, 1, 1]
-    // //     });
-
-    // //     const slideFromRight = { transform: [{ translateX }] };
-    // //     const scaleWithOpacity = {
-    // //       opacity,
-    // //       transform: [{ scaleX: scale }, { scaleY: scale }]
-    // //     };
-    // //     const slideInFromBottom = { transform: [{ translateY }] };
-    // //     return scaleWithOpacity;
-    // //   }
-    // })
   }
 );
 

@@ -41,54 +41,7 @@ class About extends Component {
       tempProp: {
         user_no: 200,
         code: "CZ19XWrd6"
-      },
-      calls: [
-        {
-          id: 1,
-          name: "Harsh Jobanputra",
-          status: "iOS & Android App Developer",
-          image: "http://bit.ly/CZHarshAvatar"
-        },
-        {
-          id: 2,
-          name: "Satvik Padhiyar",
-          status: "iOS App Developer",
-          image: "http://bit.ly/CZSatvikAvatar"
-        },
-        {
-          id: 3,
-          name: "Shivam Shompura",
-          status: "Android Developer",
-          image: "http://bit.ly/CZShivamAvatar"
-        },
-        {
-          id: 4,
-          name: "Akrit Khanna",
-          status: "Android Developer",
-          image: "http://bit.ly/CZAkritAvatar"
-        },
-        {
-          id: 5,
-          name: "Vatsal Shah",
-          status: "Android Developer",
-          image:
-            "https://preview.redd.it/r2n25pvy59z21.png?width=960&crop=smart&auto=webp&s=4e20f1394efa2987029c4976926773ce831cd508"
-        },
-        {
-          id: 6,
-          name: "Divyesh Rabadiya",
-          status: "Android Developer",
-          image:
-            "https://cdn3.iconfinder.com/data/icons/diversity-avatars-vol-2/64/captain-jack-sparrow-pirate-carribean-512.png"
-        },
-        {
-          id: 8,
-          name: "Kanika Aggarwal",
-          status: "Android Developer",
-          image:
-            "https://i.pinimg.com/originals/5b/71/ab/5b71ab4ea082c3c11e77312a64bba835.jpg"
-        }
-      ]
+      }
     };
   }
 
@@ -155,10 +108,13 @@ class About extends Component {
                 this.props.navigation.navigate("Options");
               }}
             >
-              <Image source={require("../assets/arrowBack.png")} />
+              <Image
+                style={styles.backArrow}
+                source={require("../assets/arrowBack.png")}
+              />
             </TouchableOpacity>
             <View style={styles.heading}>
-              <Text style={styles.headerText}>Developers</Text>
+              <Text style={styles.headerText}>{this.props.heading}</Text>
             </View>
             <View style={styles.waveContainer}>
               <Image
@@ -168,7 +124,7 @@ class About extends Component {
             </View>
           </View>
           <MainCard
-            data={this.state.calls}
+            data={this.props.data}
             renderItem={this.renderItem}
             exraData={this.state}
           />
@@ -290,8 +246,8 @@ const styles = StyleSheet.create({
   },
   heading: {
     marginTop: 10,
-    marginLeft: 20,
-    width: "50%"
+    marginLeft: 20
+    // width: "50%"
   },
   backImage: {
     flex: 1
@@ -342,6 +298,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginLeft: 20,
-    marginTop: 50
+    marginTop: 50,
+    resizeMode: "center"
+  },
+  backArrow: {
+    height: 20,
+    width: 20,
+    backgroundColor: "#00000077",
+    justifyContent: "center",
+    alignItems: "center",
+    resizeMode: "center"
   }
 });

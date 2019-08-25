@@ -93,7 +93,8 @@ const styles = StyleSheet.create({
   },
   card: {
     width: 320,
-    height: 600,
+    minHeight: 500,
+    // height: 600,
     marginTop: 30,
     backgroundColor: "#fff",
     borderTopRightRadius: 20,
@@ -128,8 +129,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end"
   },
   main: {
-    flex: 6,
-    maxHeight: 500
+    flex: 4,
+    maxHeight: 600
   },
   back: {
     height: 40,

@@ -14,22 +14,11 @@ import {
 // import { Card } from "react-native-card-stack-swiper";
 import Images from "react-native-remote-svg";
 import MainCard from "./MainCard";
-// import CircleTransition from "react-native-expanding-circle-transition";
 import Modal from "react-native-modal";
-
-// const ANIMATION_DURATION = 1200;
-// const INITIAL_VIEW_BACKGROUND_COLOR = "#E3E4E5";
-// const CIRCLE_COLOR1 = "#29C5DB";
-// const CIRCLE_COLOR2 = "#4EB8AE";
-// const CIRCLE_COLOR3 = "#81C781";
-// const CIRCLE_COLOR4 = "#B0D882";
-// const TRANSITION_BUFFER = 10;
-// const POSITON = "custom";
 
 class Contact extends Component {
   constructor(props) {
     super(props);
-    circleTransition = () => {};
     this.state = {
       message: "Hello",
       code: "",
@@ -41,54 +30,7 @@ class Contact extends Component {
       tempProp: {
         user_no: 200,
         code: "CZ19XWrd6"
-      },
-      calls: [
-        {
-          id: 1,
-          name: "Harsh Jobanputra",
-          status: "iOS & Android App Developer",
-          image: "http://bit.ly/CZHarshAvatar"
-        },
-        {
-          id: 2,
-          name: "Satvik Padhiyar",
-          status: "iOS App Developer",
-          image: "http://bit.ly/CZSatvikAvatar"
-        },
-        {
-          id: 3,
-          name: "Shivam Shompura",
-          status: "Android Developer",
-          image: "http://bit.ly/CZShivamAvatar"
-        },
-        {
-          id: 4,
-          name: "Akrit Khanna",
-          status: "Android Developer",
-          image: "http://bit.ly/CZAkritAvatar"
-        },
-        {
-          id: 5,
-          name: "Vatsal Shah",
-          status: "Android Developer",
-          image:
-            "https://preview.redd.it/r2n25pvy59z21.png?width=960&crop=smart&auto=webp&s=4e20f1394efa2987029c4976926773ce831cd508"
-        },
-        {
-          id: 6,
-          name: "Divyesh Rabadiya",
-          status: "Android Developer",
-          image:
-            "https://cdn3.iconfinder.com/data/icons/diversity-avatars-vol-2/64/captain-jack-sparrow-pirate-carribean-512.png"
-        },
-        {
-          id: 8,
-          name: "Kanika Aggarwal",
-          status: "Android Developer",
-          image:
-            "https://i.pinimg.com/originals/5b/71/ab/5b71ab4ea082c3c11e77312a64bba835.jpg"
-        }
-      ]
+      }
     };
   }
 
@@ -130,7 +72,6 @@ class Contact extends Component {
               >
                 {item.name}
               </Text>
-              {/* <Text style={styles.mblTxt}>+91 91042 11117</Text> */}
             </View>
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.status}</Text>
@@ -155,7 +96,10 @@ class Contact extends Component {
                 this.props.navigation.navigate("Options");
               }}
             >
-              <Image source={require("../assets/arrowBack.png")} />
+              <Image
+                style={styles.backArrow}
+                source={require("../assets/arrowBack.png")}
+              />
             </TouchableOpacity>
             <View style={styles.heading}>
               <Text style={styles.headerText}>{this.props.heading}</Text>
@@ -168,7 +112,7 @@ class Contact extends Component {
             </View>
           </View>
           <MainCard
-            data={this.state.calls}
+            data={this.props.data}
             renderItem={this.renderItem}
             exraData={this.state}
           />
@@ -346,5 +290,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: 20,
     marginTop: 50
+  },
+  backArrow: {
+    height: 20,
+    width: 20,
+    backgroundColor: "#00000077",
+    justifyContent: "center",
+    alignItems: "center",
+    resizeMode: "center"
   }
 });

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { View, Dimensions, StyleSheet, Text } from "react-native";
-import { BottomNavigation, Paragraph } from "react-native-paper";
+import { StyleSheet, Text } from "react-native";
+import { BottomNavigation } from "react-native-paper";
 import Options from "./Components/Options";
 import Navigator from "./Components/Navigator";
 import AboutCZ from "./Components/AboutCZ";

@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   listContainer: {
-    marginTop: 10
+    marginTop: 10,
+    maxHeight: 500
   },
   row: {
     flexDirection: "row",
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: 320,
-    height: 575,
+    height: 600,
     marginTop: 30,
     backgroundColor: "#fff",
     borderTopRightRadius: 20,
@@ -114,7 +115,8 @@ const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    maxHeight: 600
   },
   wave: {
     alignSelf: "flex-start",
@@ -126,7 +128,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end"
   },
   main: {
-    flex: 8
+    flex: 6,
+    maxHeight: 500
   },
   back: {
     height: 40,

@@ -69,7 +69,7 @@ class Trending extends Component {
       >
         <Card style={styles.card}>
           <View style={styles.row}>
-            <Image source={require("../assets/baap2.jpg")} style={styles.pic} />
+            <Image source={{ uri: item.posterUrl }} style={styles.pic} />
 
             <Text style={styles.text}>{item.eventName}</Text>
             <View

@@ -38,8 +38,8 @@ class Events extends Component {
     // this.props.navigation.navigate("EventStack");
   }
 
-  navigate = route => {
-    this.props.navigation.navigate(route);
+  navigate = (route, params) => {
+    this.props.navigation.navigate(route, params);
   };
 
   render() {

@@ -130,7 +130,7 @@ class Contact extends Component {
               >
                 {item.name}
               </Text>
-              <Text style={styles.mblTxt}>+91 91042 11117</Text>
+              {/* <Text style={styles.mblTxt}>+91 91042 11117</Text> */}
             </View>
             <View style={styles.msgContainer}>
               <Text style={styles.msgTxt}>{item.status}</Text>
@@ -158,7 +158,7 @@ class Contact extends Component {
               <Image source={require("../assets/arrowBack.png")} />
             </TouchableOpacity>
             <View style={styles.heading}>
-              <Text style={styles.headerText}>Contact Us</Text>
+              <Text style={styles.headerText}>{this.props.heading}</Text>
             </View>
             <View style={styles.waveContainer}>
               <Image
@@ -334,7 +334,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end"
   },
   main: {
-    flex: 8
+    flex: 6,
+    maxHeight: 500
   },
   back: {
     height: 40,

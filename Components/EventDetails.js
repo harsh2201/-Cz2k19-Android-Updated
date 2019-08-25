@@ -35,13 +35,17 @@ class EventDetail extends Component {
       tech: [],
       non: [],
       work: [],
-      loading: true
+      loading: true,
+      disabled: false
     };
   }
   async componentDidMount() {
     this.props.navigate("Events");
     let page = this.props.navigation.state.key;
     if (page == "Technical" || page == "Nontechnical") {
+      this.setState({
+        disabled: false
+      });
       firebase
         .database()
         .ref("/events")
@@ -68,6 +72,9 @@ class EventDetail extends Component {
         .catch(err => console.log(err));
     }
     if (page == "Workshops") {
+      this.setState({
+        disabled: true
+      });
       firebase
         .database()
         .ref("/workshops")
@@ -86,16 +93,46 @@ class EventDetail extends Component {
         .catch(err => console.log(err));
     }
   }
+
+  calc = item => {
+    let data = this.state.data;
+    let arr1 = [],
+      arr2 = [],
+      arr3 = [],
+      flag = 0;
+    for (k in data) {
+      if (data[k].id === item.id) {
+        flag = 1;
+      }
+      if (flag === 1) {
+        arr1.push(data[k]);
+      } else {
+        arr2.push(data[k]);
+      }
+    }
+    arr3 = arr1.concat(arr2);
+    return arr3;
+  };
+
   renderItem = ({ item }) => {
     return (
       <TouchableOpacity
-        onPress={() => {
-          // console.log("Props", this.props.navigation);
-          this.props.navigate("EventStack", {data: this.state.data, item: item});
+        disabled={this.state.disabled}
+        onPress={async () => {
+          let curr = await this.calc(item);
+          this.props.navigate("EventStack", { data: curr });
         }}
       >
         <View style={styles.row}>
-          <Image source={{ uri: item.posterUrl!=""?item.posterUrl:"http://bit.ly/CZSatvikAvatar" }} style={styles.pic} />
+          <Image
+            source={{
+              uri:
+                item.posterUrl != ""
+                  ? item.posterUrl
+                  : "http://bit.ly/CZSatvikAvatar"
+            }}
+            style={styles.pic}
+          />
           <View>
             <View style={styles.nameContainer}>
               <Text
@@ -180,9 +217,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    // borderColor: "#DCDCDC",
     backgroundColor: "#fff",
-    // borderBottomWidth: 1,
     padding: 10,
     marginHorizontal: 15
   },

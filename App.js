@@ -22,32 +22,50 @@ if (!firebase.apps.length) {
 }
 
 export default class App extends React.Component {
+  constructor() {
+    super();
+  }
+
   componentDidMount() {
     firebase
       .auth()
       .signInAnonymously()
       .then(async () => {
         let user = await firebase.auth().currentUser;
-        const ref =   firebase.database().ref("users/" + user.uid + "/")
-       ref.once('value').then((snap=>{
-         console.log(snap.val())
-         if (snap.val()==null)
-          ref.set({
-            email: "NA",
-            id: user.uid,
-            like_left: 5,
-            user_no: 3
-          })
-       }))
+        const ref = firebase.database().ref("users/" + user.uid + "/");
+        const uRef = firebase.database().ref("users/");
+        let i = 0;
+        uRef.once("value").then(snap => {
+          snap.forEach(() => {
+            i++;
+          });
+        });
+        ref.once("value").then(snap => {
+          if (snap.val() == null) {
+            i--;
+            ref.set({
+              email: "NA",
+              id: user.uid,
+              like_left: 5,
+              user_no: i
+            });
+            this.setState({
+              email: "NA",
+              id: user.uid,
+              like_left: 5,
+              user_no: i
+            });
+          }
+        });
       })
       .catch(function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorCode, errorMessage);
       });
- 
   }
   state = {
+    user: {},
     index: 0,
     routes: [
       {
@@ -89,7 +107,7 @@ export default class App extends React.Component {
         renderScene={BottomNavigation.SceneMap({
           navigator: Options,
           Trending: Trending,
-          events: Navigator,
+          events: props => <Navigator {...props} user={this.state.user} />,
           about: AboutCZ
         })}
       />

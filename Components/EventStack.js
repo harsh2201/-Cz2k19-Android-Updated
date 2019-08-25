@@ -27,166 +27,64 @@ if (!firebase.apps.length) {
 const HEIGHT = Dimensions.get("window").height;
 const WIDTH = Dimensions.get("window").width;
 
-const TEMP = [
-  {
-    date: "13-14 SEPT.",
-    department: "CIVIL",
-    eventDescription:
-      "This event is based on town planning. First round consists of a video clip and based that students have to take a quiz. Virtual bucks will be provided to buy different types of building structure. The teams have to design and build the model of a town. Some requirements of the town will be given by chits.",
-    eventName: "Age of town",
-    id: 20,
-    likeCount: 4,
-    maxParticipants: "Group (Min 3/Max 4 members per team)",
-    organizerEmail: "info@cz19.in",
-    posterUrl:
-      "https://cdna.artstation.com/p/assets/images/images/012/391/236/large/aleksander-lukomskyy-final-ps.jpg?1534543321",
-    price: "150",
-    registrationFormLink: "",
-    shortDescription: "Plan your town in a unique way.",
-    type: "T",
-    venue: "Charusat Institute of Science and Technology"
-  },
-  {
-    date: "13-14 SEPT.",
-    department: "NON-TECH",
-    eventDescription:
-      "Back to Box-office is a non-technical event. It is an event with fun and various activities. It checks the skills and talent of participants.",
-    eventName: "Back to Box-office",
-    id: 0,
-    likeCount: 0,
-    maxParticipants: "Group (Maximum 4 and Minimum 2).",
-    organizerEmail: "info@cz19.in",
-    posterUrl:
-      "https://pmcvariety.files.wordpress.com/2019/01/international-2018-box-office-profits.jpg?w=1000&h=563&crop=1",
-    price: "150",
-    registrationFormLink: "",
-    shortDescription: "",
-    type: "NT",
-    venue: "Charusat Institute of Science and Technology"
-  },
-  {
-    date: "13-14 SEPT.",
-    department: "CIVIL",
-    eventDescription:
-      "The participants will come with their candystick crane structure made according to given specifications and checking of the same will be done.",
-    eventName: "Civil War",
-    id: 22,
-    likeCount: 1,
-    maxParticipants: "Group (3 members per group)",
-    organizerEmail: "info@cz19.in",
-    posterUrl: "https://wallpaperaccess.com/full/98983.jpg",
-    price: "200",
-    registrationFormLink: "",
-    shortDescription:
-      "Dimensional Analysis and Load balancing of Candystick Crane.",
-    type: "T",
-    venue: "Charusat Institute of Science and Technology"
-  },
-  {
-    date: "13-14 SEPT.",
-    department: "CIVIL",
-    eventDescription:
-      "This event is based on town planning. First round consists of a video clip and based that students have to take a quiz. Virtual bucks will be provided to buy different types of building structure. The teams have to design and build the model of a town. Some requirements of the town will be given by chits.",
-    eventName: "Age of town",
-    id: 20,
-    likeCount: 4,
-    maxParticipants: "Group (Min 3/Max 4 members per team)",
-    organizerEmail: "info@cz19.in",
-    posterUrl:
-      "https://cdna.artstation.com/p/assets/images/images/012/391/236/large/aleksander-lukomskyy-final-ps.jpg?1534543321",
-    price: "150",
-    registrationFormLink: "",
-    shortDescription: "Plan your town in a unique way.",
-    type: "T",
-    venue: "Charusat Institute of Science and Technology"
-  },
-  {
-    date: "13-14 SEPT.",
-    department: "CIVIL",
-    eventDescription:
-      "This event is based on town planning. First round consists of a video clip and based that students have to take a quiz. Virtual bucks will be provided to buy different types of building structure. The teams have to design and build the model of a town. Some requirements of the town will be given by chits.",
-    eventName: "Age of town",
-    id: 20,
-    likeCount: 4,
-    maxParticipants: "Group (Min 3/Max 4 members per team)",
-    organizerEmail: "info@cz19.in",
-    posterUrl:
-      "https://cdna.artstation.com/p/assets/images/images/012/391/236/large/aleksander-lukomskyy-final-ps.jpg?1534543321",
-    price: "150",
-    registrationFormLink: "",
-    shortDescription: "Plan your town in a unique way.",
-    type: "T",
-    venue: "Charusat Institute of Science and Technology"
-  },
-  {
-    date: "13-14 SEPT.",
-    department: "CE",
-    eventDescription:
-      "It is a coding event on HackerEarth platform. There will be only 1 round of 3 hours. But there is one twist, after every 30 minutes, participant’s screen will be locked with a different password and participants will have to solve a puzzle in order to unlock the screen.",
-    eventName: "Algorithm_Unlock",
-    id: 4,
-    likeCount: 2,
-    maxParticipants: "Team of 2",
-    organizerEmail: "info@cz19.in",
-    posterUrl: "https://images8.alphacoders.com/676/thumb-1920-676481.jpg",
-    price: "150",
-    registrationFormLink: "",
-    shortDescription: "Online coding with a twist.",
-    type: "T",
-    venue: "Charusat Institute of Science and Technology"
-  }
-];
-
 export default class EventStack extends Component {
   constructor() {
     super();
     this.state = {
-      data: TEMP,
+      data: [],
       count: 0
     };
+    console.log("User", this.props.user);
+  }
+
+  componentWillReceiveProps() {
+    console.log("User", this.props.user);
   }
 
   componentDidMount() {
-    let item = {
-      date: "13-14 SEPT.",
-      department: "CIVIL",
-      eventDescription:
-        "The participants will come with their candystick crane structure made according to given specifications and checking of the same will be done.",
-      eventName: "Civil War",
-      id: 22,
-      likeCount: 1,
-      maxParticipants: "Group (3 members per group)",
-      organizerEmail: "info@cz19.in",
-      posterUrl: "https://wallpaperaccess.com/full/98983.jpg",
-      price: "200",
-      registrationFormLink: "",
-      shortDescription:
-        "Dimensional Analysis and Load balancing of Candystick Crane.",
-      type: "T",
-      venue: "Charusat Institute of Science and Technology"
-    };
-
     let arr = [];
     let flag = 0;
     let data = this.state.data;
     let i = 0;
     for (k in data) {
-      // console.log(data[k]);
       if (data[k].id === item.id) {
         flag = 1;
-        console.log("ok");
       }
       if (flag === 1) {
         arr[i] = data[k];
         i++;
       }
     }
-    console.log(data);
-    this.setState({
-      data: arr
-    });
-    this.forceUpdate();
   }
+
+  renderCard = () => {
+    const { navigation } = this.props;
+    let data = navigation.getParam("data");
+    let item = {};
+    return data.map((item, i) => {
+      return (
+        <Card key={i} style={[styles.card, styles.card1]}>
+          <Image
+            style={styles.image}
+            source={{
+              uri: item.posterUrl
+            }}
+          />
+          <Text style={styles.label}>{item.eventName}</Text>
+          <Text style={styles.desc}>{item.eventDescription}</Text>
+          <View style={styles.infoContainer}>
+            <Text style={styles.info}>{item.price}</Text>
+            <Text style={styles.info}>{item.department}</Text>
+          </View>
+          <View style={styles.infoContainer}>
+            <TouchableOpacity style={styles.knowMoreContainer}>
+              <Text style={styles.knowMore}>Know More</Text>
+            </TouchableOpacity>
+          </View>
+        </Card>
+      );
+    });
+  };
 
   like = item => {
     console.log(item);
@@ -210,29 +108,7 @@ export default class EventStack extends Component {
               this.swiper = swiper;
             }}
           >
-            {this.state.data.map((item, i) => {
-              return (
-                <Card style={[styles.card, styles.card1]}>
-                  <Image
-                    style={styles.image}
-                    source={{
-                      uri: item.posterUrl
-                    }}
-                  />
-                  <Text style={styles.label}>{item.eventName}</Text>
-                  <Text style={styles.desc}>{item.eventDescription}</Text>
-                  <View style={styles.infoContainer}>
-                    <Text style={styles.info}>{item.price}</Text>
-                    <Text style={styles.info}>{item.department}</Text>
-                  </View>
-                  <View style={styles.infoContainer}>
-                    <TouchableOpacity style={styles.knowMoreContainer}>
-                      <Text style={styles.knowMore}>Know More</Text>
-                    </TouchableOpacity>
-                  </View>
-                </Card>
-              );
-            })}
+            {this.renderCard()}
           </CardStack>
           <View style={styles.footer}>
             <View style={styles.buttonContainer}>

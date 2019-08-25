@@ -9,9 +9,10 @@ import Options from "./Options";
 import EventStack from "./EventStack";
 
 const AppSwitchNavigator = createStackNavigator(
-  {  Events: Events,
-    EventStack: EventStack,
+  {
     Options: Options,
+    Events: Events,
+    EventStack: props => <EventStack {...props} user={this.props.user} />,
     EventDetails: EventDetails,
     Contact: Contact
   },
@@ -71,7 +72,7 @@ const AppSwitchNavigator = createStackNavigator(
   }
 );
 
-export default (AppNavigator = createAppContainer(AppSwitchNavigator));
+export default AppNavigator = createAppContainer(AppSwitchNavigator);
 
 const styles = StyleSheet.create({
   container: {

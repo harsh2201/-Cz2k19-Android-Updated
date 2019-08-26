@@ -6,7 +6,8 @@ import {
   Dimensions,
   TouchableOpacity,
   FlatList,
-  Image
+  Image,
+  ActivityIndicator
 } from "react-native";
 import { Card } from "react-native-card-stack-swiper";
 import { Ionicons } from "@expo/vector-icons";
@@ -29,7 +30,7 @@ if (!firebase.apps.length) {
 
 class EventDetail extends Component {
   constructor(props) {
-    super(props);
+    super(props); 
     this.state = {
       data: [],
       tech: [],
@@ -38,15 +39,17 @@ class EventDetail extends Component {
       loading: true,
       disabled: false
     };
+  
   }
   async componentDidMount() {
     // this.props.navigate("Events");
+  await  this.setState({loading:true})
     let page = this.props.navigation.state.key;
     if (page == "Technical" || page == "Nontechnical") {
       this.setState({
         disabled: false
       });
-      firebase
+    firebase
         .database()
         .ref("/events")
         .once("value")
@@ -75,7 +78,7 @@ class EventDetail extends Component {
       this.setState({
         disabled: true
       });
-      firebase
+     await firebase
         .database()
         .ref("/workshops")
         .once("value")
@@ -92,6 +95,8 @@ class EventDetail extends Component {
         })
         .catch(err => console.log(err));
     }
+    this.setState({loading:false})
+
   }
 
   calc = item => {
@@ -158,6 +163,31 @@ class EventDetail extends Component {
   };
   render() {
     // console.log(this.state.data)
+    if(this.state.loading)
+    return(
+        <View style={[styles.main,{alignItems:"center",}]}>
+             <View style={styles.cardContainer}>
+                <Card style={[styles.card]}>
+                    <View style={{flex:1,alignItems:"center"}}>
+                      
+                      <Image
+                            source={require("../assets/loader2.png")}
+                            style={{
+                                // top: screenHeight / 8,
+                              // flex:1,
+                              height:screenHeight/2,
+                              width:screenWidth/2  
+                            }}
+                            // resizeMode="contain"
+                          
+                          />
+                        <ActivityIndicator size="large" color="#0000ff" style={{padding:10}}/>
+                      </View>
+                </Card>
+              </View>                
+                    </View>
+        
+    )
 
     return (
       <View style={styles.main}>
@@ -193,7 +223,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   card: {
-    width: 320,
+    width: screenWidth-40,
     height: 575,
     top: screenHeight / 8,
     backgroundColor: "#fff",

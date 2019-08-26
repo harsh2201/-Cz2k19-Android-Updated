@@ -50,10 +50,12 @@ export default class App extends React.Component {
               user_no: i
             });
             this.setState({
-              email: "NA",
-              id: user.uid,
-              like_left: 5,
-              user_no: i
+              user: {
+                email: "NA",
+                id: user.uid,
+                like_left: 5,
+                user_no: i
+              }
             });
           }
         });

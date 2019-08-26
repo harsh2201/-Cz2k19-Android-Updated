@@ -40,7 +40,7 @@ class EventDetail extends Component {
     };
   }
   async componentDidMount() {
-    this.props.navigate("Events");
+    // this.props.navigate("Events");
     let page = this.props.navigation.state.key;
     if (page == "Technical" || page == "Nontechnical") {
       this.setState({
@@ -120,7 +120,9 @@ class EventDetail extends Component {
         disabled={this.state.disabled}
         onPress={async () => {
           let curr = await this.calc(item);
-          this.props.navigate("EventStack", { data: curr });
+          this.props.navigate("EventStack", {
+            data: curr
+          });
         }}
       >
         <View style={styles.row}>

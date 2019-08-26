@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Linking } from "react";
 import {
   View,
   Text,
@@ -15,6 +15,24 @@ import {
 import Images from "react-native-remote-svg";
 import MainCard from "./MainCard";
 import Modal from "react-native-modal";
+
+const data = [
+  {
+    id: 1,
+    name: "Pranay Shah",
+    contact: "9999999999"
+  },
+  {
+    id: 2,
+    name: "Manush Parikh",
+    contact: "9999999999"
+  },
+  {
+    id: 3,
+    name: "Rutwik Patel",
+    contact: "9999999999"
+  }
+];
 
 class Contact extends Component {
   constructor(props) {
@@ -61,24 +79,27 @@ class Contact extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <TouchableOpacity onPress={this.toggleModal}>
-        <View style={styles.row}>
-          <View>
-            <View style={styles.nameContainer}>
-              <Text
-                style={styles.nameTxt}
-                numberOfLines={1}
-                ellipsizeMode="tail"
-              >
-                {item.name}
-              </Text>
-            </View>
-            <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.status}</Text>
-            </View>
+      // <TouchableOpacity disabled={true}>
+      <View style={styles.row}>
+        <View>
+          <View style={styles.nameContainer}>
+            <Text style={styles.nameTxt} numberOfLines={1} ellipsizeMode="tail">
+              {item.name}
+            </Text>
+          </View>
+          <View style={styles.msgContainer}>
+            <Text style={styles.msgTxt}>Executive Central Council</Text>
+            {/* <TouchableOpacity
+                onPress={() => {
+                  Linking.openURL(`tel:0000000000`);
+                }}
+              > */}
+            <Text>{item.contact}</Text>
+            {/* </TouchableOpacity> */}
           </View>
         </View>
-      </TouchableOpacity>
+      </View>
+      // </TouchableOpacity>
     );
   };
 
@@ -112,7 +133,7 @@ class Contact extends Component {
             </View>
           </View>
           <MainCard
-            data={this.props.data}
+            data={data}
             renderItem={this.renderItem}
             exraData={this.state}
           />

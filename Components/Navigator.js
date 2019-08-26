@@ -8,11 +8,21 @@ import Contact from "./Contact";
 import Options from "./Options";
 import EventStack from "./EventStack";
 
+export default class Navigator extends Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return <AppNavigator />;
+  }
+}
+
 const AppSwitchNavigator = createStackNavigator(
   {
-    Options: Options,
     Events: Events,
-    EventStack: props => <EventStack {...props} user={this.props.user} />,
+    Options: Options,
+    EventStack: props => <EventStack {...props} />,
     EventDetails: EventDetails,
     Contact: Contact
   },
@@ -25,12 +35,10 @@ const AppSwitchNavigator = createStackNavigator(
   }
 );
 
-export default AppNavigator = createAppContainer(AppSwitchNavigator);
+const AppNavigator = createAppContainer(AppSwitchNavigator);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    flex: 1
   }
 });

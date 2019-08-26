@@ -32,16 +32,17 @@ export default class EventStack extends Component {
     super();
     this.state = {
       data: [],
-      count: 0
+      count: 0,
+      user: {}
     };
-    console.log("User", this.props.user);
   }
 
-  componentWillReceiveProps() {
-    console.log("User", this.props.user);
-  }
-
-  componentDidMount() {
+  async componentDidMount() {
+    let user = await firebase.auth().currentUser;
+    // console.log("User", user.uid);
+    this.setState({
+      user: user
+    });
     let arr = [];
     let flag = 0;
     let data = this.state.data;
@@ -88,7 +89,7 @@ export default class EventStack extends Component {
 
   like = item => {
     console.log(item);
-    // firebase.database.ref("");
+    firebase.database.ref("users/" + user.uid);
   };
 
   render() {

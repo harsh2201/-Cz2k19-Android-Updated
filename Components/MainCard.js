@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 import { Card } from "react-native-card-stack-swiper";
 
 class MainCard extends Component {
@@ -56,13 +56,13 @@ const styles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    fontWeight: "600",
+    //fontWeight: "600",
     color: "#222",
     fontSize: 18,
     width: 170
   },
   mblTxt: {
-    fontWeight: "200",
+    //fontWeight: "200",
     color: "#777",
     fontSize: 13
   },
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   msgTxt: {
-    fontWeight: "400",
+    //fontWeight: "400",
     color: "#008B8B",
     fontSize: 12,
     marginLeft: 15

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Easing, Animated } from "react-native";
+import { StyleSheet, Easing, Animated } from "react-native";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 
 import EventDetails from "./EventDetails";

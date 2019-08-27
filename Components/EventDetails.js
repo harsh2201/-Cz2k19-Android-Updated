@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Dimensions,
   TouchableOpacity,
@@ -11,6 +10,7 @@ import {
 } from "react-native";
 import { Card } from "react-native-card-stack-swiper";
 import { Ionicons } from "@expo/vector-icons";
+import Text from "./customText";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import * as firebase from "firebase";
@@ -271,13 +271,13 @@ const styles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    fontWeight: "600",
+    //fontWeight: "600",
     color: "#222",
     fontSize: 18,
     width: 170
   },
   mblTxt: {
-    fontWeight: "200",
+    //fontWeight: "200",
     color: "#777",
     fontSize: 13
   },
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   msgTxt: {
-    fontWeight: "400",
+    //fontWeight: "400",
     // color: "#008B8B",
     color: "red",
     fontSize: 12,

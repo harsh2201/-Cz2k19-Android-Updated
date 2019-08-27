@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   ImageBackground,
   Image,
   Dimensions
 } from "react-native";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
+import Text from "./customText";
 class Events extends Component {
   componentDidMount() {}
   render() {

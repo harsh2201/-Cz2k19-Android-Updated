@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Platform,
   ImageBackground,
@@ -18,6 +17,7 @@ import {
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import EventDetails from "./EventDetails";
 import * as firebase from "firebase";
+import Text from "./customText";
 const firebaseConfig = {
   apiKey: "AIzaSyCpsdNSarpuc8Cb3GHcHjbPYvfBeim2JkY",
   authDomain: "cognizance2k19-169d7.firebaseapp.com",
@@ -63,7 +63,7 @@ class Events extends Component {
             },
             labelStyle: {
               // fontSize: 10,
-              // fontWeight:'bold'
+              // //fontWeight:'bold'
             },
             indicatorStyle: {
               opacity: 0
@@ -129,13 +129,13 @@ const styles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    fontWeight: "600",
+    //fontWeight: "600",
     color: "#222",
     fontSize: 18,
     width: 170
   },
   mblTxt: {
-    fontWeight: "200",
+    //fontWeight: "200",
     color: "#777",
     fontSize: 13
   },
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   msgTxt: {
-    fontWeight: "400",
+    //fontWeight: "400",
     color: "#008B8B",
     fontSize: 12,
     marginLeft: 15

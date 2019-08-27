@@ -1,6 +1,5 @@
 import * as React from "react";
 import {
-  Text,
   View,
   StyleSheet,
   ImageBackground,
@@ -10,6 +9,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import Constants from "expo-constants";
+import Text from "./customText";
 
 // You can import from local files
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
@@ -50,7 +50,8 @@ export default class EventData extends React.Component {
           >
             <View
               style={{
-                margin: screenHeight / 25,
+                marginTop: screenHeight / 25,
+                marginLeft: screenHeight / 40,
                 backgroundColor: "rgba(0,0,0,0.5)",
                 height: 40,
                 width: 40,
@@ -75,7 +76,7 @@ export default class EventData extends React.Component {
                   flex: 1,
                   color: "#000",
                   fontSize: 25,
-                  fontWeight: "700",
+                  //fontWeight: "700",
                   opacity: 1,
                   padding: 10
                 }}
@@ -84,7 +85,7 @@ export default class EventData extends React.Component {
               </Text>
               <Text
                 style={{
-                  fontWeight: "700",
+                  //fontWeight: "700",
                   marginRight: screenWidth / 8,
                   color: "#000"
                 }}
@@ -141,8 +142,8 @@ export default class EventData extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-    // marginTop:Constants.statusBarHeight
+    flex: 1,
+    marginTop: Constants.statusBarHeight
   },
   backImage: {
     height: screenHeight / 2.5,
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 20,
-    fontWeight: "bold",
+    //fontWeight: "bold",
     padding: 10,
     color: "#000"
   },
@@ -216,7 +217,7 @@ const styles = StyleSheet.create({
   },
   eventDetailsHeading: {
     fontSize: 15,
-    fontWeight: "bold",
+    //fontWeight: "bold",
     color: "#000"
   },
   eventDetailsData: {

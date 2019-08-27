@@ -1,7 +1,6 @@
 import React, { Component, Linking } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Platform,
   ImageBackground,
@@ -15,6 +14,7 @@ import {
 import MainCard from "./MainCard";
 import Modal from "react-native-modal";
 import { Ionicons } from "@expo/vector-icons";
+import Text from "./customText";
 
 const data = [
   {
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    fontWeight: "600",
+    //fontWeight: "600",
     color: "#222",
     fontSize: 18,
     width: 170
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
   mblTxt: {
     marginTop: 6,
     marginLeft: 15,
-    fontWeight: "200",
+    //fontWeight: "200",
     color: "#777",
     fontSize: 13
   },
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   msgTxt: {
-    fontWeight: "400",
+    //fontWeight: "400",
     color: "#008B8B",
     fontSize: 12,
     marginLeft: 15

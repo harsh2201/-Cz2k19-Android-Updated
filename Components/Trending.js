@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Platform,
   ImageBackground,
@@ -15,6 +14,7 @@ import {
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import * as firebase from "firebase";
 import { Card } from "react-native-card-stack-swiper";
+import Text from "./customText";
 
 import { Ionicons } from "@expo/vector-icons";
 
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "center"
   },
   msgTxt: {
-    fontWeight: "500",
+    //fontWeight: "500",
     // color: "#008B8B",
     color: "red",
     fontSize: 18
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end"
   },
   main: {
-    flex: 4,
+    flex: 8,
     alignItems: "center"
     // justifyContent:"center",
   },

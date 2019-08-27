@@ -1,11 +1,12 @@
 import * as React from "react";
-import { StyleSheet, Text, Dimensions } from "react-native";
+import { StyleSheet, Dimensions, ActivityIndicator } from "react-native";
 import { BottomNavigation } from "react-native-paper";
 import Options from "./Components/Options";
 import Navigator from "./Components/Navigator";
 import AboutCZ from "./Components/AboutCZ";
 import Trending from "./Components/Trending";
 import * as firebase from "firebase";
+import { Font } from "expo";
 
 const HEIGHT = Dimensions.get("window").height;
 const WIDTH = Dimensions.get("window").width;
@@ -30,7 +31,12 @@ export default class App extends React.Component {
     console.ignoredYellowBox = ["Setting a timer"];
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await Font.loadAsync({
+      lexendDeca: require("./assets/fonts/LexendDeca-Regular.ttf")
+    });
+    this.setState({ fontLoaded: true });
+
     firebase
       .auth()
       .signInAnonymously()
@@ -74,12 +80,12 @@ export default class App extends React.Component {
     user: {},
     index: 0,
     routes: [
-      // {
-      //   key: "events",
-      //   // title: "Events",
-      //   icon: "home"
-      //   // color: "#039b3b"
-      // },
+      {
+        key: "events",
+        // title: "Events",
+        icon: "home"
+        // color: "#039b3b"
+      },
       {
         key: "Trending",
         // title: "Options",
@@ -98,10 +104,12 @@ export default class App extends React.Component {
         icon: "person"
         // color: "#F75728"
       }
-    ]
+    ],
+    fontLoaded: false
   };
 
   render() {
+    if (!this.state.fontLoaded) return <ActivityIndicator size="large" />;
     return (
       <BottomNavigation
         navigationState={this.state}
@@ -109,13 +117,16 @@ export default class App extends React.Component {
         shifting={true}
         labeled={false}
         activeColor="#80007d"
-        barStyle={{ backgroundColor: "#fff", height: HEIGHT / 15 }}
+        barStyle={{
+          backgroundColor: "#fff",
+          height: HEIGHT / 15
+        }}
         // style={{ paddingBottom: HEIGHT / 15 }}
         renderScene={BottomNavigation.SceneMap(
           {
             navigator: Options,
             Trending: Trending,
-            // events: props => <Navigator {...props} user={this.state.user} />,
+            events: props => <Navigator {...props} user={this.state.user} />,
             about: AboutCZ
           },
           {

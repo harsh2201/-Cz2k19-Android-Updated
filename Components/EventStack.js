@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   TouchableOpacity,
   Image,
@@ -11,6 +10,8 @@ import CardStack, { Card } from "react-native-card-stack-swiper";
 import Toast from "react-native-whc-toast";
 
 import { Constants } from "expo";
+import Text from "./customText";
+import { Ionicons } from "@expo/vector-icons";
 
 import * as firebase from "firebase";
 const firebaseConfig = {
@@ -136,7 +137,31 @@ export default class EventStack extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {/* <Image source={require("../assets/14.jpg")} style={styles.background} /> */}
+        <Image
+          source={require("../assets/back2.jpg")}
+          style={styles.background}
+        />
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate("Events");
+          }}
+        >
+          <View
+            style={{
+              marginTop: HEIGHT / 20,
+              marginLeft: HEIGHT / 40,
+              backgroundColor: "rgba(0,0,0,0.5)",
+              height: 40,
+              width: 40,
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 10
+            }}
+          >
+            <Ionicons name="ios-arrow-back" size={30} color="#fff" />
+          </View>
+        </TouchableOpacity>
+
         <View style={styles.foreground}>
           <CardStack
             style={styles.content}
@@ -181,8 +206,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "#f2f2f2",
-    marginTop: Constants.statusBarHeight
+    backgroundColor: "#f2f2f2"
+    // marginTop: Constants.statusBarHeight
   },
   foreground: {
     position: "absolute",
@@ -199,7 +224,8 @@ const styles = StyleSheet.create({
   content: {
     flex: 4,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginTop: HEIGHT / 10
   },
   image: {
     flex: 4,
@@ -244,7 +270,7 @@ const styles = StyleSheet.create({
   },
   info: {
     color: "#0d8f73",
-    fontWeight: "500",
+    //fontWeight: "500",
     fontSize: 24
   },
   infoContainer: {
@@ -257,7 +283,7 @@ const styles = StyleSheet.create({
   desc: {
     textAlign: "center",
     fontSize: 15,
-    fontWeight: "400",
+    //fontWeight: "400",
     marginTop: 1,
     color: "#777777"
     // backgroundColor: "#777777"
@@ -268,7 +294,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
     fontSize: 25,
-    fontWeight: "500",
+    //fontWeight: "500",
     marginTop: 17,
     color: "#000",
     marginBottom: 10
@@ -304,8 +330,8 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   buttonText: {
-    color: "#fff",
-    fontWeight: "700"
+    color: "#fff"
+    //fontWeight: "700"
   },
   orange: {
     width: 55,

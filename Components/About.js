@@ -15,6 +15,7 @@ import {
 import MainCard from "./MainCard";
 // import CircleTransition from "react-native-expanding-circle-transition";
 import Modal from "react-native-modal";
+import { Ionicons } from "@expo/vector-icons";
 
 // const ANIMATION_DURATION = 1200;
 // const INITIAL_VIEW_BACKGROUND_COLOR = "#E3E4E5";
@@ -107,10 +108,7 @@ class About extends Component {
                 this.props.navigation.navigate("Options");
               }}
             >
-              <Image
-                style={styles.backArrow}
-                source={require("../assets/arrowBack.png")}
-              />
+              <Ionicons name="ios-arrow-back" size={30} color="#fff" />
             </TouchableOpacity>
             <View style={styles.heading}>
               <Text style={styles.headerText}>{this.props.heading}</Text>

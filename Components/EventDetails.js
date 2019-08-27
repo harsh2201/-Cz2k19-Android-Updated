@@ -27,6 +27,8 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+const HEIGHT = Dimensions.get("window").height;
+const WIDTH = Dimensions.get("window").width;
 
 class EventDetail extends Component {
   constructor(props) {
@@ -42,7 +44,8 @@ class EventDetail extends Component {
   }
   async componentDidMount() {
     // this.props.navigate("Events");
-    await this.setState({ loading: true });
+    console.log("Component", this.state.loading);
+    this.setState({ loading: true });
     let page = this.props.navigation.state.key;
     if (page == "Technical" || page == "Nontechnical") {
       this.setState({
@@ -69,8 +72,10 @@ class EventDetail extends Component {
           } else if (page == "Nontechnical") {
             this.setState({ data: non });
           }
-        })
-        .catch(err => console.log(err));
+          console.log("1st", this.state.loading);
+          await this.setState({ loading: false });
+        });
+      // .catch(err => console.log(err));
     }
     if (page == "Workshops") {
       this.setState({
@@ -89,10 +94,11 @@ class EventDetail extends Component {
             work.push(obj);
           }
           this.setState({ data: work });
-        })
-        .catch(err => console.log(err));
+          console.log("2nd", this.state.loading);
+          await this.setState({ loading: false });
+        });
+      // .catch(err => console.log(err));
     }
-    this.setState({ loading: false });
   }
 
   calc = item => {
@@ -158,27 +164,27 @@ class EventDetail extends Component {
     );
   };
   render() {
-    // console.log(this.state.data)
-    if (this.state.loading)
+    console.log(this.state.loading);
+    if (this.state.loading === true)
       return (
         <View style={[styles.main, { alignItems: "center" }]}>
           <View style={styles.cardContainer}>
             <Card style={[styles.card]}>
               <View style={{ flex: 1, alignItems: "center" }}>
+                <ActivityIndicator
+                  size="large"
+                  color="#0000ff"
+                  style={{ marginTop: 20 }}
+                />
                 <Image
                   source={require("../assets/loader2.png")}
                   style={{
                     // top: screenHeight / 8,
-                    // flex:1,
-                    height: screenHeight / 2,
-                    width: screenWidth / 2
+                    flex: 0.8
+                    // height: screenHeight / 2,
+                    // width: screenWidth / 2
                   }}
-                  // resizeMode="contain"
-                />
-                <ActivityIndicator
-                  size="large"
-                  color="#0000ff"
-                  style={{ padding: 10 }}
+                  resizeMode="contain"
                 />
               </View>
             </Card>
@@ -193,7 +199,7 @@ class EventDetail extends Component {
         <Card style={styles.card}>
           <View style={styles.listContainer}>
             <FlatList
-              style={{}}
+              style={{ marginBottom: HEIGHT / 14 }}
               showsVerticalScrollIndicator={false}
               // extraData={this.state}
               data={this.state.data}
@@ -220,12 +226,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    maxHeight: 600
+    marginTop: 0
+    // maxHeight: 600
   },
   card: {
     width: screenWidth - 40,
-    height: 575,
-    top: screenHeight / 8,
+    // height: 575,
+    flex: 1,
+    top: screenHeight / 14,
     backgroundColor: "#fff",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
@@ -244,8 +252,8 @@ const styles = StyleSheet.create({
     elevation: 11
   },
   listContainer: {
-    marginTop: 10,
-    maxHeight: 500
+    marginTop: 10
+    // maxHeight: 500
   },
   row: {
     flexDirection: "row",

@@ -14,6 +14,7 @@ import {
 // import { Card } from "react-native-card-stack-swiper";
 import MainCard from "./MainCard";
 import Modal from "react-native-modal";
+import { Ionicons } from "@expo/vector-icons";
 
 const data = [
   {
@@ -116,10 +117,7 @@ class Contact extends Component {
                 this.props.navigation.navigate("Options");
               }}
             >
-              <Image
-                style={styles.backArrow}
-                source={require("../assets/arrowBack.png")}
-              />
+              <Ionicons name="ios-arrow-back" size={30} color="#fff" />
             </TouchableOpacity>
             <View style={styles.heading}>
               <Text style={styles.headerText}>{this.props.heading}</Text>

@@ -1,11 +1,14 @@
 import * as React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, Dimensions } from "react-native";
 import { BottomNavigation } from "react-native-paper";
 import Options from "./Components/Options";
 import Navigator from "./Components/Navigator";
 import AboutCZ from "./Components/AboutCZ";
 import Trending from "./Components/Trending";
 import * as firebase from "firebase";
+
+const HEIGHT = Dimensions.get("window").height;
+const WIDTH = Dimensions.get("window").width;
 
 const firebaseConfig = {
   apiKey: "AIzaSyCpsdNSarpuc8Cb3GHcHjbPYvfBeim2JkY",
@@ -24,9 +27,7 @@ if (!firebase.apps.length) {
 export default class App extends React.Component {
   constructor() {
     super();
-      console.ignoredYellowBox = [
-'Setting a timer'
-];
+    console.ignoredYellowBox = ["Setting a timer"];
   }
 
   componentDidMount() {
@@ -108,13 +109,25 @@ export default class App extends React.Component {
         shifting={true}
         labeled={false}
         activeColor="#80007d"
-        barStyle={{ backgroundColor: "#fff" }}
-        renderScene={BottomNavigation.SceneMap({
-          navigator: Options,
-          Trending: Trending,
-          events: props => <Navigator {...props} user={this.state.user} />,
-          about: AboutCZ
-        })}
+        barStyle={{ backgroundColor: "#fff", height: HEIGHT / 15 }}
+        // style={{ paddingBottom: HEIGHT / 15 }}
+        renderScene={BottomNavigation.SceneMap(
+          {
+            navigator: Options,
+            Trending: Trending,
+            events: props => <Navigator {...props} user={this.state.user} />,
+            about: AboutCZ
+          },
+          {
+            initialRouteName: "navigator",
+            // activeTintColor: "#4A00E0",
+            activeTintColor: "rgb(0, 114, 255)",
+            activeColor: "#f0edf6",
+            navigationOptions: {
+              tabBarVisible: true
+            }
+          }
+        )}
       />
     );
   }

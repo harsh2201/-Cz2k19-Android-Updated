@@ -10,6 +10,8 @@ import {
 import CardStack, { Card } from "react-native-card-stack-swiper";
 import Toast from "react-native-whc-toast";
 
+import { Constants } from "expo";
+
 import * as firebase from "firebase";
 const firebaseConfig = {
   apiKey: "AIzaSyCpsdNSarpuc8Cb3GHcHjbPYvfBeim2JkY",
@@ -46,37 +48,16 @@ export default class EventStack extends Component {
     firebase
       .database()
       .ref("/users/" + uid)
-      .on("value", async snapshot => {
+      .once("value")
+      .then(async snapshot => {
         let snap = await JSON.stringify(snapshot);
         let uObj = JSON.parse(snap);
-
-        // for (var key in data) {
-        //   let obj = data[key];
-        //   uObj.push(obj);
-        // }
         console.log(uObj);
         this.setState({
           user: uObj
         });
       })
       .catch(err => console.log(err));
-
-    // this.setState({
-    //   user: user
-    // });
-    // let arr = [];
-    // let flag = 0;
-    // let data = this.state.data;
-    // let i = 0;
-    // for (k in data) {
-    //   if (data[k].id === item.id) {
-    //     flag = 1;
-    //   }
-    //   if (flag === 1) {
-    //     arr[i] = data[k];
-    //     i++;
-    //   }
-    // }
   }
 
   renderCard = () => {
@@ -114,18 +95,21 @@ export default class EventStack extends Component {
     });
   };
 
-  like = item => {
-    // console.log(item);
+  like = async item => {
+    console.log("Hello");
     const { navigation } = this.props;
     let data = navigation.getParam("data");
     // console.log("Data item", this.state.user.like_left);
     let like_left = this.state.user.like_left;
     let like = 0;
     if (like_left > 0) {
-      firebase
+      // firebase.database().ref("Child").tr
+      await firebase
         .database()
         .ref("events/" + data[item].eventName + "/likeCount")
-        .on("value", snap => {
+        .once("value")
+        .then(snap => {
+          console.log("In func likeCount");
           like = snap.val();
           like = like + 1;
           data[item].likeCount = like;
@@ -134,6 +118,11 @@ export default class EventStack extends Component {
             .ref("events/" + data[item].eventName + "/")
             .set(data[item]);
           like_left--;
+          let uObj = this.state.user;
+          uObj.like_left = like_left;
+          this.setState({
+            user: uObj
+          });
           firebase
             .database()
             .ref("/users/" + uid + "/like_left")
@@ -153,10 +142,8 @@ export default class EventStack extends Component {
             style={styles.content}
             disableBottomSwipe
             disableTopSwipe
-            onSwiped={this.like}
             secondCardZoom={1.05}
-            // onSwipedLeft={z => console.log(z)}
-            // onSwipedRight={() => console.log("onSwipedRight")}
+            onSwipedRight={this.like}
             ref={swiper => {
               this.swiper = swiper;
             }}
@@ -194,7 +181,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "#f2f2f2"
+    backgroundColor: "#f2f2f2",
+    marginTop: Constants.statusBarHeight
   },
   foreground: {
     position: "absolute",
@@ -211,7 +199,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 4,
     alignItems: "center",
-    justifyContent: "flex-end"
+    justifyContent: "center"
   },
   image: {
     flex: 4,
@@ -221,8 +209,8 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10
   },
   card: {
-    width: 320,
-    height: 575,
+    width: WIDTH - 50,
+    height: HEIGHT / 1.6,
     marginTop: 30,
     backgroundColor: "#fff",
     borderRadius: 5,
@@ -244,7 +232,7 @@ const styles = StyleSheet.create({
   },
   knowMoreContainer: {
     width: "45%",
-    height: "50%",
+    height: "70%",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#0066c0",
@@ -263,7 +251,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-around",
     alignItems: "center",
-    flexDirection: "row"
+    flexDirection: "row",
+    paddingBottom: 20
   },
   desc: {
     textAlign: "center",
@@ -288,12 +277,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 0
+    zIndex: 0,
+    marginTop: 10
   },
   buttonContainer: {
     width: 220,
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "flex-end"
   },
   button: {
     borderRadius: 3.4,

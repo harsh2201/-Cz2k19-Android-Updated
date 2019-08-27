@@ -12,7 +12,6 @@ import {
   Easing
 } from "react-native";
 // import { Card } from "react-native-card-stack-swiper";
-import Images from "react-native-remote-svg";
 import MainCard from "./MainCard";
 import Modal from "react-native-modal";
 

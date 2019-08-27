@@ -11,7 +11,6 @@ import {
   Dimensions,
   Image
 } from "react-native";
-import Images from "react-native-remote-svg";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import * as firebase from "firebase";
 import { Card } from "react-native-card-stack-swiper";
@@ -43,8 +42,7 @@ class Trending extends Component {
     firebase
       .database()
       .ref("/events")
-      .once("value")
-      .then(async snapshot => {
+      .on("value", async snapshot => {
         let snap = await JSON.stringify(snapshot);
         let data = JSON.parse(snap);
         let all = [];
@@ -58,8 +56,8 @@ class Trending extends Component {
           .slice(0, 10);
 
         this.setState({ all: myData });
-      })
-      .catch(err => console.log(err));
+      });
+    // .catch(err => console.log(err));
   }
 
   renderItem = ({ item }) => {

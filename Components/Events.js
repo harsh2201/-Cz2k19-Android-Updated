@@ -11,7 +11,6 @@ import {
   AsyncStorage,
   Dimensions
 } from "react-native";
-import Images from "react-native-remote-svg";
 import {
   createMaterialTopTabNavigator,
   createAppContainer
@@ -201,7 +200,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end"
   },
   main: {
-    flex: 6
+    flex: 8,
+    maxHeight: 600
   },
   back: {
     height: 40,

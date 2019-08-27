@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Easing, Animated } from "react-native";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 
 import EventDetails from "./EventDetails";
+import EventData from "./EventData";
 import Events from "./Events";
 import Contact from "./Contact";
 import Options from "./Options";
@@ -23,6 +24,7 @@ const AppSwitchNavigator = createStackNavigator(
     Events: Events,
     Options: Options,
     EventStack: props => <EventStack {...props} />,
+    EventData: props => <EventData {...props} />,
     EventDetails: EventDetails,
     Contact: Contact
   },

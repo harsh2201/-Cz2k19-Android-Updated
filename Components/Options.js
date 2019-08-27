@@ -13,7 +13,6 @@ import {
   Animated
 } from "react-native";
 // import { Card } from "react-native-card-stack-swiper";
-import Images from "react-native-remote-svg";
 import Contact from "./Contact";
 import Representative from "./Representative";
 import About from "./About";
@@ -23,7 +22,6 @@ import * as data from "../Data/data";
 
 class Options extends Component {
   componentDidMount() {
-    this.props.navigation.navigate("AppDevelopers");
     console.log("Data", data);
   }
 
@@ -90,6 +88,7 @@ class Options extends Component {
 // export default Options;
 const AppSwitchNavigator = createStackNavigator(
   {
+    Options: props => <Options {...props} />,
     Faculty: props => (
       <Representative
         {...props}
@@ -97,7 +96,6 @@ const AppSwitchNavigator = createStackNavigator(
         data={data.faculty}
       />
     ),
-    Options: props => <Options {...props} />,
     Contact: props => <Contact {...props} heading={"Contact Us"} />,
     Student: props => (
       <Representative

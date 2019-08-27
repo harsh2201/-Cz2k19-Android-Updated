@@ -71,7 +71,7 @@ export const faculty = [
   {
     id: 1,
     name: "Dr. A D. Patel",
-    status: "iOS & Android App Developer"
+    status: "Convenor"
   },
   {
     id: 2,

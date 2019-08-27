@@ -49,8 +49,7 @@ class EventDetail extends Component {
       firebase
         .database()
         .ref("/events")
-        .once("value")
-        .then(async snapshot => {
+        .on("value", async snapshot => {
           let snap = await JSON.stringify(snapshot);
           let data = JSON.parse(snap);
           let tech = [];
@@ -78,8 +77,7 @@ class EventDetail extends Component {
       firebase
         .database()
         .ref("/workshops")
-        .once("value")
-        .then(async snapshot => {
+        .on("value", async snapshot => {
           let snap = await JSON.stringify(snapshot);
           let data = JSON.parse(snap);
           let work = [];
@@ -157,27 +155,26 @@ class EventDetail extends Component {
     );
   };
   render() {
-    // console.log(this.state.data)
-
     return (
-      <View style={styles.main}>
-        <View style={styles.cardContainer}>
-          <Card style={styles.card}>
-            <View style={styles.listContainer}>
-              <FlatList
-                style={{ marginBottom: screenHeight / 4.5 }}
-                showsVerticalScrollIndicator={false}
-                // extraData={this.state}
-                data={this.state.data}
-                keyExtractor={item => {
-                  return item.id.toString();
-                }}
-                renderItem={this.renderItem}
-              />
-            </View>
-          </Card>
-        </View>
+      // <MainCard data={this.state.data} renderItem={this.renderItem} />
+      // <View style={styles.main}>
+      <View style={styles.cardContainer}>
+        <Card style={styles.card}>
+          <View style={styles.listContainer}>
+            <FlatList
+              style={{}}
+              showsVerticalScrollIndicator={false}
+              // extraData={this.state}
+              data={this.state.data}
+              keyExtractor={item => {
+                return item.id.toString();
+              }}
+              renderItem={this.renderItem}
+            />
+          </View>
+        </Card>
       </View>
+      // </View>
     );
   }
 }
@@ -185,17 +182,20 @@ export default EventDetail;
 
 const styles = StyleSheet.create({
   main: {
-    flex: 8
+    flex: 4,
+    maxHeight: 600
   },
   cardContainer: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    maxHeight: 600
   },
   card: {
     width: 320,
-    height: 575,
-    top: screenHeight / 8,
+    minHeight: 500,
+    // height: 600,
+    marginTop: 30,
     backgroundColor: "#fff",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
@@ -214,7 +214,8 @@ const styles = StyleSheet.create({
     elevation: 11
   },
   listContainer: {
-    marginTop: 10
+    marginTop: 10,
+    maxHeight: 500
   },
   row: {
     flexDirection: "row",

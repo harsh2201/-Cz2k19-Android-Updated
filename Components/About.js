@@ -12,7 +12,6 @@ import {
   Easing
 } from "react-native";
 // import { Card } from "react-native-card-stack-swiper";
-import Images from "react-native-remote-svg";
 import MainCard from "./MainCard";
 // import CircleTransition from "react-native-expanding-circle-transition";
 import Modal from "react-native-modal";
@@ -304,7 +303,6 @@ const styles = StyleSheet.create({
   backArrow: {
     height: 20,
     width: 20,
-    backgroundColor: "#00000077",
     justifyContent: "center",
     alignItems: "center",
     resizeMode: "center"

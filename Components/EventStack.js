@@ -8,7 +8,8 @@ import {
   Dimensions
 } from "react-native";
 import CardStack, { Card } from "react-native-card-stack-swiper";
-import Images from "react-native-remote-svg";
+import Toast from "react-native-whc-toast";
+
 import * as firebase from "firebase";
 const firebaseConfig = {
   apiKey: "AIzaSyCpsdNSarpuc8Cb3GHcHjbPYvfBeim2JkY",
@@ -27,6 +28,8 @@ if (!firebase.apps.length) {
 const HEIGHT = Dimensions.get("window").height;
 const WIDTH = Dimensions.get("window").width;
 
+var uid = "";
+
 export default class EventStack extends Component {
   constructor() {
     super();
@@ -38,30 +41,47 @@ export default class EventStack extends Component {
   }
 
   async componentDidMount() {
-    let user = await firebase.auth().currentUser;
-    // console.log("User", user.uid);
-    this.setState({
-      user: user
-    });
-    let arr = [];
-    let flag = 0;
-    let data = this.state.data;
-    let i = 0;
-    for (k in data) {
-      if (data[k].id === item.id) {
-        flag = 1;
-      }
-      if (flag === 1) {
-        arr[i] = data[k];
-        i++;
-      }
-    }
+    uid = await firebase.auth().currentUser.uid;
+
+    firebase
+      .database()
+      .ref("/users/" + uid)
+      .on("value", async snapshot => {
+        let snap = await JSON.stringify(snapshot);
+        let uObj = JSON.parse(snap);
+
+        // for (var key in data) {
+        //   let obj = data[key];
+        //   uObj.push(obj);
+        // }
+        console.log(uObj);
+        this.setState({
+          user: uObj
+        });
+      })
+      .catch(err => console.log(err));
+
+    // this.setState({
+    //   user: user
+    // });
+    // let arr = [];
+    // let flag = 0;
+    // let data = this.state.data;
+    // let i = 0;
+    // for (k in data) {
+    //   if (data[k].id === item.id) {
+    //     flag = 1;
+    //   }
+    //   if (flag === 1) {
+    //     arr[i] = data[k];
+    //     i++;
+    //   }
+    // }
   }
 
   renderCard = () => {
     const { navigation } = this.props;
     let data = navigation.getParam("data");
-    let item = {};
     return data.map((item, i) => {
       return (
         <Card key={i} style={[styles.card, styles.card1]}>
@@ -78,7 +98,14 @@ export default class EventStack extends Component {
             <Text style={styles.info}>{item.department}</Text>
           </View>
           <View style={styles.infoContainer}>
-            <TouchableOpacity style={styles.knowMoreContainer}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate("EventData", {
+                  data: item
+                });
+              }}
+              style={styles.knowMoreContainer}
+            >
               <Text style={styles.knowMore}>Know More</Text>
             </TouchableOpacity>
           </View>
@@ -88,8 +115,33 @@ export default class EventStack extends Component {
   };
 
   like = item => {
-    console.log(item);
-    firebase.database.ref("users/" + user.uid);
+    // console.log(item);
+    const { navigation } = this.props;
+    let data = navigation.getParam("data");
+    // console.log("Data item", this.state.user.like_left);
+    let like_left = this.state.user.like_left;
+    let like = 0;
+    if (like_left > 0) {
+      firebase
+        .database()
+        .ref("events/" + data[item].eventName + "/likeCount")
+        .on("value", snap => {
+          like = snap.val();
+          like = like + 1;
+          data[item].likeCount = like;
+          firebase
+            .database()
+            .ref("events/" + data[item].eventName + "/")
+            .set(data[item]);
+          like_left--;
+          firebase
+            .database()
+            .ref("/users/" + uid + "/like_left")
+            .set(like_left);
+        });
+    } else {
+      this.refs.toast.showBottom("You have exceeded the likes limit");
+    }
   };
 
   render() {
@@ -132,6 +184,7 @@ export default class EventStack extends Component {
             </View>
           </View>
         </View>
+        <Toast ref="toast" />
       </View>
     );
   }

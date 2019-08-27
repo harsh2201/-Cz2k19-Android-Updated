@@ -35,7 +35,7 @@ export default class App extends React.Component {
         const ref = firebase.database().ref("users/" + user.uid + "/");
         const uRef = firebase.database().ref("users/");
         let i = 0;
-        uRef.once("value").then(snap => {
+        uRef.on("value", snap => {
           snap.forEach(() => {
             i++;
           });

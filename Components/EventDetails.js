@@ -14,15 +14,7 @@ import Text from "./customText";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import * as firebase from "firebase";
-const firebaseConfig = {
-  apiKey: "AIzaSyCpsdNSarpuc8Cb3GHcHjbPYvfBeim2JkY",
-  authDomain: "cognizance2k19-169d7.firebaseapp.com",
-  databaseURL: "https://cognizance2k19-169d7.firebaseio.com",
-  projectId: "cognizance2k19-169d7",
-  storageBucket: "",
-  messagingSenderId: "656512761398",
-  appId: "1:656512761398:web:d5221d4e8653cd22"
-};
+import firebaseConfig from "../Data/config";
 // Initialize Firebase
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -70,7 +62,6 @@ class EventDetail extends Component {
           } else if (page == "Nontechnical") {
             this.setState({ data: non });
           }
-          console.log("1st", this.state.loading);
           await this.setState({ loading: false });
         });
       // .catch(err => console.log(err));
@@ -92,7 +83,6 @@ class EventDetail extends Component {
             work.push(obj);
           }
           this.setState({ data: work });
-          console.log("2nd", this.state.loading);
           await this.setState({ loading: false });
         });
     }
@@ -161,7 +151,6 @@ class EventDetail extends Component {
     );
   };
   render() {
-    console.log(this.state.loading);
     if (this.state.loading === true)
       return (
         <View style={[styles.main, { alignItems: "center" }]}>

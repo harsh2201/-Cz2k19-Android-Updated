@@ -18,15 +18,7 @@ import Text from "./customText";
 
 import { Ionicons } from "@expo/vector-icons";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCpsdNSarpuc8Cb3GHcHjbPYvfBeim2JkY",
-  authDomain: "cognizance2k19-169d7.firebaseapp.com",
-  databaseURL: "https://cognizance2k19-169d7.firebaseio.com",
-  projectId: "cognizance2k19-169d7",
-  storageBucket: "",
-  messagingSenderId: "656512761398",
-  appId: "1:656512761398:web:d5221d4e8653cd22"
-};
+import firebaseConfig from "../Data/config";
 // Initialize Firebase
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -41,6 +33,7 @@ class Trending extends Component {
     };
   }
   componentDidMount() {
+    // console.log("Props from Trending", this.props.sProps);
     this.setState({ loading: true });
     firebase
       .database()
@@ -57,7 +50,6 @@ class Trending extends Component {
           .concat(all)
           .sort((a, b) => a.likeCount < b.likeCount)
           .slice(0, 10);
-
         this.setState({ all: myData, loading: false });
       });
   }
@@ -65,7 +57,9 @@ class Trending extends Component {
   renderItem = ({ item }) => {
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate("", { data: item })}
+        onPress={() =>
+          this.props.sProps.navigation.navigate("EventData", { data: item })
+        }
       >
         <Card style={styles.card}>
           <View style={styles.row}>

@@ -6,7 +6,8 @@ import {
   Dimensions,
   TouchableOpacity,
   FlatList,
-  Image
+  Image,
+  ActivityIndicator
 } from "react-native";
 import { Card } from "react-native-card-stack-swiper";
 import { Ionicons } from "@expo/vector-icons";
@@ -41,6 +42,7 @@ class EventDetail extends Component {
   }
   async componentDidMount() {
     // this.props.navigate("Events");
+    await this.setState({ loading: true });
     let page = this.props.navigation.state.key;
     if (page == "Technical" || page == "Nontechnical") {
       this.setState({
@@ -74,7 +76,7 @@ class EventDetail extends Component {
       this.setState({
         disabled: true
       });
-      firebase
+      await firebase
         .database()
         .ref("/workshops")
         .on("value", async snapshot => {
@@ -90,6 +92,7 @@ class EventDetail extends Component {
         })
         .catch(err => console.log(err));
     }
+    this.setState({ loading: false });
   }
 
   calc = item => {
@@ -155,6 +158,34 @@ class EventDetail extends Component {
     );
   };
   render() {
+    // console.log(this.state.data)
+    if (this.state.loading)
+      return (
+        <View style={[styles.main, { alignItems: "center" }]}>
+          <View style={styles.cardContainer}>
+            <Card style={[styles.card]}>
+              <View style={{ flex: 1, alignItems: "center" }}>
+                <Image
+                  source={require("../assets/loader2.png")}
+                  style={{
+                    // top: screenHeight / 8,
+                    // flex:1,
+                    height: screenHeight / 2,
+                    width: screenWidth / 2
+                  }}
+                  // resizeMode="contain"
+                />
+                <ActivityIndicator
+                  size="large"
+                  color="#0000ff"
+                  style={{ padding: 10 }}
+                />
+              </View>
+            </Card>
+          </View>
+        </View>
+      );
+
     return (
       // <MainCard data={this.state.data} renderItem={this.renderItem} />
       // <View style={styles.main}>
@@ -192,10 +223,9 @@ const styles = StyleSheet.create({
     maxHeight: 600
   },
   card: {
-    width: 320,
-    minHeight: 500,
-    // height: 600,
-    marginTop: 30,
+    width: screenWidth - 40,
+    height: 575,
+    top: screenHeight / 8,
     backgroundColor: "#fff",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,

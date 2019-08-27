@@ -24,6 +24,9 @@ if (!firebase.apps.length) {
 export default class App extends React.Component {
   constructor() {
     super();
+      console.ignoredYellowBox = [
+'Setting a timer'
+];
   }
 
   componentDidMount() {

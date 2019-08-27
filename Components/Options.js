@@ -22,7 +22,7 @@ import * as data from "../Data/data";
 
 class Options extends Component {
   componentDidMount() {
-    console.log("Data", data);
+  
   }
 
   render() {

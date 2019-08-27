@@ -36,6 +36,8 @@ export default class EventStack extends Component {
   }
 
   async componentDidMount() {
+    console.log("HEIGHT", HEIGHT);
+    // this.props.navigation.navigate("Events");
     uid = await firebase.auth().currentUser.uid;
 
     firebase
@@ -134,14 +136,20 @@ export default class EventStack extends Component {
           style={styles.background}
         />
         <TouchableOpacity
+        style={{
+          marginTop: HEIGHT / 20,
+          marginLeft: HEIGHT / 40,
+          height: 40,
+          width: 40,
+          borderRadius: 10,
+        }}
           onPress={() => {
             this.props.navigation.navigate("Events");
+            console.log("back called")
           }}
         >
           <View
             style={{
-              marginTop: HEIGHT / 20,
-              marginLeft: HEIGHT / 40,
               backgroundColor: "rgba(0,0,0,0.5)",
               height: 40,
               width: 40,
@@ -202,10 +210,12 @@ const styles = StyleSheet.create({
     // marginTop: Constants.statusBarHeight
   },
   foreground: {
-    position: "absolute",
-    height: "100%",
-    width: "100%",
+    flex: 1,
+    // position: "absolute",
+    // height: "100%",
+    // width: "100%",
     alignItems: "center",
+    marginTop: 0,
     justifyContent: "center"
   },
   background: {
@@ -220,7 +230,7 @@ const styles = StyleSheet.create({
     marginTop: HEIGHT / 10
   },
   image: {
-    flex: 4,
+    flex: 6,
     height: "70%",
     width: "100%",
     borderTopLeftRadius: 10,
@@ -228,7 +238,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: WIDTH - 50,
-    height: HEIGHT / 1.6,
+    height:HEIGHT > 600 ? HEIGHT / 1.5 : HEIGHT / 1.5,
     marginTop: 30,
     backgroundColor: "#fff",
     borderRadius: 5,
@@ -250,20 +260,22 @@ const styles = StyleSheet.create({
   },
   knowMoreContainer: {
     width: "45%",
-    height: "70%",
+    height: "80%",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#0066c0",
-    borderRadius: 30
+    borderRadius: 30,
   },
   knowMore: {
     color: "#fff",
-    fontSize: 15
+    fontSize: 15,
+    marginBottom: 0
+    // paddingBottom: 3
   },
   info: {
     color: "#0d8f73",
     //fontWeight: "500",
-    fontSize: 24
+    fontSize: HEIGHT < 600 ? 18 : 24
   },
   infoContainer: {
     flex: 1,
@@ -274,7 +286,7 @@ const styles = StyleSheet.create({
   },
   desc: {
     textAlign: "center",
-    fontSize: 15,
+    fontSize: HEIGHT < 600 ? 11 : 15,
     //fontWeight: "400",
     marginTop: 1,
     color: "#777777"
@@ -285,7 +297,7 @@ const styles = StyleSheet.create({
     // height: 40,
     textAlign: "center",
     textAlignVertical: "center",
-    fontSize: 25,
+    fontSize: HEIGHT < 600 ? 19 : 25,
     //fontWeight: "500",
     marginTop: 17,
     color: "#000",
@@ -296,7 +308,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     zIndex: 0,
-    marginTop: 10
+    marginTop: HEIGHT < 600 ? 55 : 90
   },
   buttonContainer: {
     width: 220,

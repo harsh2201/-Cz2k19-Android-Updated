@@ -24,7 +24,7 @@ const AppSwitchNavigator = createStackNavigator(
     Events: Events,
     Options: Options,
     EventStack: props => <EventStack {...props} />,
-    Trending: props => <Trending {...props} sProps={this.props} />,
+    Trending: props => <Trending {...props} />,
     EventData: props => <EventData {...props} />,
     Contact: Contact
   },

@@ -34,6 +34,7 @@ export default class App extends React.Component {
       .signInAnonymously()
       .then(async () => {
         let user = await firebase.auth().currentUser;
+        // console.log(user)
         const ref = firebase.database().ref("users/" + user.uid + "/");
         const uRef = firebase.database().ref("users/");
         let i = 0;

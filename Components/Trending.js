@@ -57,6 +57,7 @@ class Trending extends Component {
   renderItem = ({ item }) => {
     return (
       <TouchableOpacity
+      style={{borderRadius: 10}}
         onPress={() =>
           this.props.sProps.navigation.navigate("EventData", { data: item })
         }
@@ -67,7 +68,8 @@ class Trending extends Component {
 
             <View
               style={{
-                flex: 1
+                flex: 1,
+                marginLeft: -10
               }}
             >
               <Text style={styles.text}>{item.eventName}</Text>
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.36,
     shadowRadius: 6.68,
-    width: 320,
+    width: screenWidth - 50,
     height: 100,
     elevation: 11
     // justifyContent: "center",
@@ -171,8 +173,9 @@ const styles = StyleSheet.create({
     // borderRadius: 30,
     // width: 60,
     // height: 60,
-    borderBottomLeftRadius: 10,
-    borderTopLeftRadius: 10
+    // borderBottomLeftRadius: 10,
+    // borderTopLeftRadius: 10
+    borderRadius:10
   },
   row: {
     flex: 1,

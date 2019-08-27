@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   AsyncStorage,
   Dimensions,
-  Image
+  Image,
+  ActivityIndicator
 } from "react-native";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import * as firebase from "firebase";
@@ -35,10 +36,12 @@ class Trending extends Component {
   constructor() {
     super();
     this.state = {
-      all: []
+      all: [],
+      loading: true
     };
   }
   componentDidMount() {
+    this.setState({ loading: true });
     firebase
       .database()
       .ref("/events")
@@ -55,9 +58,8 @@ class Trending extends Component {
           .sort((a, b) => a.likeCount < b.likeCount)
           .slice(0, 10);
 
-        this.setState({ all: myData });
+        this.setState({ all: myData, loading: false });
       });
-    // .catch(err => console.log(err));
   }
 
   renderItem = ({ item }) => {
@@ -69,12 +71,18 @@ class Trending extends Component {
           <View style={styles.row}>
             <Image source={{ uri: item.posterUrl }} style={styles.pic} />
 
-            <Text style={styles.text}>{item.eventName}</Text>
+            <View
+              style={{
+                flex: 1
+              }}
+            >
+              <Text style={styles.text}>{item.eventName}</Text>
+            </View>
             <View
               style={{
                 flex: 1,
-                alignItems: "flex-end",
-                justifyContent: "flex-end",
+                alignItems: "center",
+                justifyContent: "center",
                 flexDirection: "row"
               }}
             >
@@ -107,17 +115,33 @@ class Trending extends Component {
               />
             </View>
           </View>
-          <View style={styles.main}>
-            <FlatList
-              showsVerticalScrollIndicator={false}
-              // extraData={this.state}
-              data={this.state.all}
-              keyExtractor={item => {
-                return item.id.toString();
+          {this.state.loading ? (
+            <ActivityIndicator
+              size="large"
+              color="#fff"
+              style={{
+                flex: 4,
+                marginTop: 20,
+                alignSelf: "center"
               }}
-              renderItem={this.renderItem}
             />
-          </View>
+          ) : (
+            <View style={styles.main}>
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                // extraData={this.state}
+                data={this.state.all}
+                keyExtractor={item => {
+                  return item.id.toString();
+                }}
+                renderItem={this.renderItem}
+                style={{
+                  borderTopRightRadius: 10,
+                  borderTopLeftRadius: 10
+                }}
+              />
+            </View>
+          )}
         </ImageBackground>
       </View>
     );
@@ -145,32 +169,40 @@ const styles = StyleSheet.create({
     shadowRadius: 6.68,
     width: 320,
     height: 100,
-    elevation: 11,
-    justifyContent: "center"
+    elevation: 11
+    // justifyContent: "center",
   },
   pic: {
-    borderRadius: 30,
-    width: 60,
-    height: 60
+    flex: 1.5,
+    // borderRadius: 30,
+    // width: 60,
+    // height: 60,
+    borderBottomLeftRadius: 10,
+    borderTopLeftRadius: 10
   },
   row: {
+    flex: 1,
     flexDirection: "row",
-    alignItems: "center",
+    // alignItems: "center",
     // borderColor: "#DCDCDC",
     backgroundColor: "#fff",
+    borderRadius: 20
     // borderBottomWidth: 1,
-    padding: 10,
-    marginHorizontal: 15
+    // padding: 10,
+    // marginHorizontal: 15,
   },
   text: {
+    flex: 1,
     fontSize: 15,
-    padding: 5
+    textAlign: "center",
+    backgroundColor: "#fff",
+    textAlignVertical: "center"
   },
   msgTxt: {
     fontWeight: "500",
     // color: "#008B8B",
     color: "red",
-    fontSize: 25
+    fontSize: 18
   },
   headerText: {
     color: "#fff",

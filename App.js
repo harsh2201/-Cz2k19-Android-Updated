@@ -74,12 +74,12 @@ export default class App extends React.Component {
     user: {},
     index: 0,
     routes: [
-      {
-        key: "events",
-        // title: "Events",
-        icon: "home"
-        // color: "#039b3b"
-      },
+      // {
+      //   key: "events",
+      //   // title: "Events",
+      //   icon: "home"
+      //   // color: "#039b3b"
+      // },
       {
         key: "Trending",
         // title: "Options",
@@ -115,7 +115,7 @@ export default class App extends React.Component {
           {
             navigator: Options,
             Trending: Trending,
-            events: props => <Navigator {...props} user={this.state.user} />,
+            // events: props => <Navigator {...props} user={this.state.user} />,
             about: AboutCZ
           },
           {

@@ -43,8 +43,6 @@ class EventDetail extends Component {
     };
   }
   async componentDidMount() {
-    // this.props.navigate("Events");
-    console.log("Component", this.state.loading);
     this.setState({ loading: true });
     let page = this.props.navigation.state.key;
     if (page == "Technical" || page == "Nontechnical") {
@@ -97,7 +95,6 @@ class EventDetail extends Component {
           console.log("2nd", this.state.loading);
           await this.setState({ loading: false });
         });
-      // .catch(err => console.log(err));
     }
   }
 

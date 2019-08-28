@@ -2,21 +2,18 @@ import React, { Component } from "react";
 import {
   View,
   StyleSheet,
-  Platform,
   ImageBackground,
   FlatList,
   TouchableOpacity,
-  AsyncStorage,
   Dimensions,
-  Image,
-  ActivityIndicator
+  Image
 } from "react-native";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import * as firebase from "firebase";
 import { Card } from "react-native-card-stack-swiper";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 import Text from "./customText";
-import EventData from "./EventData"
+import EventData from "./EventData";
 
 import { Ionicons } from "@expo/vector-icons";
 
@@ -35,7 +32,7 @@ class Trending extends Component {
     };
   }
   componentDidMount() {
-    // console.log("Props from Trending", this.props.sProps);
+    console.log("Props from Trending");
     this.setState({ loading: true });
     firebase
       .database()
@@ -59,7 +56,7 @@ class Trending extends Component {
   renderItem = ({ item }) => {
     return (
       <TouchableOpacity
-      style={{borderRadius: 10}}
+        style={{ borderRadius: 10 }}
         onPress={() =>
           this.props.navigation.navigate("EventData", { data: item })
         }
@@ -77,10 +74,9 @@ class Trending extends Component {
                 backgroundColor: "#FFF"
               }}
             >
-            <View >
-            <Text style={styles.text}>{item.eventName}</Text>
-            </View>
-
+              <View>
+                <Text style={styles.text}>{item.eventName}</Text>
+              </View>
             </View>
             <View
               style={{
@@ -103,24 +99,38 @@ class Trending extends Component {
   render() {
     return (
       <View style={styles.container}>
-      {this.state.loading ? <View style={{flex: 1,  backgroundColor: "#000", justifyContent: "center", alignItems: "center"}} ><Image style={{ resizeMode: "center", backgroundColor: "#000"}} source={require("../assets/preLoader.gif")} /></View> :
-        <ImageBackground
-          source={require("../assets/back2.jpg")}
-          style={styles.backImage}
-        >
-          <View style={styles.topHeader}>
-            <View style={styles.back} />
-            <View style={styles.heading}>
-              <Text style={styles.headerText}>Trending</Text>
-            </View>
-            <View style={styles.waveContainer}>
-              <Image
-                source={require("../assets/wave.png")}
-                style={styles.wave}
-              />
-            </View>
+        {this.state.loading ? (
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: "#000",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Image
+              style={{ resizeMode: "center", backgroundColor: "#000" }}
+              source={require("../assets/preLoader.gif")}
+            />
           </View>
-          <View style={styles.main}>
+        ) : (
+          <ImageBackground
+            source={require("../assets/backPurple.png")}
+            style={styles.backImage}
+          >
+            <View style={styles.topHeader}>
+              <View style={styles.back} />
+              <View style={styles.heading}>
+                <Text style={styles.headerText}>Trending</Text>
+              </View>
+              <View style={styles.waveContainer}>
+                <Image
+                  source={require("../assets/wave2.png")}
+                  style={styles.wave}
+                />
+              </View>
+            </View>
+            <View style={styles.main}>
               <FlatList
                 showsVerticalScrollIndicator={false}
                 // extraData={this.state}
@@ -135,7 +145,8 @@ class Trending extends Component {
                 }}
               />
             </View>
-        </ImageBackground>}
+          </ImageBackground>
+        )}
       </View>
     );
   }
@@ -156,7 +167,6 @@ const AppSwitchNavigator = createStackNavigator(
 );
 
 export default AppNavigator = createAppContainer(AppSwitchNavigator);
-
 
 const styles = StyleSheet.create({
   container: {
@@ -188,7 +198,7 @@ const styles = StyleSheet.create({
     // height: 60,
     // borderBottomLeftRadius: 10,
     // borderTopLeftRadius: 10
-    borderRadius:10
+    borderRadius: 10
   },
   row: {
     flex: 1,
@@ -196,7 +206,7 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     // borderColor: "#DCDCDC",
     backgroundColor: "#fff",
-    borderRadius: 20,
+    borderRadius: 20
     // borderBottomWidth: 1,
     // padding: 10,
     // marginHorizontal: 15,
@@ -233,8 +243,10 @@ const styles = StyleSheet.create({
 
   wave: {
     alignSelf: "flex-start",
+    resizeMode: "contain",
     marginTop: 10,
-    justifyContent: "flex-end"
+    height: 10,
+    width: screenWidth / 5
   },
   waveContainer: {
     marginLeft: 20,

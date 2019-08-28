@@ -88,13 +88,13 @@ export default class App extends React.Component {
       {
         key: "navigator",
         // title: "Options",
-        icon: "favorite"
+        icon: "code"
         // color: "#E81B38"
       },
       {
         key: "about",
         // title: "About CZ",
-        icon: "person"
+        icon: "info"
         // color: "#F75728"
       }
     ],
@@ -102,14 +102,21 @@ export default class App extends React.Component {
   };
 
   render() {
-    if (!this.state.fontLoaded) return <ActivityIndicator style={{flex: 1, alignSelf: "center"}} size="large" />;
+    if (!this.state.fontLoaded)
+      return (
+        <ActivityIndicator
+          style={{ flex: 1, alignSelf: "center" }}
+          size="large"
+        />
+      );
     return (
       <BottomNavigation
         navigationState={this.state}
         onIndexChange={index => this.setState({ index })}
-        shifting={true}
+        // shifting={true}
+        activeColor="#202c92"
         labeled={false}
-        activeColor="#80007d"
+        // activeColor="#80007d"
         barStyle={{
           backgroundColor: "#fff",
           height: HEIGHT > 600 ? HEIGHT / 13 : HEIGHT / 12

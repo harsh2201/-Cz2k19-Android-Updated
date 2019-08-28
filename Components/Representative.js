@@ -2,15 +2,12 @@ import React, { Component } from "react";
 import {
   View,
   StyleSheet,
-  Platform,
   ImageBackground,
-  FlatList,
+  Dimensions,
   TouchableOpacity,
-  Image,
-  Alert,
-  Easing
+  Image
 } from "react-native";
-// import { Card } from "react-native-card-stack-swiper";
+const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import MainCard from "./MainCard";
 import Modal from "react-native-modal";
 import { Ionicons } from "@expo/vector-icons";
@@ -102,7 +99,7 @@ class Contact extends Component {
             </View>
             <View style={styles.waveContainer}>
               <Image
-                source={require("../assets/wave.png")}
+                source={require("../assets/wave2.png")}
                 style={styles.wave}
               />
             </View>
@@ -266,8 +263,10 @@ const styles = StyleSheet.create({
   },
   wave: {
     alignSelf: "flex-start",
+    resizeMode: "contain",
     marginTop: 10,
-    justifyContent: "flex-end"
+    height: 10,
+    width: screenWidth / 5
   },
   waveContainer: {
     marginLeft: 20,

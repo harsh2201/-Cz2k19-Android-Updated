@@ -14,7 +14,7 @@ class Events extends Component {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require("../assets/back1.jpg")}
+          source={require("../assets/backPurple.png")}
           style={styles.backImage}
         >
           <View style={styles.topHeader}>
@@ -24,7 +24,7 @@ class Events extends Component {
             </View>
             <View style={styles.waveContainer}>
               <Image
-                source={require("../assets/wave.png")}
+                source={require("../assets/wave2.png")}
                 style={styles.wave}
               />
             </View>
@@ -79,8 +79,10 @@ const styles = StyleSheet.create({
   },
   wave: {
     alignSelf: "flex-start",
+    resizeMode: "contain",
     marginTop: 10,
-    justifyContent: "flex-end"
+    height: 10,
+    width: screenWidth / 5
   },
   waveContainer: {
     marginLeft: 20,

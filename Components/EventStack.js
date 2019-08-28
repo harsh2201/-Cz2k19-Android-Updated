@@ -59,8 +59,6 @@ export default class EventStack extends Component {
     const { navigation } = this.props;
     let data = navigation.getParam("data");
     let rounds = navigation.getParam("rounds");
-   
-    
 
     return data.map((item, i) => {
       return (
@@ -84,7 +82,7 @@ export default class EventStack extends Component {
               onPress={() => {
                 this.props.navigation.navigate("EventData", {
                   data: item,
-                  rounds:rounds[item.eventName]
+                  rounds: rounds[item.eventName]
                 });
               }}
               style={styles.knowMoreContainer}
@@ -139,7 +137,7 @@ export default class EventStack extends Component {
     return (
       <View style={styles.container}>
         <Image
-          source={require("../assets/back2.jpg")}
+          source={require("../assets/backPurple.png")}
           style={styles.background}
         />
         <TouchableOpacity

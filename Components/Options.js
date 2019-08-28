@@ -32,7 +32,7 @@ class Options extends Component {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require("../assets/back3.png")}
+          source={require("../assets/back2.jpg")}
           style={styles.backImage}
         >
           <View style={styles.main}>
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
     flex: 8,
     padding: 10,
     marginLeft: 50,
-    justifyContent: "center",
+    justifyContent: "center"
     // alignItems: "center"
   },
   back: {

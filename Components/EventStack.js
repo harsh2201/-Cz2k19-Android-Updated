@@ -67,8 +67,10 @@ export default class EventStack extends Component {
               uri: item.posterUrl
             }}
           />
-          <Text style={styles.label}>{item.eventName}</Text>
-          <Text style={styles.desc}>{item.eventDescription}</Text>
+          <View style={{ marginTop: -10, backgroundColor: "#fff" }}>
+            <Text style={styles.label}>{item.eventName}</Text>
+            <Text style={styles.desc}>{item.shortDescription}</Text>
+          </View>
           <View style={styles.infoContainer}>
             <Text style={styles.info}>{item.price}</Text>
             <Text style={styles.info}>{item.department}</Text>
@@ -136,16 +138,16 @@ export default class EventStack extends Component {
           style={styles.background}
         />
         <TouchableOpacity
-        style={{
-          marginTop: HEIGHT / 20,
-          marginLeft: HEIGHT / 40,
-          height: 40,
-          width: 40,
-          borderRadius: 10,
-        }}
+          style={{
+            marginTop: HEIGHT / 20,
+            marginLeft: HEIGHT / 40,
+            height: 40,
+            width: 40,
+            borderRadius: 10
+          }}
           onPress={() => {
             this.props.navigation.navigate("Events");
-            console.log("back called")
+            console.log("back called");
           }}
         >
           <View
@@ -233,12 +235,11 @@ const styles = StyleSheet.create({
     flex: 6,
     height: "70%",
     width: "100%",
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10
+    borderRadius: 10
   },
   card: {
     width: WIDTH - 50,
-    height:HEIGHT > 600 ? HEIGHT / 1.5 : HEIGHT / 1.5,
+    height: HEIGHT > 600 ? HEIGHT / 1.5 : HEIGHT / 1.5,
     marginTop: 30,
     backgroundColor: "#fff",
     borderRadius: 5,
@@ -264,7 +265,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#0066c0",
-    borderRadius: 30,
+    borderRadius: 30
   },
   knowMore: {
     color: "#fff",

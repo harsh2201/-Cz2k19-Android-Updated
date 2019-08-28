@@ -41,7 +41,7 @@ class Events extends Component {
           Technical: props => (
             <EventDetails {...props} navigate={this.navigate} />
           ),
-          Nontechnical: props => (
+          "Non Technical": props => (
             <EventDetails {...props} navigate={this.navigate} />
           ),
           Workshops: props => (
@@ -51,15 +51,21 @@ class Events extends Component {
         {
           tabBarOptions: {
             activeTintColor: "white",
+            upperCaseLabel: false,
             style: {
               backgroundColor: "transparent"
             },
             labelStyle: {
-              // fontSize: 10,
-              // //fontWeight:'bold'
+              fontSize: 14,
+              // //fontWeight:'bold',
+              // textTransform: "lowercase",
+              fontFamily: "lexendDeca"
             },
             indicatorStyle: {
-              opacity: 0
+              opacity: 0,
+              height: 50,
+              backgroundColor: "#000",
+              borderRadius: 60
             }
           }
         }

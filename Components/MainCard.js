@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, Dimensions } from "react-native";
 import { Card } from "react-native-card-stack-swiper";
+
+const HEIGHT = Dimensions.get("window").height;
+const WIDTH = Dimensions.get("window").width;
 
 class MainCard extends Component {
   render() {
@@ -16,6 +19,7 @@ class MainCard extends Component {
                 keyExtractor={item => {
                   return item.id;
                 }}
+                style={{ marginBottom: HEIGHT / 14 }}
                 renderItem={this.props.renderItem}
               />
             </View>
@@ -32,8 +36,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   listContainer: {
-    marginTop: 10,
-    maxHeight: 500
+    marginTop: 10
+    // maxHeight: 500
   },
   row: {
     flexDirection: "row",
@@ -92,15 +96,17 @@ const styles = StyleSheet.create({
     flex: 1
   },
   card: {
-    width: 320,
-    minHeight: 500,
-    // height: 600,
+    width: WIDTH - 40,
+    // minHeight: 500,
+    height: HEIGHT / 1.4,
     marginTop: 30,
+    // flex: 8,
     backgroundColor: "#fff",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,
+    // top: HEIGHT / 14,
     shadowColor: "rgba(0,0,0,0.5)",
     borderRadius: 10,
     shadowColor: "#000",
@@ -116,8 +122,8 @@ const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    maxHeight: 600
+    alignItems: "center"
+    // maxHeight: 600
   },
   wave: {
     alignSelf: "flex-start",
@@ -129,8 +135,8 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end"
   },
   main: {
-    flex: 4,
-    maxHeight: 600
+    flex: 4
+    // maxHeight: 600
   },
   back: {
     height: 40,

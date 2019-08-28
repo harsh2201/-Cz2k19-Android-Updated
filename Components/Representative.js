@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Platform,
   ImageBackground,
@@ -15,6 +14,7 @@ import {
 import MainCard from "./MainCard";
 import Modal from "react-native-modal";
 import { Ionicons } from "@expo/vector-icons";
+import Text from "./customText";
 class Contact extends Component {
   constructor(props) {
     super(props);

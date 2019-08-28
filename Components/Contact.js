@@ -107,7 +107,7 @@ class Contact extends Component {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require("../assets/back1.jpg")}
+          source={require("../assets/backOrange.png")}
           style={styles.backImage}
         >
           <View style={styles.topHeader}>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Platform,
   ImageBackground,
@@ -17,12 +16,13 @@ import Contact from "./Contact";
 import Representative from "./Representative";
 import About from "./About";
 import { createAppContainer, createStackNavigator } from "react-navigation";
+import Text from "./customText";
 
 import * as data from "../Data/data";
 
 class Options extends Component {
   componentDidMount() {
-  
+    // this.props.navigation.navigate("Campaign");
   }
 
   render() {
@@ -89,31 +89,35 @@ class Options extends Component {
 const AppSwitchNavigator = createStackNavigator(
   {
     Options: props => <Options {...props} />,
+    AppDevelopers: props => (
+      <About {...props} heading={"App Developers"} egg={true} data={data.app} />
+    ),
     Faculty: props => (
-      <Representative
+      <About
         {...props}
+        egg={false}
         heading={"Faculty Representatives"}
         data={data.faculty}
       />
     ),
     Contact: props => <Contact {...props} heading={"Contact Us"} />,
     Student: props => (
-      <Representative
+      <About
+        egg={false}
         {...props}
         heading={"Student Representatives"}
         data={data.student}
       />
     ),
-    AppDevelopers: props => (
-      <About {...props} heading={"App Developers"} data={data.app} />
-    ),
+
     WebDevelopers: props => (
-      <About {...props} heading={"Web Developers"} data={data.web} />
+      <About {...props} heading={"Web Developers"} egg={true} data={data.web} />
     ),
     Campaign: props => (
-      <Representative
+      <About
         {...props}
         heading={"Zone Leaders"}
+        egg={false}
         data={data.campaign}
       />
     )
@@ -219,7 +223,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 25,
     textAlignVertical: "center",
-    marginTop: 23,
+    marginTop: 23
     //fontWeight: "400"
   },
   topHeader: {

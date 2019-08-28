@@ -4,7 +4,8 @@ import {
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
-  Image
+  Image,
+  Dimensions
 } from "react-native";
 // import { Card } from "react-native-card-stack-swiper";
 import MainCard from "./MainCard";
@@ -13,14 +14,7 @@ import Modal from "react-native-modal";
 import { Ionicons } from "@expo/vector-icons";
 import Text from "./customText";
 
-// const ANIMATION_DURATION = 1200;
-// const INITIAL_VIEW_BACKGROUND_COLOR = "#E3E4E5";
-// const CIRCLE_COLOR1 = "#29C5DB";
-// const CIRCLE_COLOR2 = "#4EB8AE";
-// const CIRCLE_COLOR3 = "#81C781";
-// const CIRCLE_COLOR4 = "#B0D882";
-// const TRANSITION_BUFFER = 10;
-// const POSITON = "custom";
+const HEIGHT = Dimensions.get("window").height;
 
 class About extends Component {
   constructor(props) {
@@ -68,7 +62,7 @@ class About extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <TouchableOpacity onPress={this.toggleModal}>
+      <TouchableOpacity disabled={!this.props.egg} onPress={this.toggleModal}>
         <View style={styles.row}>
           <Image source={{ uri: item.image }} style={styles.pic} />
           <View>
@@ -94,7 +88,7 @@ class About extends Component {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require("../assets/back1.jpg")}
+          source={require("../assets/backOrange.png")}
           style={styles.backImage}
         >
           <View style={styles.topHeader}>
@@ -120,6 +114,7 @@ class About extends Component {
             data={this.props.data}
             renderItem={this.renderItem}
             exraData={this.state}
+            // egg={this.props.egg}
           />
           <Modal
             isVisible={this.state.isModalVisible}
@@ -247,10 +242,11 @@ const styles = StyleSheet.create({
   },
   card: {
     width: 320,
-    height: 575,
-    marginTop: 30,
+    // height: 575,
+    flex: 1,
     backgroundColor: "#fff",
     borderTopRightRadius: 20,
+    top: HEIGHT / 20,
     borderTopLeftRadius: 20,
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,

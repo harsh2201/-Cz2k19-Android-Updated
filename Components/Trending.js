@@ -69,10 +69,16 @@ class Trending extends Component {
             <View
               style={{
                 flex: 1,
-                marginLeft: -10
+                marginLeft: -10,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "#FFF"
               }}
             >
-              <Text style={styles.text}>{item.eventName}</Text>
+            <View >
+            <Text style={styles.text}>{item.eventName}</Text>
+            </View>
+
             </View>
             <View
               style={{
@@ -95,6 +101,7 @@ class Trending extends Component {
   render() {
     return (
       <View style={styles.container}>
+      {this.state.loading ? <View style={{flex: 1,  backgroundColor: "#000", justifyContent: "center", alignItems: "center"}} ><Image style={{ resizeMode: "center", backgroundColor: "#000"}} source={require("../assets/preLoader.gif")} /></View> :
         <ImageBackground
           source={require("../assets/back2.jpg")}
           style={styles.backImage}
@@ -111,18 +118,7 @@ class Trending extends Component {
               />
             </View>
           </View>
-          {this.state.loading ? (
-            <ActivityIndicator
-              size="large"
-              color="#fff"
-              style={{
-                flex: 4,
-                marginTop: 20,
-                alignSelf: "center"
-              }}
-            />
-          ) : (
-            <View style={styles.main}>
+          <View style={styles.main}>
               <FlatList
                 showsVerticalScrollIndicator={false}
                 // extraData={this.state}
@@ -137,8 +133,7 @@ class Trending extends Component {
                 }}
               />
             </View>
-          )}
-        </ImageBackground>
+        </ImageBackground>}
       </View>
     );
   }
@@ -164,7 +159,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.36,
     shadowRadius: 6.68,
     width: screenWidth - 50,
-    height: 100,
+    height: screenHeight / 7,
     elevation: 11
     // justifyContent: "center",
   },
@@ -183,23 +178,24 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     // borderColor: "#DCDCDC",
     backgroundColor: "#fff",
-    borderRadius: 20
+    borderRadius: 20,
     // borderBottomWidth: 1,
     // padding: 10,
     // marginHorizontal: 15,
   },
   text: {
-    flex: 1,
+    // flex: 1,
     fontSize: 15,
     textAlign: "center",
     backgroundColor: "#fff",
-    textAlignVertical: "center"
+    textAlignVertical: "center",
+    textAlign: "center"
   },
   msgTxt: {
     //fontWeight: "500",
     // color: "#008B8B",
     color: "red",
-    fontSize: 18
+    fontSize: screenHeight > 600 ? 17 : 14
   },
   headerText: {
     color: "#fff",

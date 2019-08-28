@@ -207,13 +207,13 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     // //fontWeight: "600",
     color: "#222",
-    fontSize: 18,
+    fontSize: HEIGHT > 600 ? 18 : 15,
     width: 170
   },
   mblTxt: {
     // //fontWeight: "200",
     color: "#777",
-    fontSize: 13
+    fontSize: HEIGHT > 600 ? 13 : 11
   },
   msgContainer: {
     flexDirection: "row",

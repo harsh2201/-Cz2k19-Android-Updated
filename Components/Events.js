@@ -56,7 +56,7 @@ class Events extends Component {
               backgroundColor: "transparent"
             },
             labelStyle: {
-              fontSize: 14,
+              fontSize:  13,
               // //fontWeight:'bold',
               // textTransform: "lowercase",
               fontFamily: "lexendDeca"

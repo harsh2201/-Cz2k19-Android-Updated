@@ -102,7 +102,7 @@ export default class App extends React.Component {
   };
 
   render() {
-    if (!this.state.fontLoaded) return <ActivityIndicator size="large" />;
+    if (!this.state.fontLoaded) return <ActivityIndicator style={{flex: 1, alignSelf: "center"}} size="large" />;
     return (
       <BottomNavigation
         navigationState={this.state}
@@ -112,7 +112,7 @@ export default class App extends React.Component {
         activeColor="#80007d"
         barStyle={{
           backgroundColor: "#fff",
-          height: HEIGHT / 15
+          height: HEIGHT > 600 ? HEIGHT / 13 : HEIGHT / 12
         }}
         // style={{ paddingBottom: HEIGHT / 15 }}
         renderScene={BottomNavigation.SceneMap(

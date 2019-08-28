@@ -78,7 +78,7 @@ class EventDetail extends Component {
           let rounds=[]
           for (var key in data) {
             let obj = data[key];
-            rounds.push(obj);  
+            rounds.push(obj);
           }
           // console.log(rounds)
           this.setState({rounds:data})
@@ -130,13 +130,16 @@ class EventDetail extends Component {
   renderItem = ({ item }) => {
     return (
       <TouchableOpacity
-        disabled={this.state.disabled}
+        // disabled={this.state.disabled}
         onPress={async () => {
           let curr = await this.calc(item);
-          this.props.navigate("EventStack", {
+          {!this.state.disabled ? this.props.navigate("EventStack", {
             data: curr,
             rounds:this.state.rounds
-          });
+          }) : this.props.navigate("EventData", {
+            data: item,
+            // rounds:this.state.rounds
+          });};
         }}
       >
         <View style={styles.row}>
@@ -159,12 +162,13 @@ class EventDetail extends Component {
                 {item.eventName}
               </Text>
             </View>
+            {this.state.disabled ? <View style={styles.msgContainer}/> :
             <View style={styles.msgContainer}>
               <Ionicons name="ios-heart" style={styles.msgTxt} />
               <Text style={[styles.msgTxt, { marginLeft: 5 }]}>
                 {item.likeCount}
               </Text>
-            </View>
+            </View>}
           </View>
         </View>
       </TouchableOpacity>

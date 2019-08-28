@@ -14,7 +14,9 @@ import {
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import * as firebase from "firebase";
 import { Card } from "react-native-card-stack-swiper";
+import { createAppContainer, createStackNavigator } from "react-navigation";
 import Text from "./customText";
+import EventData from "./EventData"
 
 import { Ionicons } from "@expo/vector-icons";
 
@@ -59,7 +61,7 @@ class Trending extends Component {
       <TouchableOpacity
       style={{borderRadius: 10}}
         onPress={() =>
-          this.props.sProps.navigation.navigate("EventData", { data: item })
+          this.props.navigation.navigate("EventData", { data: item })
         }
       >
         <Card style={styles.card}>
@@ -138,7 +140,23 @@ class Trending extends Component {
     );
   }
 }
-export default Trending;
+// export default Trending;
+const AppSwitchNavigator = createStackNavigator(
+  {
+    Trending: Trending,
+    EventData: EventData
+  },
+  {
+    headerMode: "none",
+    mode: "card",
+    defaultNavigationOptions: {
+      gesturesEnabled: false
+    }
+  }
+);
+
+export default AppNavigator = createAppContainer(AppSwitchNavigator);
+
 
 const styles = StyleSheet.create({
   container: {

@@ -12,27 +12,6 @@ import Constants from "expo-constants";
 import Text from "./customText";
 import Carousel,{Pagination} from 'react-native-snap-carousel';
 
-const web = [
-  {
-    id: 1,
-    name: "Pranav bhuchhada",
-    status: "Developer",
-    image: "http://bit.ly/CZHarshAvatar"
-  },
-  {
-    id: 2,
-    name: "Chirayu Joshi",
-    status: "Developer",
-    image: "http://bit.ly/CZSatvikAvatar"
-  },
-  {
-    id: 3,
-    name: "Mitraj Jadeja",
-    status: "Developer",
-    image: "http://bit.ly/CZShivamAvatar"
-  }
-];
-
 // You can import from local files
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 // or any pure javascript modules available in npm
@@ -45,7 +24,7 @@ export default class EventData extends React.Component {
     super();
     this.state = {
       data: {},
-      activeSlide: 0,  
+      activeSlide: 0,
       rounds:[]
 
     };
@@ -60,7 +39,7 @@ export default class EventData extends React.Component {
       let obj = ro[key];
       rounds.push(obj);
     }
-   
+
     this.setState({
       data: props,
       rounds
@@ -68,12 +47,12 @@ export default class EventData extends React.Component {
   }
   _renderT({item, index}) {
     console.log(item,index);
-    
-    return ( 
-       
+
+    return (
+
         <Card style={styles.testcontainer}>
         <Card.Title titleStyle={{color:"white",fontFamily:"lexendDeca"}} title={`Round  ${index+1}`}></Card.Title>
-        
+
         <Card.Content style={styles.content}>
         <Paragraph style={{color:'white',fontFamily:"lexendDeca"}}>{item}</Paragraph>
         </Card.Content>
@@ -93,7 +72,7 @@ export default class EventData extends React.Component {
         >
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate("EventStack");
+              this.props.navigation.goBack();
             }}
           >
             <View
@@ -189,10 +168,10 @@ export default class EventData extends React.Component {
         sliderHeight={screenHeight}
         itemWidth={screenWidth/1.1}
         layout={'default'}
-        
+
         onSnapToItem={(index) => this.setState({ activeSlide: index }) }
         inactiveSlideOpacity={1}
-        />        
+        />
         <Pagination
               dotsLength={this.state.rounds.length}
               activeDotIndex={this.state.activeSlide}
@@ -206,7 +185,7 @@ export default class EventData extends React.Component {
               }}
               inactiveDotOpacity={1}
               inactiveDotScale={0.6}
-            />     
+            />
           </View>
             </View>
           </ScrollView>
@@ -306,10 +285,10 @@ const styles = StyleSheet.create({
     margin:5,
     marginRight:10,
     height:screenHeight/4
-    
- 
-  
- 
+
+
+
+
 },
 content:{
   alignItems:"center",

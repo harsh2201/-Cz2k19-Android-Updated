@@ -9,13 +9,16 @@ import {
   Image,
   Alert,
   Easing,
-  Animated
+  Animated,
+  Dimensions
 } from "react-native";
 // import { Card } from "react-native-card-stack-swiper";
 import Contact from "./Contact";
 import Representative from "./Representative";
 import About from "./About";
 import { createAppContainer, createStackNavigator } from "react-navigation";
+const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
+
 import Text from "./customText";
 
 import * as data from "../Data/data";
@@ -32,17 +35,13 @@ class Options extends Component {
           source={require("../assets/back3.png")}
           style={styles.backImage}
         >
-          <View style={styles.topHeader}>
-            <View style={styles.heading} />
-            <View style={styles.waveContainer} />
-          </View>
           <View style={styles.main}>
             <TouchableOpacity
               onPress={() => {
                 this.props.navigation.navigate("Contact");
               }}
             >
-              <Text style={styles.text}>Contact US</Text>
+              <Text style={styles.text}>Contact Us</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -221,8 +220,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
-    fontSize: 25,
+    fontSize: screenHeight > 600 ? 22 : 20,
     textAlignVertical: "center",
+    textAlign: "left",
     marginTop: 23
     //fontWeight: "400"
   },
@@ -275,7 +275,9 @@ const styles = StyleSheet.create({
   main: {
     flex: 8,
     padding: 10,
-    marginLeft: 50
+    marginLeft: 50,
+    justifyContent: "center",
+    // alignItems: "center"
   },
   back: {
     height: 40,

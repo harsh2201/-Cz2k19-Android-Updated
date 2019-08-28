@@ -76,7 +76,7 @@ export default class EventStack extends Component {
             <Text style={styles.desc}>{item.shortDescription}</Text>
           </View>
           <View style={styles.infoContainer}>
-            <Text style={styles.info}>{item.price}</Text>
+            <Text style={styles.info}>₹ {item.price}</Text>
             <Text style={styles.info}>{item.department}</Text>
           </View>
           <View style={styles.infoContainer}>
@@ -190,7 +190,7 @@ export default class EventStack extends Component {
                   this.swiper.swipeLeft();
                 }}
               >
-                <Text style={styles.buttonText}>MAYBE </Text>
+                <Text style={styles.buttonText}>Nahh </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.button, styles.green]}
@@ -198,7 +198,7 @@ export default class EventStack extends Component {
                   this.swiper.swipeRight();
                 }}
               >
-                <Text style={styles.buttonText}>I LIKE THIS </Text>
+                <Text style={styles.buttonText}>Like! </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
   },
   knowMoreContainer: {
     width: "45%",
-    height: "80%",
+    height: HEIGHT < 800 ? "70%" : "60%",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#0066c0",
@@ -304,7 +304,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
     fontSize: HEIGHT < 600 ? 19 : 25,
-    //fontWeight: "500",
     marginTop: 17,
     color: "#000",
     marginBottom: 10
@@ -314,7 +313,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     zIndex: 0,
-    marginTop: HEIGHT < 600 ? 55 : 90
+    marginTop: HEIGHT < 600 ? 70 : 90
   },
   buttonContainer: {
     width: 220,

@@ -37,8 +37,11 @@ class EventDetail extends Component {
   }
   async componentDidMount() {
     this.setState({ loading: true });
+
     let page = this.props.navigation.state.key;
-    if (page == "Technical" || page == "Nontechnical") {
+
+
+    if (page == "Technical" || page == "Non Technical") {
       this.setState({
         disabled: false
       });
@@ -60,7 +63,7 @@ class EventDetail extends Component {
           }
           if (page == "Technical") {
             this.setState({ data: tech });
-          } else if (page == "Nontechnical") {
+          } else if (page == "Non Technical") {
             this.setState({ data: non });
           }
           await this.setState({ loading: false });
@@ -279,12 +282,13 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     //fontWeight: "600",
     color: "#222",
-    fontSize: 18,
+    fontSize: screenHeight > 600 ? 20 : 16,
     width: 170
   },
   mblTxt: {
     //fontWeight: "200",
     color: "#777",
+    marginTop: 3,
     fontSize: 13
   },
   msgContainer: {
@@ -295,7 +299,8 @@ const styles = StyleSheet.create({
     //fontWeight: "400",
     // color: "#008B8B",
     color: "red",
-    fontSize: 12,
+    fontSize:screenHeight > 600 ? 12 : 10,
+    marginTop: 3,
     marginLeft: 15
   }
 });

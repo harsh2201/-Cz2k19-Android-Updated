@@ -58,6 +58,10 @@ export default class EventStack extends Component {
   renderCard = () => {
     const { navigation } = this.props;
     let data = navigation.getParam("data");
+    let rounds = navigation.getParam("rounds");
+   
+    
+
     return data.map((item, i) => {
       return (
         <Card key={i} style={[styles.card, styles.card1]}>
@@ -79,7 +83,8 @@ export default class EventStack extends Component {
             <TouchableOpacity
               onPress={() => {
                 this.props.navigation.navigate("EventData", {
-                  data: item
+                  data: item,
+                  rounds:rounds[item.eventName]
                 });
               }}
               style={styles.knowMoreContainer}

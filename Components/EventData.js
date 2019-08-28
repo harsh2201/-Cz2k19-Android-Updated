@@ -10,11 +10,33 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import Text from "./customText";
+import Carousel,{Pagination} from 'react-native-snap-carousel';
+
+const web = [
+  {
+    id: 1,
+    name: "Pranav bhuchhada",
+    status: "Developer",
+    image: "http://bit.ly/CZHarshAvatar"
+  },
+  {
+    id: 2,
+    name: "Chirayu Joshi",
+    status: "Developer",
+    image: "http://bit.ly/CZSatvikAvatar"
+  },
+  {
+    id: 3,
+    name: "Mitraj Jadeja",
+    status: "Developer",
+    image: "http://bit.ly/CZShivamAvatar"
+  }
+];
 
 // You can import from local files
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 // or any pure javascript modules available in npm
-import { Card } from "react-native-paper";
+import { Card,Paragraph } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
 
 var props;
@@ -22,17 +44,43 @@ export default class EventData extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: {}
+      data: {},
+      activeSlide: 0,  
+      rounds:[]
+
     };
   }
 
   componentDidMount() {
     const { navigation } = this.props;
     props = navigation.getParam("data");
+    let ro = navigation.getParam("rounds");
+    let rounds=[]
+    for (var key in ro) {
+      let obj = ro[key];
+      rounds.push(obj);
+    }
+   
     this.setState({
-      data: props
+      data: props,
+      rounds
     });
   }
+  _renderT({item, index}) {
+    console.log(item,index);
+    
+    return ( 
+       
+        <Card style={styles.testcontainer}>
+        <Card.Title titleStyle={{color:"white",fontFamily:"lexendDeca"}} title={`Round  ${index+1}`}></Card.Title>
+        
+        <Card.Content style={styles.content}>
+        <Paragraph style={{color:'white',fontFamily:"lexendDeca"}}>{item}</Paragraph>
+        </Card.Content>
+
+      </Card>
+         );
+}
 
   render() {
     return (
@@ -132,6 +180,34 @@ export default class EventData extends React.Component {
                   </View>
                 </View>
               </View>
+              <View>
+            <Carousel
+        ref={(c) => { this._carouselt = c; }}
+        data={this.state.rounds}
+        renderItem={(item,index)=>this._renderT(item,index)}
+        sliderWidth={screenWidth}
+        sliderHeight={screenHeight}
+        itemWidth={screenWidth/1.1}
+        layout={'default'}
+        
+        onSnapToItem={(index) => this.setState({ activeSlide: index }) }
+        inactiveSlideOpacity={1}
+        />        
+        <Pagination
+              dotsLength={this.state.rounds.length}
+              activeDotIndex={this.state.activeSlide}
+              containerStyle={{ backgroundColor: 'transparent',paddingTop: 0, paddingBottom: 0 }}
+              dotStyle={{
+                  width: 10,
+                  height: 10,
+                  borderRadius: 5,
+                  marginHorizontal: 2,
+                  backgroundColor: 'rgba(0, 0, 0, 0.92)'
+              }}
+              inactiveDotOpacity={1}
+              inactiveDotScale={0.6}
+            />     
+          </View>
             </View>
           </ScrollView>
         </View>
@@ -223,5 +299,22 @@ const styles = StyleSheet.create({
   eventDetailsData: {
     fontSize: 12,
     color: "#000"
-  }
+  },
+  testcontainer: {
+    borderRadius: 20,
+    backgroundColor:'#111424',
+    margin:5,
+    marginRight:10,
+    height:screenHeight/4
+    
+ 
+  
+ 
+},
+content:{
+  alignItems:"center",
+  justifyContent:"center",
+  // padding:10
+  margin:5
+},
 });

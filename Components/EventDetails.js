@@ -30,6 +30,7 @@ class EventDetail extends Component {
       tech: [],
       non: [],
       work: [],
+      rounds:[],
       loading: true,
       disabled: false
     };
@@ -63,6 +64,21 @@ class EventDetail extends Component {
             this.setState({ data: non });
           }
           await this.setState({ loading: false });
+        });
+        //rounds--------------------------------------------------------
+        firebase
+        .database()
+        .ref("/rounds")
+        .on("value", async snapshot => {
+          let snap = await JSON.stringify(snapshot);
+          let data = JSON.parse(snap);
+          let rounds=[]
+          for (var key in data) {
+            let obj = data[key];
+            rounds.push(obj);  
+          }
+          // console.log(rounds)
+          this.setState({rounds:data})
         });
       // .catch(err => console.log(err));
     }
@@ -115,7 +131,8 @@ class EventDetail extends Component {
         onPress={async () => {
           let curr = await this.calc(item);
           this.props.navigate("EventStack", {
-            data: curr
+            data: curr,
+            rounds:this.state.rounds
           });
         }}
       >

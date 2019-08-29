@@ -13,6 +13,13 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import Modal from "react-native-modal";
 import { Ionicons } from "@expo/vector-icons";
 import Text from "./customText";
+import * as firebase from "firebase";
+
+import firebaseConfig from "./Data/config";
+// Initialize Firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 const HEIGHT = Dimensions.get("window").height;
 
@@ -29,15 +36,17 @@ class About extends Component {
       customTopMargin: 0,
       counter: 0,
       tempProp: {
-        user_no: 200,
-        code: "CZ19XWrd6"
+        user_no: -1,
+        code: ""
       }
     };
   }
 
-  componentDidMount() {
-    t = this.state.tempProp;
-    console.log(t.user_no % 100);
+  async componentDidMount() {
+    // t = this.state.tempProp;
+    // console.log(t.user_no % 100);
+    let user = await firebase.auth().currentUser;
+    let t = user;
     if (t.user_no % 100 === 0 && t.user_no <= 1000) {
       this.setState({
         message: "Congratulations!\nYou just won a luckty prize",
@@ -197,8 +206,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: 60,
     height: 60,
-    backgroundColor:"#D3D3D3"
-
+    backgroundColor: "#D3D3D3"
   },
   nameContainer: {
     flexDirection: "row",

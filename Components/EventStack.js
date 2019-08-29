@@ -15,7 +15,6 @@ import { Ionicons } from "@expo/vector-icons";
 
 import * as firebase from "firebase";
 import firebaseConfig from "../Data/config";
-// Initialize Firebase
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
@@ -36,9 +35,7 @@ export default class EventStack extends Component {
   }
 
   async componentDidMount() {
-    console.log("HEIGHT", HEIGHT);
-    // this.props.navigation.navigate("Events");
-    uid = await firebase.auth().currentUser.uid;
+      uid = await firebase.auth().currentUser.uid;
 
     firebase
       .database()
@@ -47,8 +44,7 @@ export default class EventStack extends Component {
       .then(async snapshot => {
         let snap = await JSON.stringify(snapshot);
         let uObj = JSON.parse(snap);
-        console.log(uObj);
-        this.setState({
+          this.setState({
           user: uObj
         });
       })
@@ -96,20 +92,16 @@ export default class EventStack extends Component {
   };
 
   like = async item => {
-    console.log("Hello");
     const { navigation } = this.props;
     let data = navigation.getParam("data");
-    // console.log("Data item", this.state.user.like_left);
     let like_left = this.state.user.like_left;
     let like = 0;
     if (like_left > 0) {
-      // firebase.database().ref("Child").tr
       await firebase
         .database()
         .ref("events/" + data[item].eventName + "/likeCount")
         .once("value")
         .then(snap => {
-          console.log("In func likeCount");
           like = snap.val();
           like = like + 1;
           data[item].likeCount = like;
@@ -150,7 +142,7 @@ export default class EventStack extends Component {
           }}
           onPress={() => {
             this.props.navigation.navigate("Events");
-            console.log("back called");
+
           }}
         >
           <View
@@ -212,13 +204,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     backgroundColor: "#f2f2f2"
-    // marginTop: Constants.statusBarHeight
+
   },
   foreground: {
     flex: 1,
-    // position: "absolute",
-    // height: "100%",
-    // width: "100%",
     alignItems: "center",
     marginTop: 0,
     justifyContent: "center"
@@ -274,11 +263,10 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 15,
     marginBottom: 0
-    // paddingBottom: 3
+
   },
   info: {
     color: "#0d8f73",
-    //fontWeight: "500",
     fontSize: HEIGHT < 600 ? 18 : 24
   },
   infoContainer: {
@@ -291,14 +279,10 @@ const styles = StyleSheet.create({
   desc: {
     textAlign: "center",
     fontSize: HEIGHT < 600 ? 11 : 15,
-    //fontWeight: "400",
     marginTop: 1,
     color: "#777777"
-    // backgroundColor: "#777777"
   },
   label: {
-    // flex: 1,
-    // height: 40,
     textAlign: "center",
     textAlignVertical: "center",
     fontSize: HEIGHT < 600 ? 19 : 25,
@@ -338,7 +322,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff"
-    //fontWeight: "700"
   },
   orange: {
     width: 55,

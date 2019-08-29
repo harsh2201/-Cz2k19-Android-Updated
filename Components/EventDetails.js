@@ -15,7 +15,6 @@ import Text from "./customText";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import * as firebase from "firebase";
 import firebaseConfig from "../Data/config";
-// Initialize Firebase
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
@@ -68,8 +67,7 @@ class EventDetail extends Component {
           }
           await this.setState({ loading: false });
         });
-        //rounds--------------------------------------------------------
-        firebase
+          firebase
         .database()
         .ref("/rounds")
         .on("value", async snapshot => {
@@ -80,11 +78,9 @@ class EventDetail extends Component {
             let obj = data[key];
             rounds.push(obj);
           }
-          // console.log(rounds)
-          this.setState({rounds:data})
+              this.setState({rounds:data})
         });
-      // .catch(err => console.log(err));
-    }
+        }
     if (page == "Workshops") {
       this.setState({
         disabled: true
@@ -130,16 +126,14 @@ class EventDetail extends Component {
   renderItem = ({ item }) => {
     return (
       <TouchableOpacity
-        // disabled={this.state.disabled}
-        onPress={async () => {
+          onPress={async () => {
           let curr = await this.calc(item);
           {!this.state.disabled ? this.props.navigate("EventStack", {
             data: curr,
             rounds:this.state.rounds
           }) : this.props.navigate("EventData", {
             data: item,
-            // rounds:this.state.rounds
-          });};
+              });};
         }}
       >
         <View style={styles.row}>
@@ -189,10 +183,8 @@ class EventDetail extends Component {
                 <Image
                   source={require("../assets/loader2.png")}
                   style={{
-                    // top: screenHeight / 8,
                     flex: 0.8
-                    // height: screenHeight / 2,
-                    // width: screenWidth / 2
+
                   }}
                   resizeMode="contain"
                 />
@@ -203,16 +195,13 @@ class EventDetail extends Component {
       );
 
     return (
-      // <MainCard data={this.state.data} renderItem={this.renderItem} />
-      // <View style={styles.main}>
       <View style={styles.cardContainer}>
         <Card style={styles.card}>
           <View style={styles.listContainer}>
             <FlatList
               style={{ marginBottom: HEIGHT / 14 }}
               showsVerticalScrollIndicator={false}
-              // extraData={this.state}
-              data={this.state.data}
+                data={this.state.data}
               keyExtractor={item => {
                 return item.id.toString();
               }}
@@ -221,7 +210,7 @@ class EventDetail extends Component {
           </View>
         </Card>
       </View>
-      // </View>
+
     );
   }
 }
@@ -237,11 +226,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 0
-    // maxHeight: 600
-  },
+    },
   card: {
     width: screenWidth - 40,
-    // height: 575,
     flex: 1,
     top: screenHeight / 14,
     backgroundColor: "#fff",
@@ -263,8 +250,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     marginTop: 10
-    // maxHeight: 500
-  },
+    },
   row: {
     flexDirection: "row",
     alignItems: "center",
@@ -285,13 +271,11 @@ const styles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    //fontWeight: "600",
     color: "#222",
     fontSize: screenHeight > 600 ? 20 : 16,
     width: 170
   },
   mblTxt: {
-    //fontWeight: "200",
     color: "#777",
     marginTop: 3,
     fontSize: 13
@@ -301,8 +285,6 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   msgTxt: {
-    //fontWeight: "400",
-    // color: "#008B8B",
     color: "red",
     fontSize:screenHeight > 600 ? 12 : 10,
     marginTop: 3,

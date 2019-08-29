@@ -32,7 +32,6 @@ class Contact extends Component {
 
   componentDidMount() {
     t = this.state.tempProp;
-    console.log(t.user_no % 100);
     if (t.user_no % 100 === 0 && t.user_no <= 1000) {
       this.setState({
         message: "Congratulations!\nYou just won a luckty prize",
@@ -180,9 +179,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    // borderColor: "#DCDCDC",
     backgroundColor: "#fff",
-    // borderBottomWidth: 1,
     padding: 10,
     marginHorizontal: 15
   },
@@ -198,7 +195,6 @@ const styles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    //fontWeight: "600",
     color: "#222",
     fontSize: 18,
     width: 170
@@ -206,7 +202,6 @@ const styles = StyleSheet.create({
   mblTxt: {
     marginTop: 6,
     marginLeft: 15,
-    //fontWeight: "200",
     color: "#777",
     fontSize: 13
   },
@@ -215,7 +210,6 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   msgTxt: {
-    //fontWeight: "400",
     color: "#008B8B",
     fontSize: 12,
     marginLeft: 15

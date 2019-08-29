@@ -12,7 +12,6 @@ import {
   Animated,
   Dimensions
 } from "react-native";
-// import { Card } from "react-native-card-stack-swiper";
 import Contact from "./Contact";
 import Representative from "./Representative";
 import About from "./About";
@@ -24,9 +23,6 @@ import Text from "./customText";
 import * as data from "../Data/data";
 
 class Options extends Component {
-  componentDidMount() {
-    // this.props.navigation.navigate("Campaign");
-  }
 
   render() {
     return (
@@ -84,7 +80,6 @@ class Options extends Component {
     );
   }
 }
-// export default Options;
 const AppSwitchNavigator = createStackNavigator(
   {
     Options: props => <Options {...props} />,
@@ -178,9 +173,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    // borderColor: "#DCDCDC",
     backgroundColor: "#fff",
-    // borderBottomWidth: 1,
     padding: 10,
     marginHorizontal: 15
   },
@@ -196,7 +189,6 @@ const styles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    //fontWeight: "600",
     color: "#222",
     fontSize: 18,
     width: 170
@@ -204,7 +196,6 @@ const styles = StyleSheet.create({
   mblTxt: {
     marginTop: 6,
     marginLeft: 15,
-    //fontWeight: "200",
     color: "#777",
     fontSize: 13
   },
@@ -213,7 +204,6 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   msgTxt: {
-    //fontWeight: "400",
     color: "#008B8B",
     fontSize: 12,
     marginLeft: 15
@@ -224,7 +214,6 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
     textAlign: "left",
     marginTop: 23
-    //fontWeight: "400"
   },
   topHeader: {
     flex: 2.2
@@ -277,8 +266,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginLeft: 50,
     justifyContent: "center"
-    // alignItems: "center"
-  },
+    },
   back: {
     height: 40,
     width: 40,

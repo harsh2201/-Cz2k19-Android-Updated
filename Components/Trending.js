@@ -18,7 +18,6 @@ import EventData from "./EventData";
 import { Ionicons } from "@expo/vector-icons";
 
 import firebaseConfig from "../Data/config";
-// Initialize Firebase
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
@@ -32,7 +31,7 @@ class Trending extends Component {
     };
   }
   componentDidMount() {
-    console.log("Props from Trending");
+  
     this.setState({ loading: true });
     firebase
       .database()
@@ -133,7 +132,6 @@ class Trending extends Component {
             <View style={styles.main}>
               <FlatList
                 showsVerticalScrollIndicator={false}
-                // extraData={this.state}
                 data={this.state.all}
                 keyExtractor={item => {
                   return item.id.toString();
@@ -151,7 +149,6 @@ class Trending extends Component {
     );
   }
 }
-// export default Trending;
 const AppSwitchNavigator = createStackNavigator(
   {
     Trending: Trending,
@@ -189,30 +186,19 @@ const styles = StyleSheet.create({
     width: screenWidth - 50,
     height: screenHeight / 7,
     elevation: 11
-    // justifyContent: "center",
   },
   pic: {
     flex: 1.5,
-    // borderRadius: 30,
-    // width: 60,
-    // height: 60,
-    // borderBottomLeftRadius: 10,
-    // borderTopLeftRadius: 10
-    borderRadius: 10
+        borderRadius: 10
   },
   row: {
     flex: 1,
     flexDirection: "row",
-    // alignItems: "center",
-    // borderColor: "#DCDCDC",
     backgroundColor: "#fff",
     borderRadius: 20
-    // borderBottomWidth: 1,
-    // padding: 10,
-    // marginHorizontal: 15,
+
   },
   text: {
-    // flex: 1,
     fontSize: 15,
     textAlign: "center",
     backgroundColor: "#fff",
@@ -220,8 +206,6 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   msgTxt: {
-    //fontWeight: "500",
-    // color: "#008B8B",
     color: "red",
     fontSize: screenHeight > 600 ? 17 : 14
   },
@@ -255,8 +239,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 8,
     alignItems: "center"
-    // justifyContent:"center",
-  },
+    },
   back: {
     height: 40,
     width: 40

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Easing, Animated } from "react-native";
+import { StyleSheet } from "react-native";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 
 import Trending from "./Trending";

@@ -74,15 +74,15 @@ export default class App extends React.Component {
       {
         key: "events",
         icon: "home"
-        },
+      },
       {
         key: "Trending",
         icon: "whatshot"
-        },
+      },
       {
         key: "navigator",
         icon: "code"
-        },
+      },
       {
         key: "about",
         icon: "info"
@@ -109,7 +109,7 @@ export default class App extends React.Component {
           backgroundColor: "#fff",
           height: HEIGHT > 600 ? HEIGHT / 13 : HEIGHT / 12
         }}
-      renderScene={BottomNavigation.SceneMap(
+        renderScene={BottomNavigation.SceneMap(
           {
             navigator: Options,
             Trending: Trending,

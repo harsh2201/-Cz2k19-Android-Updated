@@ -41,33 +41,37 @@ class About extends Component {
 
   async componentDidMount() {
     let user = await firebase.auth().currentUser;
-    await firebase.database().ref("users/" + user.uid + "/").once("value", async snapshot=>{
-      let snap = await JSON.stringify(snapshot);
-      let data = JSON.parse(snap);
-      this.setState({
-        tempProp: data
-      })
+    await firebase
+      .database()
+      .ref("users/" + user.uid + "/")
+      .once("value", async snapshot => {
+        let snap = await JSON.stringify(snapshot);
+        let data = JSON.parse(snap);
+        this.setState({
+          tempProp: data
+        });
 
-      let t = this.state.tempProp;
+        let t = this.state.tempProp;
 
-      await firebase.database().ref("prize/" + t.user_no).once("value", async snapshot2=>{
-        if (t.user_no % 100 === 0 && t.user_no <= 1000) {
-          this.setState({
-            message: "Congratulations!\nYou just won a luckty prize",
-            code: snapshot2.val(),
-            inst: "Ensure to collect the prize from the coordinators"
+        await firebase
+          .database()
+          .ref("prize/" + t.user_no)
+          .once("value", async snapshot2 => {
+            if (t.user_no % 100 === 0 && t.user_no <= 1000) {
+              this.setState({
+                message: "Congratulations!\nYou just won a luckty prize",
+                code: snapshot2.val(),
+                inst: "Ensure to collect the prize from the coordinators"
+              });
+            } else {
+              this.setState({
+                code: "Sorry!\nYou didn't get the prize",
+                message: "",
+                inst: ""
+              });
+            }
           });
-        } else {
-          this.setState({
-            code: "Sorry!\nYou didn't get the prize",
-            message: "",
-            inst: ""
-          });
-        }
-      })
-
-
-    })
+      });
   }
 
   toggleModal = () => {
@@ -145,7 +149,7 @@ class About extends Component {
             backdropTransitionOutTiming={600}
             style={styles.modalContent}
           >
-            <View >
+            <View>
               <Text style={styles.modalContentTitle}>{this.state.message}</Text>
               <Text style={styles.modalContentCode}>{this.state.code}</Text>
               <Text style={styles.modalContentInst}>{this.state.inst}</Text>
@@ -244,7 +248,7 @@ const styles = StyleSheet.create({
   heading: {
     marginTop: 10,
     marginLeft: 20
-    },
+  },
   backImage: {
     flex: 1
   },

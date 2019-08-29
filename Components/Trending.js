@@ -32,7 +32,6 @@ class Trending extends Component {
     };
   }
   componentDidMount() {
-
     this.setState({ loading: true });
     firebase
       .database()
@@ -99,36 +98,41 @@ class Trending extends Component {
   render() {
     return (
       <View style={styles.container}>
-
-          <ImageBackground
-            source={require("../assets/backPurple.png")}
-            style={styles.backImage}
-          >
-            <View style={styles.topHeader}>
-              <View style={styles.back} />
-              <View style={styles.heading}>
-                <Text style={styles.headerText}>Trending</Text>
-              </View>
-              <View style={styles.waveContainer}>
-                <Image
-                  source={require("../assets/wave2.png")}
-                  style={styles.wave}
-                />
-              </View>
+        <ImageBackground
+          source={require("../assets/backPurple.png")}
+          style={styles.backImage}
+        >
+          <View style={styles.topHeader}>
+            <View style={styles.back} />
+            <View style={styles.heading}>
+              <Text style={styles.headerText}>Trending</Text>
             </View>
-            {this.state.loading ? (
-              <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
-            <ActivityIndicator
-              size="large"
-              color="#fff"
-              style={{
-                flex: 4,
-                marginTop: 20,
-                alignSelf: "center"
-              }}
-              renderItem={this.renderItem}
-            />
+            <View style={styles.waveContainer}>
+              <Image
+                source={require("../assets/wave2.png")}
+                style={styles.wave}
+              />
+            </View>
           </View>
+          {this.state.loading ? (
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                flex: 1
+              }}
+            >
+              <ActivityIndicator
+                size="large"
+                color="#fff"
+                style={{
+                  flex: 4,
+                  marginTop: 20,
+                  alignSelf: "center"
+                }}
+                renderItem={this.renderItem}
+              />
+            </View>
           ) : (
             <View style={styles.main}>
               <FlatList
@@ -145,7 +149,7 @@ class Trending extends Component {
               />
             </View>
           )}
-          </ImageBackground>
+        </ImageBackground>
       </View>
     );
   }
@@ -191,14 +195,13 @@ const styles = StyleSheet.create({
   pic: {
     flex: 1.5,
     borderRadius: 10,
-    backgroundColor:"#D3D3D3"    
+    backgroundColor: "#D3D3D3"
   },
   row: {
     flex: 1,
     flexDirection: "row",
     backgroundColor: "#fff",
     borderRadius: 20
-
   },
   text: {
     fontSize: 15,
@@ -241,7 +244,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 8,
     alignItems: "center"
-    },
+  },
   back: {
     height: 40,
     width: 40

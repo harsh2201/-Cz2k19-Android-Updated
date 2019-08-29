@@ -77,25 +77,24 @@ class Contact extends Component {
   renderItem = ({ item }) => {
     return (
       <TouchableOpacity
-          onPress={() => {
-            Linking.openURL(`tel:+91${item.contact}`);
-          }}
-        >
-      <View style={styles.row}>
-        <View>
-          <View style={styles.nameContainer}>
-            <Text style={styles.nameTxt}  ellipsizeMode="tail">
-              {item.name}
-            </Text>
-          </View>
-          <View style={styles.msgContainer}>
-            <Text style={styles.msgTxt}>Executive Central Council</Text>
+        onPress={() => {
+          Linking.openURL(`tel:+91${item.contact}`);
+        }}
+      >
+        <View style={styles.row}>
+          <View>
+            <View style={styles.nameContainer}>
+              <Text style={styles.nameTxt} ellipsizeMode="tail">
+                {item.name}
+              </Text>
+            </View>
+            <View style={styles.msgContainer}>
+              <Text style={styles.msgTxt}>Executive Central Council</Text>
 
-            <Text style={styles.msgTxt}>{item.contact}</Text>
-
+              <Text style={styles.msgTxt}>{item.contact}</Text>
+            </View>
           </View>
         </View>
-      </View>
       </TouchableOpacity>
     );
   };

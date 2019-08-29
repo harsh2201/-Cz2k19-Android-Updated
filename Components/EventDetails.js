@@ -29,7 +29,7 @@ class EventDetail extends Component {
       tech: [],
       non: [],
       work: [],
-      rounds:[],
+      rounds: [],
       loading: true,
       disabled: false
     };
@@ -38,7 +38,6 @@ class EventDetail extends Component {
     this.setState({ loading: true });
 
     let page = this.props.navigation.state.key;
-
 
     if (page == "Technical" || page == "Non Technical") {
       this.setState({
@@ -67,20 +66,20 @@ class EventDetail extends Component {
           }
           await this.setState({ loading: false });
         });
-          firebase
+      firebase
         .database()
         .ref("/rounds")
         .on("value", async snapshot => {
           let snap = await JSON.stringify(snapshot);
           let data = JSON.parse(snap);
-          let rounds=[]
+          let rounds = [];
           for (var key in data) {
             let obj = data[key];
             rounds.push(obj);
           }
-              this.setState({rounds:data})
+          this.setState({ rounds: data });
         });
-        }
+    }
     if (page == "Workshops") {
       this.setState({
         disabled: true
@@ -126,14 +125,18 @@ class EventDetail extends Component {
   renderItem = ({ item }) => {
     return (
       <TouchableOpacity
-          onPress={async () => {
+        onPress={async () => {
           let curr = await this.calc(item);
-          {!this.state.disabled ? this.props.navigate("EventStack", {
-            data: curr,
-            rounds:this.state.rounds
-          }) : this.props.navigate("EventData", {
-            data: item,
-              });};
+          {
+            !this.state.disabled
+              ? this.props.navigate("EventStack", {
+                  data: curr,
+                  rounds: this.state.rounds
+                })
+              : this.props.navigate("EventData", {
+                  data: item
+                });
+          }
         }}
       >
         <View style={styles.row}>
@@ -156,13 +159,16 @@ class EventDetail extends Component {
                 {item.eventName}
               </Text>
             </View>
-            {this.state.disabled ? <View style={styles.msgContainer}/> :
-            <View style={styles.msgContainer}>
-              <Ionicons name="ios-heart" style={styles.msgTxt} />
-              <Text style={[styles.msgTxt, { marginLeft: 5 }]}>
-                {item.likeCount}
-              </Text>
-            </View>}
+            {this.state.disabled ? (
+              <View style={styles.msgContainer} />
+            ) : (
+              <View style={styles.msgContainer}>
+                <Ionicons name="ios-heart" style={styles.msgTxt} />
+                <Text style={[styles.msgTxt, { marginLeft: 5 }]}>
+                  {item.likeCount}
+                </Text>
+              </View>
+            )}
           </View>
         </View>
       </TouchableOpacity>
@@ -184,7 +190,6 @@ class EventDetail extends Component {
                   source={require("../assets/loader2.png")}
                   style={{
                     flex: 0.8
-
                   }}
                   resizeMode="contain"
                 />
@@ -201,7 +206,7 @@ class EventDetail extends Component {
             <FlatList
               style={{ marginBottom: HEIGHT / 14 }}
               showsVerticalScrollIndicator={false}
-                data={this.state.data}
+              data={this.state.data}
               keyExtractor={item => {
                 return item.id.toString();
               }}
@@ -210,7 +215,6 @@ class EventDetail extends Component {
           </View>
         </Card>
       </View>
-
     );
   }
 }
@@ -226,7 +230,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 0
-    },
+  },
   card: {
     width: screenWidth - 40,
     flex: 1,
@@ -250,7 +254,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     marginTop: 10
-    },
+  },
   row: {
     flexDirection: "row",
     alignItems: "center",
@@ -262,7 +266,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: 60,
     height: 60,
-    backgroundColor:"#D3D3D3"
+    backgroundColor: "#D3D3D3"
   },
   nameContainer: {
     flexDirection: "row",
@@ -286,7 +290,7 @@ const styles = StyleSheet.create({
   },
   msgTxt: {
     color: "red",
-    fontSize:screenHeight > 600 ? 12 : 10,
+    fontSize: screenHeight > 600 ? 12 : 10,
     marginTop: 3,
     marginLeft: 15
   }

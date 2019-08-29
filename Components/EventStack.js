@@ -9,7 +9,6 @@ import {
 import CardStack, { Card } from "react-native-card-stack-swiper";
 import Toast from "react-native-whc-toast";
 
-import { Constants } from "expo";
 import Text from "./customText";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -35,7 +34,7 @@ export default class EventStack extends Component {
   }
 
   async componentDidMount() {
-      uid = await firebase.auth().currentUser.uid;
+    uid = await firebase.auth().currentUser.uid;
 
     firebase
       .database()
@@ -44,7 +43,7 @@ export default class EventStack extends Component {
       .then(async snapshot => {
         let snap = await JSON.stringify(snapshot);
         let uObj = JSON.parse(snap);
-          this.setState({
+        this.setState({
           user: uObj
         });
       })
@@ -142,7 +141,6 @@ export default class EventStack extends Component {
           }}
           onPress={() => {
             this.props.navigation.navigate("Events");
-
           }}
         >
           <View
@@ -204,7 +202,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     backgroundColor: "#f2f2f2"
-
   },
   foreground: {
     flex: 1,
@@ -263,7 +260,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 15,
     marginBottom: 0
-
   },
   info: {
     color: "#0d8f73",

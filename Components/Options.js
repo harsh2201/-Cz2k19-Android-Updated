@@ -2,18 +2,11 @@ import React, { Component } from "react";
 import {
   View,
   StyleSheet,
-  Platform,
   ImageBackground,
-  FlatList,
   TouchableOpacity,
-  Image,
-  Alert,
-  Easing,
-  Animated,
   Dimensions
 } from "react-native";
 import Contact from "./Contact";
-import Representative from "./Representative";
 import About from "./About";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
@@ -23,7 +16,6 @@ import Text from "./customText";
 import * as data from "../Data/data";
 
 class Options extends Component {
-
   render() {
     return (
       <View style={styles.container}>
@@ -266,7 +258,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginLeft: 50,
     justifyContent: "center"
-    },
+  },
   back: {
     height: 40,
     width: 40,

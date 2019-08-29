@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import {
   View,
   StyleSheet,
-  Platform,
   ImageBackground,
   Image,
-  FlatList,
-  TouchableOpacity,
-  AsyncStorage,
   Dimensions
 } from "react-native";
 import {
@@ -25,7 +21,6 @@ if (!firebase.apps.length) {
 }
 
 class Events extends Component {
-
   navigate = (route, params) => {
     this.props.navigation.navigate(route, params);
   };
@@ -184,7 +179,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     height: 10,
     width: screenWidth / 5
-    },
+  },
   waveContainer: {
     marginLeft: 20,
     justifyContent: "flex-end"

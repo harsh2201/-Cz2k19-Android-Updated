@@ -3,7 +3,6 @@ import {
   View,
   StyleSheet,
   ImageBackground,
-  Image,
   Dimensions,
   ScrollView,
   TouchableOpacity
@@ -42,7 +41,6 @@ export default class EventData extends React.Component {
     });
   }
   _renderT({ item, index }) {
-
     return (
       <Card style={styles.testcontainer}>
         <Card.Title
@@ -50,13 +48,12 @@ export default class EventData extends React.Component {
           title={`Round  ${index + 1}`}
         ></Card.Title>
         <ScrollView>
-        <Card.Content style={styles.content}>
-          <Paragraph style={{ color: "white", fontFamily: "lexendDeca" }}>
-            {item}
-          </Paragraph>
-        </Card.Content>
+          <Card.Content style={styles.content}>
+            <Paragraph style={{ color: "white", fontFamily: "lexendDeca" }}>
+              {item}
+            </Paragraph>
+          </Card.Content>
         </ScrollView>
-
       </Card>
     );
   }

@@ -42,19 +42,21 @@ export default class EventData extends React.Component {
     });
   }
   _renderT({ item, index }) {
-    
+
     return (
       <Card style={styles.testcontainer}>
         <Card.Title
           titleStyle={{ color: "white", fontFamily: "lexendDeca" }}
           title={`Round  ${index + 1}`}
         ></Card.Title>
-
+        <ScrollView>
         <Card.Content style={styles.content}>
           <Paragraph style={{ color: "white", fontFamily: "lexendDeca" }}>
             {item}
           </Paragraph>
         </Card.Content>
+        </ScrollView>
+
       </Card>
     );
   }

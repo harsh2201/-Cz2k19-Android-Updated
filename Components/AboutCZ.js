@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
-    fontSize: 18,
-    lineHeight: 25
+    fontSize: screenHeight > 700? 18 : screenHeight > 600 ? 16 : 13 ,
+    lineHeight: screenHeight > 700 ? 22 : screenHeight > 600 ? 20 : 18
   },
   headerText: {
     color: "#fff",

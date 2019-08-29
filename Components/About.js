@@ -196,7 +196,9 @@ const styles = StyleSheet.create({
   pic: {
     borderRadius: 30,
     width: 60,
-    height: 60
+    height: 60,
+    backgroundColor:"#D3D3D3"
+
   },
   nameContainer: {
     flexDirection: "row",

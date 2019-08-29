@@ -1,11 +1,12 @@
-import React, { Component, Linking } from "react";
+import React, { Component } from "react";
 import {
   View,
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
   Image,
-  Dimensions
+  Dimensions,
+  Linking
 } from "react-native";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import MainCard from "./MainCard";
@@ -17,17 +18,17 @@ const data = [
   {
     id: 1,
     name: "Pranay Shah",
-    contact: "9999999999"
+    contact: "8866871097"
   },
   {
     id: 2,
     name: "Manush Parikh",
-    contact: "9999999999"
+    contact: "8866997039"
   },
   {
     id: 3,
     name: "Rutwik Patel",
-    contact: "9999999999"
+    contact: "9913841384"
   }
 ];
 
@@ -76,27 +77,27 @@ class Contact extends Component {
 
   renderItem = ({ item }) => {
     return (
-      // <TouchableOpacity disabled={true}>
+      <TouchableOpacity
+          onPress={() => {
+            Linking.openURL(`tel:+91${item.contact}`);
+          }}
+        >
       <View style={styles.row}>
         <View>
           <View style={styles.nameContainer}>
-            <Text style={styles.nameTxt} numberOfLines={1} ellipsizeMode="tail">
+            <Text style={styles.nameTxt}  ellipsizeMode="tail">
               {item.name}
             </Text>
           </View>
           <View style={styles.msgContainer}>
             <Text style={styles.msgTxt}>Executive Central Council</Text>
-            {/* <TouchableOpacity
-                onPress={() => {
-                  Linking.openURL(`tel:0000000000`);
-                }}
-              > */}
-            <Text>{item.contact}</Text>
-            {/* </TouchableOpacity> */}
+
+            <Text style={styles.msgTxt}>{item.contact}</Text>
+
           </View>
         </View>
       </View>
-      // </TouchableOpacity>
+      </TouchableOpacity>
     );
   };
 

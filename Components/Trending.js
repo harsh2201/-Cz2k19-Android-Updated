@@ -49,7 +49,7 @@ class Trending extends Component {
           .concat(all)
           .sort((a, b) => a.likeCount < b.likeCount)
           .slice(0, 10);
-        this.setState({ all: myData, loading: true });
+        this.setState({ all: myData, loading: false });
       });
   }
 
@@ -190,7 +190,8 @@ const styles = StyleSheet.create({
   },
   pic: {
     flex: 1.5,
-        borderRadius: 10
+    borderRadius: 10,
+    backgroundColor:"#D3D3D3"    
   },
   row: {
     flex: 1,

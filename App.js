@@ -12,7 +12,6 @@ const HEIGHT = Dimensions.get("window").height;
 const WIDTH = Dimensions.get("window").width;
 
 import firebaseConfig from "./Data/config";
-// Initialize Firebase
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
@@ -34,7 +33,6 @@ export default class App extends React.Component {
       .signInAnonymously()
       .then(async () => {
         let user = await firebase.auth().currentUser;
-        // console.log(user)
         const ref = firebase.database().ref("users/" + user.uid + "/");
         const uRef = firebase.database().ref("users/");
         let i = 0;
@@ -75,27 +73,19 @@ export default class App extends React.Component {
     routes: [
       {
         key: "events",
-        // title: "Events",
         icon: "home"
-        // color: "#039b3b"
-      },
+        },
       {
         key: "Trending",
-        // title: "Options",
         icon: "whatshot"
-        // color: "#E81B38"
-      },
+        },
       {
         key: "navigator",
-        // title: "Options",
         icon: "code"
-        // color: "#E81B38"
-      },
+        },
       {
         key: "about",
-        // title: "About CZ",
         icon: "info"
-        // color: "#F75728"
       }
     ],
     fontLoaded: false
@@ -113,16 +103,13 @@ export default class App extends React.Component {
       <BottomNavigation
         navigationState={this.state}
         onIndexChange={index => this.setState({ index })}
-        // shifting={true}
         activeColor="#202c92"
         labeled={false}
-        // activeColor="#80007d"
         barStyle={{
           backgroundColor: "#fff",
           height: HEIGHT > 600 ? HEIGHT / 13 : HEIGHT / 12
         }}
-        // style={{ paddingBottom: HEIGHT / 15 }}
-        renderScene={BottomNavigation.SceneMap(
+      renderScene={BottomNavigation.SceneMap(
           {
             navigator: Options,
             Trending: Trending,
@@ -131,7 +118,6 @@ export default class App extends React.Component {
           },
           {
             initialRouteName: "navigator",
-            // activeTintColor: "#4A00E0",
             activeTintColor: "rgb(0, 114, 255)",
             activeColor: "#f0edf6",
             navigationOptions: {

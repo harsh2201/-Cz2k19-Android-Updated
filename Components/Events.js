@@ -20,15 +20,11 @@ import * as firebase from "firebase";
 import Text from "./customText";
 import firebaseConfig from "../Data/config";
 
-// Initialize Firebase
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
 class Events extends Component {
-  componentDidMount() {
-    // this.props.navigation.navigate("EventStack");
-  }
 
   navigate = (route, params) => {
     this.props.navigation.navigate(route, params);
@@ -57,8 +53,6 @@ class Events extends Component {
             },
             labelStyle: {
               fontSize: 13,
-              // //fontWeight:'bold',
-              // textTransform: "lowercase",
               fontFamily: "lexendDeca"
             },
             indicatorStyle: {
@@ -110,9 +104,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    // borderColor: "#DCDCDC",
     backgroundColor: "#fff",
-    // borderBottomWidth: 1,
     padding: 10,
     marginHorizontal: 15
   },
@@ -128,13 +120,11 @@ const styles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    //fontWeight: "600",
     color: "#222",
     fontSize: 18,
     width: 170
   },
   mblTxt: {
-    //fontWeight: "200",
     color: "#777",
     fontSize: 13
   },
@@ -143,7 +133,6 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   msgTxt: {
-    //fontWeight: "400",
     color: "#008B8B",
     fontSize: 12,
     marginLeft: 15
@@ -195,9 +184,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     height: 10,
     width: screenWidth / 5
-    // backgroundColor: "#fff"
-    // justifyContent: "flex-end"
-  },
+    },
   waveContainer: {
     marginLeft: 20,
     justifyContent: "flex-end"

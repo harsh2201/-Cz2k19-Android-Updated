@@ -37,14 +37,11 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     marginTop: 10
-    // maxHeight: 500
   },
   row: {
     flexDirection: "row",
     alignItems: "center",
-    // borderColor: "#DCDCDC",
     backgroundColor: "#fff",
-    // borderBottomWidth: 1,
     padding: 10,
     marginHorizontal: 15
   },
@@ -60,13 +57,11 @@ const styles = StyleSheet.create({
   },
   nameTxt: {
     marginLeft: 15,
-    //fontWeight: "600",
     color: "#222",
     fontSize: 18,
     width: 170
   },
   mblTxt: {
-    //fontWeight: "200",
     color: "#777",
     fontSize: 13
   },
@@ -75,7 +70,6 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   msgTxt: {
-    //fontWeight: "400",
     color: "#008B8B",
     fontSize: 12,
     marginLeft: 15
@@ -97,16 +91,13 @@ const styles = StyleSheet.create({
   },
   card: {
     width: WIDTH - 40,
-    // minHeight: 500,
     height: HEIGHT / 1.4,
     marginTop: 30,
-    // flex: 8,
     backgroundColor: "#fff",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,
-    // top: HEIGHT / 14,
     shadowColor: "rgba(0,0,0,0.5)",
     borderRadius: 10,
     shadowColor: "#000",
@@ -123,7 +114,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
-    // maxHeight: 600
   },
   wave: {
     alignSelf: "flex-start",
@@ -136,7 +126,6 @@ const styles = StyleSheet.create({
   },
   main: {
     flex: 4
-    // maxHeight: 600
   },
   back: {
     height: 40,

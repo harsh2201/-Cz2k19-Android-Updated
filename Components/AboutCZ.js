@@ -4,7 +4,7 @@ import {
   StyleSheet,
   ImageBackground,
   Image,
-  Dimensions
+  Dimensions, ScrollView
 } from "react-native";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import Text from "./customText";
@@ -30,6 +30,7 @@ class Events extends Component {
             </View>
           </View>
           <View style={styles.main}>
+          <ScrollView>
             <Text style={styles.text}>
               Cognizance is one of the most prominent technical fests of
               Gujarat. Since its inception in 2007, it aims to provide a
@@ -45,6 +46,7 @@ class Events extends Component {
               heartily welcomes you all to be a part of this journey. Dream.
               Explore. Innovate.
             </Text>
+            </ScrollView>
           </View>
         </ImageBackground>
       </View>

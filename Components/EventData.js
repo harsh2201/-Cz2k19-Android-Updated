@@ -11,10 +11,7 @@ import {
 import Constants from "expo-constants";
 import Text from "./customText";
 import Carousel, { Pagination } from "react-native-snap-carousel";
-
-// You can import from local files
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
-// or any pure javascript modules available in npm
 import { Card, Paragraph } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -45,8 +42,7 @@ export default class EventData extends React.Component {
     });
   }
   _renderT({ item, index }) {
-    console.log(item, index);
-
+    
     return (
       <Card style={styles.testcontainer}>
         <Card.Title
@@ -99,8 +95,6 @@ export default class EventData extends React.Component {
             <Ionicons name="md-heart" size={25} color="red" />
             <Text
               style={{
-                //fontWeight: "700",
-                // marginRight: screenWidth / 8,
                 color: "#000"
               }}
             >
@@ -114,7 +108,6 @@ export default class EventData extends React.Component {
                   flex: 1,
                   color: "#000",
                   fontSize: 25,
-                  //fontWeight: "700",
                   opacity: 1,
                   padding: 10
                 }}
@@ -253,7 +246,6 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 20,
-    //fontWeight: "bold",
     padding: 10,
     color: "#000"
   },
@@ -280,7 +272,6 @@ const styles = StyleSheet.create({
   },
   eventDetailsHeading: {
     fontSize: 15,
-    //fontWeight: "bold",
     color: "#000"
   },
   eventDetailsData: {
@@ -297,7 +288,6 @@ const styles = StyleSheet.create({
   content: {
     alignItems: "center",
     justifyContent: "center",
-    // padding:10
     margin: 5
   }
 });

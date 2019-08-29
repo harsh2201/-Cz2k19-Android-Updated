@@ -15,7 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Text from "./customText";
 import * as firebase from "firebase";
 
-import firebaseConfig from "./Data/config";
+import firebaseConfig from "../Data/config";
 // Initialize Firebase
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);

@@ -6,7 +6,8 @@ import {
   FlatList,
   TouchableOpacity,
   Dimensions,
-  Image
+  Image,
+  ActivityIndicator
 } from "react-native";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import * as firebase from "firebase";
@@ -31,7 +32,7 @@ class Trending extends Component {
     };
   }
   componentDidMount() {
-  
+
     this.setState({ loading: true });
     firebase
       .database()
@@ -48,7 +49,7 @@ class Trending extends Component {
           .concat(all)
           .sort((a, b) => a.likeCount < b.likeCount)
           .slice(0, 10);
-        this.setState({ all: myData, loading: false });
+        this.setState({ all: myData, loading: true });
       });
   }
 
@@ -98,21 +99,7 @@ class Trending extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.state.loading ? (
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: "#000",
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            <Image
-              style={{ resizeMode: "center", backgroundColor: "#000" }}
-              source={require("../assets/preLoader.gif")}
-            />
-          </View>
-        ) : (
+
           <ImageBackground
             source={require("../assets/backPurple.png")}
             style={styles.backImage}
@@ -129,6 +116,20 @@ class Trending extends Component {
                 />
               </View>
             </View>
+            {this.state.loading ? (
+              <View style={{justifyContent: "center", alignItems: "center", flex: 1}}>
+            <ActivityIndicator
+              size="large"
+              color="#fff"
+              style={{
+                flex: 4,
+                marginTop: 20,
+                alignSelf: "center"
+              }}
+              renderItem={this.renderItem}
+            />
+          </View>
+          ) : (
             <View style={styles.main}>
               <FlatList
                 showsVerticalScrollIndicator={false}
@@ -143,8 +144,8 @@ class Trending extends Component {
                 }}
               />
             </View>
+          )}
           </ImageBackground>
-        )}
       </View>
     );
   }

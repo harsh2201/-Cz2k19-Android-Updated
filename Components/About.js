@@ -17,6 +17,7 @@ import firebaseConfig from "../Data/config";
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+import track from "../Data/Amplitude";
 
 const HEIGHT = Dimensions.get("window").height;
 
@@ -40,6 +41,9 @@ class About extends Component {
   }
 
   async componentDidMount() {
+    this.props.navigation.addListener("didFocus", payload => {
+      track(this.props.heading);
+    });
     let user = await firebase.auth().currentUser;
     await firebase
       .database()
@@ -74,7 +78,8 @@ class About extends Component {
       });
   }
 
-  toggleModal = () => {
+  toggleModal = item => {
+    track(this.props.heading, { [item.name]: "clicked" });
     this.setState({ isModalVisible: true });
     setTimeout(() => {
       this.setState({ isModalVisible: false });
@@ -83,7 +88,10 @@ class About extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <TouchableOpacity disabled={!this.props.egg} onPress={this.toggleModal}>
+      <TouchableOpacity
+        disabled={!this.props.egg}
+        onPress={this.toggleModal(item.name).bind(this)}
+      >
         <View style={styles.row}>
           <Image source={{ uri: item.image }} style={styles.pic} />
           <View>

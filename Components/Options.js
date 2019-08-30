@@ -12,10 +12,15 @@ import { createAppContainer, createStackNavigator } from "react-navigation";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
 import Text from "./customText";
-
+import track from "../Data/Amplitude";
 import * as data from "../Data/data";
 
 class Options extends Component {
+  componentDidMount() {
+    this.props.navigation.addListener("didFocus", payload => {
+      track("Options");
+    });
+  }
   render() {
     return (
       <View style={styles.container}>

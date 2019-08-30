@@ -11,6 +11,8 @@ import {
 import { Card } from "react-native-card-stack-swiper";
 import { Ionicons } from "@expo/vector-icons";
 import Text from "./customText";
+import track from "../Data/Amplitude";
+
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import * as firebase from "firebase";
@@ -126,6 +128,7 @@ class EventDetail extends Component {
     return (
       <TouchableOpacity
         onPress={async () => {
+          track(item.eventName, { "View": true });
           let curr = await this.calc(item);
           {
             !this.state.disabled

@@ -17,6 +17,7 @@ import Text from "./customText";
 import EventData from "./EventData";
 
 import { Ionicons } from "@expo/vector-icons";
+import track from "../Data/Amplitude";
 
 import firebaseConfig from "../Data/config";
 if (!firebase.apps.length) {
@@ -33,6 +34,10 @@ class Trending extends Component {
   }
   componentDidMount() {
     this.setState({ loading: true });
+    this.props.navigation.addListener("didFocus", payload => {
+      track(this.props.navigation.state.routeName);
+    });
+
     firebase
       .database()
       .ref("/events")
@@ -56,9 +61,10 @@ class Trending extends Component {
     return (
       <TouchableOpacity
         style={{ borderRadius: 10 }}
-        onPress={() =>
-          this.props.navigation.navigate("EventData", { data: item })
-        }
+        onPress={() => {
+          this.props.navigation.navigate("EventData", { data: item });
+          track(item.eventName, { View: true });
+        }}
       >
         <Card style={styles.card}>
           <View style={styles.row}>

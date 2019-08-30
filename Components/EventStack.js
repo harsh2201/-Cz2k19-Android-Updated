@@ -17,6 +17,7 @@ import firebaseConfig from "../Data/config";
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+import track from "../Data/Amplitude";
 
 const HEIGHT = Dimensions.get("window").height;
 const WIDTH = Dimensions.get("window").width;
@@ -34,6 +35,9 @@ export default class EventStack extends Component {
   }
 
   async componentDidMount() {
+    this.props.navigation.addListener("didFocus", payload => {
+      track(this.props.navigation.state.routeName, { "View": true });
+    });
     uid = await firebase.auth().currentUser.uid;
 
     firebase
@@ -75,6 +79,8 @@ export default class EventStack extends Component {
           <View style={styles.infoContainer}>
             <TouchableOpacity
               onPress={() => {
+                track(item.eventName, { "View": true });
+
                 this.props.navigation.navigate("EventData", {
                   data: item,
                   rounds: rounds[item.eventName]
@@ -95,6 +101,7 @@ export default class EventStack extends Component {
     let data = navigation.getParam("data");
     let like_left = this.state.user.like_left;
     let like = 0;
+    track(data[item].eventName, {"Liked":true});
     if (like_left > 0) {
       await firebase
         .database()

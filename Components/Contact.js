@@ -13,6 +13,7 @@ import MainCard from "./MainCard";
 import Modal from "react-native-modal";
 import { Ionicons } from "@expo/vector-icons";
 import Text from "./customText";
+import track from "../Data/Amplitude";
 
 const data = [
   {
@@ -51,6 +52,9 @@ class Contact extends Component {
   }
 
   componentDidMount() {
+    this.props.navigation.addListener("didFocus", payload => {
+      track(this.props.heading);
+    });
     t = this.state.tempProp;
     if (t.user_no % 100 === 0 && t.user_no <= 1000) {
       this.setState({
@@ -79,6 +83,7 @@ class Contact extends Component {
       <TouchableOpacity
         onPress={() => {
           Linking.openURL(`tel:+91${item.contact}`);
+          track(this.props.heading, { [item.name]: "called" });
         }}
       >
         <View style={styles.row}>

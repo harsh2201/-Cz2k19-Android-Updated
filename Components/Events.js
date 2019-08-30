@@ -15,6 +15,7 @@ import EventDetails from "./EventDetails";
 import * as firebase from "firebase";
 import Text from "./customText";
 import firebaseConfig from "../Data/config";
+import track from "../Data/Amplitude";
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -24,7 +25,11 @@ class Events extends Component {
   navigate = (route, params) => {
     this.props.navigation.navigate(route, params);
   };
-
+  componentDidMount() {
+    this.props.navigation.addListener("didFocus", payload => {
+      track(this.props.navigation.state.routeName);
+    });
+  }
   render() {
     const AppNavigator = createAppContainer(
       createMaterialTopTabNavigator(

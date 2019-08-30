@@ -9,8 +9,13 @@ import {
 } from "react-native";
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 import Text from "./customText";
+import track from "../Data/Amplitude";
+
 class Events extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+      track("AboutCZ");
+    
+  }
   render() {
     return (
       <View style={styles.container}>

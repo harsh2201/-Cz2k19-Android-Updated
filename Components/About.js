@@ -18,7 +18,6 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 import track from "../Data/Amplitude";
-
 const HEIGHT = Dimensions.get("window").height;
 
 class About extends Component {
@@ -78,8 +77,7 @@ class About extends Component {
       });
   }
 
-  toggleModal = item => {
-    track(this.props.heading, { [item.name]: "clicked" });
+  toggleModal = () => {
     this.setState({ isModalVisible: true });
     setTimeout(() => {
       this.setState({ isModalVisible: false });
@@ -88,10 +86,7 @@ class About extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <TouchableOpacity
-        disabled={!this.props.egg}
-        onPress={this.toggleModal(item.name).bind(this)}
-      >
+      <TouchableOpacity disabled={!this.props.egg} onPress={this.toggleModal}>
         <View style={styles.row}>
           <Image source={{ uri: item.image }} style={styles.pic} />
           <View>
